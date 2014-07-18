@@ -1,6 +1,7 @@
 #Structure of the pre-histogrammed Image Data File
 ￼￼￼￼
-|Data Item    ||||Type                 |Description|                                             |--------------------------------------------------|
+|Data Item    ||||Type                 |Description|
+|-------------||||---------------------------------|
 |PixX         ||||''int32''            |pixels in X-direction                                   |
 |PixY         ||||''int32''            |pixels in Y-direction                                   |
 |PixResol     ||||''float32''          |spatial pixel resolution in μm                          |
