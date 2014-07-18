@@ -1,0 +1,806 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<!--  **************************************************************************************************************  -->
+<!--  *                                                                                                            *  -->
+<!--  *   Tag Types (Appendix)                                                                                     *  -->
+<!--  *                                                                                                            *  -->
+<!--  **************************************************************************************************************  -->
+  <head>
+    <meta http-equiv="content-type"        content="text/html;charset=utf-8" >
+    <meta http-equiv="Content-Style-Type"  content="text/css" >
+    <meta name="Generator"                 content="SPT64 Documentation Crew">
+    <meta name="Topic"            id="10"  content="Appendices|Tag Types" />
+    <meta name="IconCode"         id="11"  content="i" />
+    <meta name="PositionIndex"    id="12"  content="22" />
+    <meta name="AddGroupToTitle"  id="13"  content="False" />
+
+    <meta name="Group"                     content="Appendix" />
+    <meta name="Key"                       content="APX_TagTypes" /> <!-- Key (mandatory)  -->
+    <meta name="Keywords"                  content="tag types (appendix), tag dictionary (appendix), unified tag file format (fundamentals), PCO files, PFS file, PQRES files, PTU files, PUS files, files, tags"> <!--  Keywords    (optional)   -->
+<!--  ==============================================================================================================  -->
+    <title>Tag Types (Appendix)</title>                                        <!--          Page Title  (mandatory)  -->
+<!--  ==============================================================================================================  -->
+
+    <style>
+      body {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+           }
+      h1   {
+             position:relative;
+             left:1.3cm;
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:20pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h2   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:14pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h3   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:12pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h4   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:11pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h5   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      table{
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+           }
+      p    {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+           }
+      a    {
+             font-family:sans-serif;
+             font-size:10pt;
+             font-weight:normal;
+           }
+      .TagTypes {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+             border:1px double silver;
+             border-spacing:1px;
+             padding:3;
+           }
+      .TagTypes th {
+             border:1px double silver;
+             padding:3;
+             background-color:DarkGray;
+             font-weight:bold;
+             text-align:right;
+           }
+      .TagTypes td {
+             border:1px double silver;
+             padding:3;
+             text-align:right;
+           }
+      .InTab{
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+             border:0;
+             padding:3;
+           }
+      .InTab td {
+             border:0;
+             padding:3;
+             text-align:left;
+           }
+           
+    </style>
+  </head>
+  <body bgcolor=WHITE >
+    <a name="Top"></a>                                                         <!--   as a jump-target (top of page): -->
+    <table width=100% cellpadding=0 >
+      <tr valign=BOTTOM>
+        <td align=LEFT >
+          <h5>
+<!--  ==============================================================================================================  -->
+            Appendix                                                           <!--           Group-Title (optional)  -->
+<!--  ==============================================================================================================  -->
+            &nbsp;
+          </h5>
+        </td>
+      </tr>
+      <tr valign=MIDDLE>
+        <td align=LEFT>
+          <h1>
+<!--  ==============================================================================================================  -->
+            Tag Types                                                          <!--                Title (mandatory)  -->
+<!--  ==============================================================================================================  -->
+          </h1>
+        </td>
+      </tr>
+    </table>
+    <table width=100% cellpadding=0 >
+      <tr valign=TOP>
+        <td align=LEFT >
+<!--  ==============================================================================================================  -->
+          &nbsp;&nbsp;[<a href="#RelatedTopics">Related Topics</a>]            <!--      Nav.-Button left (optional)  -->
+<!--  ==============================================================================================================  -->
+        </td>
+        <td align=RIGHT>
+          &nbsp;&nbsp;
+        </td>
+      </tr>
+    </table>
+    <hr>                                                                       <!--                              BODY -->
+    <p />
+
+    <h3>
+      Conventions
+    </h3>
+    <table width=100%>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+          <ol style="list-style-type:lower-alpha">
+            <li>
+              Tag region of files have always lengths divisible by 8
+            </li>
+            <li>
+              In files, tags start always on positions divisible by 8.
+            </li>
+            <li>
+              Tag_Id is case sensitive.
+            </li>
+            <li>
+              File type is given by preamble 1 (except for settings files).
+            </li>
+          </ol>
+        </td>
+      </tr>
+    </table>
+
+    <a name="FileMagics"></a>                                                   <!--   as a jump-target (File Magics) -->
+    <h3>
+      File Preamble 1: File Magic
+    <h3>
+    <table width=100%>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+          <p>
+            The following table gives the file type identifying "magics" as to be found in preamble 1. 
+            This preample is filled up to its full length of 8 characters by chr(0) bytes.
+          </p>
+          <table class="TagTypes" align="left" width=40%>
+            <thead>
+              <th width=25%>
+                &nbsp;&nbsp;File&nbsp;Type
+              </th>
+              <th width=25%>
+                &nbsp;&nbsp;File&nbsp;Extension
+              </th>
+              <th>
+                &nbsp;&nbsp;Preamble&nbsp;1
+              </th>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  <code>Comment&nbsp;Files</code>
+                </th>
+                <td>
+                  PCO
+                </td>
+                <td>
+                  PQCOMNT
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <code>&nbsp;&nbsp;&nbsp;Factory&nbsp;Settings</code>
+                </th>
+                <td>
+                  PFS
+                </td>
+                <td>
+                  PQDEFLT
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <code>Histogram&nbsp;Files</code>
+                </th>
+                <td>
+                  PHU
+                </td>
+                <td>
+                  PQHISTO
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <code>Result&nbsp;Files</code>
+                </th>
+                <td>
+                  PQRES
+                </td>
+                <td>
+                  PQRESLT
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <code>TTTR&nbsp;Files</code>
+                </th>
+                <td>
+                  PTU
+                </td>
+                <td>
+                  PQTTTR
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <code>User&nbsp;Settings</code>
+                </th>
+                <td>
+                  PUS
+                </td>
+                <td>
+                  PQDEFLT
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <p />
+    
+    <a name="FormatVers"></a>                                                <!--   as a jump-target (Format Version) -->
+    <h3>
+      File Preamble 2: Format Version
+    <h3>
+    <table width=100%>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+          <p>
+            This preamble is an 8 byte string including the terminating and filling chr(0) byte(s).
+            It identifies the tag format version.<br>
+            The current version is <code>"1.0.00"</code>, the predecessor version <code>"00.0.1"</code>
+            is valid, too.
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <p />
+
+    <h3>
+      Tag Format Definition
+    <h3>
+    <table width=100%>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+          <p>
+            The following table illustrates the format of valid tags. It is described as a record (struct) with named fields:
+          </p>
+          <table class="TagTypes" align="left" width=100% >
+            <thead>
+              <th>
+                Field Name
+              </th>
+              <th>
+                Length [Byte]
+              </th>
+              <th style="text-align:left;" >
+                Field Type
+              </th>
+              <th style="text-align:left;" >
+                Remarks
+              </th>
+            </thead>
+            <tbody>
+              <tr>
+                <th>
+                  <code>Tag_Id</code>
+                </th>
+                <td>
+                  32
+                </td>
+                <td style="text-align:left;" >
+                  <code>ASCII-String</code>
+                </td>
+                <td style="text-align:left;" >
+                  case sensitive; terminated by at least one &amp; filled up to full length with chr(0)
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Tag_Idx</code>
+                </th>
+                <td>
+                  4
+                </td>
+                <td style="text-align:left;" >
+                  <code>Int32</code>
+                </td>
+                <td style="text-align:left;" >
+                  <table class=InTab width=100% >
+                    <tr>
+                      <td width=40% >
+                        if tagField is array-element:&nbsp;
+                      </td>
+                      <td>
+                        &nbsp;<code>&lt;Idx&gt;</code> (counting from 0),
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        else:&nbsp;
+                      </td>
+                      <td>
+                        &nbsp;-1 (i. e. <code>0xFFFFFFFF</code>)
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Tag_TypeCode</code>
+                </th>
+                <td>
+                  4
+                </td>
+                <td style="text-align:left;" >
+                  <code>UInt32</code>
+                </td>
+                <td style="text-align:left;" >
+                  see table below
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Tag_Value</code>
+                </th>
+                <td>
+                  8
+                </td>
+                <td style="text-align:left;" >
+                  depends&nbsp;on&nbsp;<code>&lt;TypeCode&gt;</code>
+                </td>
+                <td style="text-align:left;" >
+                  <table class=InTab width=100% >
+                    <tr>
+                      <td width=40% >
+                        if <code>&lt;TypeCode&gt;</code> is array/string type:&nbsp;
+                      </td>
+                      <td>
+                        &nbsp;gross size [byte]<br>(must be a multiple of 8)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        else:&nbsp;
+                      </td>
+                      <td>
+                        &nbsp;Tag_Value is <code>&lt;Value&gt;</code>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Tag_Enhancement</code>
+                </th>
+                <td>
+                  see below
+                </td>
+                <td style="text-align:left;" >
+                  String&nbsp;of&nbsp;type&nbsp;according&nbsp;to&nbsp;<code>&lt;TypeCode&gt;</code>
+                </td>
+                <td style="text-align:left;" >
+                  <table class=InTab width=100% >
+                    <tr>
+                      <td width=40% >
+                        if <code>&lt;TypeCode&gt;</code> is array/string:&nbsp;
+                      </td>
+                      <td>
+                        &nbsp;Enhancement contains values/string
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        else:&nbsp;
+                      </td>
+                      <td>
+                        &nbsp;Enhancement doesn't exist
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <p />
+    <a name="TagTypes"></a>                                                       <!--   as a jump-target (Tag Types) -->
+    <h3>
+      Tag Type Definition
+    <h3>
+    <table width=100%>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;
+        </td>
+        <td>
+          <p>
+            The following table defines the types of valid tags with their domain and additional lenght if enhanced:
+          </p>
+          <table class=TagTypes align="left" width=100% >
+            <thead>
+              <th>
+                Type Name
+              </th>
+              <th>
+                Type Code
+              </th>
+              <th>
+                Range (From)
+              </th>
+              <th>
+                Range (To)
+              </th>
+              <th style="text-align:center">
+                Length&nbsp;=&nbsp;48+x
+              </th>
+              <th style="text-align:left">
+                Remarks
+              </th>
+            </thead>
+            <tbody>
+
+              <tr>
+                <th>
+                  <code>Empty8</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0xFFFF0008</code>
+                </td>
+                <td>
+                  <code>&minus;</code>
+                </td>
+                <td>
+                  <code>&minus;</code>
+                </td>
+                <td style="text-align:center" >
+                  <code>0</code>
+                </td>
+                <td style="text-align:left" >
+                  carrying no meaningful data, just to group tags
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Bool8</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x00000008</code>
+                </td>
+                <td>
+                  false (i.e.<code> == 0</code>)
+                </td>
+                <td>
+                  true (i.e. <code> &lt;&gt;0</code>)
+                </td>
+                <td style="text-align:center">
+                  <code>0</code>
+                </td>
+                <td style="text-align:left">
+                  &nbsp;
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Int8</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x10000008</code>
+                </td>
+                <td>
+                  <code>&minus;10,000,000,000,000,000</code>
+                </td>
+                <td>
+                  <code>10,000,000,000,000,000</code>
+                </td>
+                <td style="text-align:center">
+                  <code>0</code>
+                </td>
+                <td style="text-align:left">
+                  Subset of Int64
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>BitSet64</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x11000008</code>
+                </td>
+                <td>
+                  <code>[0000000000000000]</code>
+                </td>
+                <td>
+                  <code>[FFFFFFFFFFFFFFFF]</code>
+                </td>
+                <td style="text-align:center">
+                  <code>0</code>
+                </td>
+                <td style="text-align:left">
+                  Bit-coded; MSB is 64, LSB is 1
+                </td>
+              </tr>
+
+              <tr>
+                <th valign=middle>
+                  <code>Color8</code>
+                </th>
+                <td valign=middle style="background-color:LightGray">
+                  <code>0x12000008</code>
+                </td>
+                <td>
+                  <code>[0000000000000000]</code><br>
+                  <code>[00000000FF000000]</code>
+                </td>
+                <td>
+                  <code>[0000000000FFFFFF]</code><br>
+                  <code>[00000000FF00001E]</code>
+                </td>
+                <td valign=middle  style="text-align:center">
+                  <code>0</code>
+                </td>
+                <td style="text-align:left">
+                  <table class=InTab width=100%  >
+                    <tr>
+                      <td width=85px>
+                        either RGB-24
+                      </td>
+                      <td>
+                        (with R as LSB)
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        or Byte 4 is 0xFF
+                      </td>
+                      <td>
+                        (windows color code)
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Float8</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x20000008</code>
+                </td>
+                <td>
+                  <code>&minus;5.0E+324</code>
+                </td>
+                <td>
+                  <code>1.7E+308</code>
+                </td>
+                <td style="text-align:center">
+                  <code>0</code>
+                </td>
+                <td style="text-align:left">
+                  Double; 15 significant digits
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>TDateTime</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x21000008</code>
+                </td>
+                <td>
+                  <code>30.12.1899;&nbsp;0:00</code>
+                </td>
+                <td>
+                  <code>&hellip;</code>
+                </td>
+                <td style="text-align:center">
+                  <code>0</code>
+                </td>
+                <td style="text-align:left">
+                  Float8; integral part: number of days since 30.12.1899
+                </td>
+              </tr>
+<!-- wird nicht benutzt, daher "not supported"  
+              <tr>
+                <th>
+                  <code>Int8Array</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x1001FFFF</code>
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td style="text-align:center">
+                  <code>&lt;TagValue&gt;</code>
+                </td>
+                <td style="text-align:left">
+                  enhanced with gross size descriptor [byte]<br>in &lt;TagValue&gt; (1<sup>st</sup> quad word)
+                </td>
+              </tr>
+-->
+              <tr>
+                <th>
+                  <code>Float8Array</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x2001FFFF</code>
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td style="text-align:center">
+                  <code>&lt;TagValue&gt;</code>
+                </td>
+                <td style="text-align:left">
+                  enhanced with gross size descriptor [byte]<br>in &lt;TagValue&gt; (1<sup>st</sup> quad word)
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>ASCII&minus;String</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x4001FFFF</code>
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td style="text-align:center">
+                  <code>&lt;TagValue&gt;</code>
+                </td>
+                <td style="text-align:left">
+                  enhanced with gross size descriptor [byte]<br>in &lt;TagValue&gt; (1<sup>st</sup> quad word);<br>
+                  incl.  chr(0) as terminator
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>Wide&minus;String</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0x4002FFFF</code>
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td style="text-align:center">
+                  <code>&lt;TagValue&gt;</code>
+                </td>
+                <td style="text-align:left">
+                  enhanced with gross size descriptor [byte]<br>in &lt;TagValue&gt; (1<sup>st</sup> quad word);<br>
+                  incl. wchr(0) as terminator
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <code>BinaryBlob</code>
+                </th>
+                <td style="background-color:LightGray">
+                  <code>0xFFFFFFFF</code>
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+                <td style="text-align:center">
+                  <code>&lt;TagValue&gt;</code>
+                </td>
+                <td style="text-align:left">
+                  enhanced with gross size descriptor [byte]<br>in &lt;TagValue&gt; (1<sup>st</sup> quad word)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <p />
+    <hr>                                                                       <!--                            FOOTER -->
+    <a name="RelatedTopics"></a>                                               <!-- as a jump-target (bottom of page) -->
+    <table width=100%>
+      <tr>
+        <td align=LEFT>
+          <b>Related Topics: </b>
+        </td>
+        <td align=RIGHT>
+<!--      [<a href="#Top">Top</a>]                                             <!--  as navigation-button back to top -->
+          &nbsp;&nbsp;
+        </td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagdictionary.html">Tag Dictionary</a>]</nobr>
+    <br>&nbsp;&nbsp;&nbsp;[<a href="apx_support.html">Support</a>]
+    <br><font color=WHITE size=1></font> <!-- spoiled words repeated -->
+  </body>
+</html>

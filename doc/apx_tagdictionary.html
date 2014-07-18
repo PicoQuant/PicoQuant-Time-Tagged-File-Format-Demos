@@ -1,0 +1,2475 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<!--  **************************************************************************************************************  -->
+<!--  *                                                                                                            *  -->
+<!--  *   Tag Dictionary (Appendix)                                                                                *  -->
+<!--  *                                                                                                            *  -->
+<!--  **************************************************************************************************************  -->
+  <head>
+    <meta http-equiv="content-type"        content="text/html;charset=utf-8" >
+    <meta http-equiv="Content-Style-Type"  content="text/css" >
+    <meta name="Generator"                 content="SPT64 Documentation Crew">
+    <meta name="Topic"            id="10"  content="Appendices|Tag Dictionary">
+    <meta name="IconCode"         id="11"  content="i" />
+    <meta name="PositionIndex"    id="12"  content="25" />
+    <meta name="AddGroupToTitle"  id="13"  content="False" />
+
+    <meta name="Group"                     content="Appendix" />
+    <meta name="Key"                       content="APX_TagDictionary"> <!-- Key (mandatory)  -->
+    <meta name="Keywords"                  content="tag dictionary (appendix), tag types (appendix), unified tag file format (fundamentals), PCO files, PFS file, PQRES files, PTU files, PUS files, files, tags"> <!-- Keywords (optional)  -->
+<!--  ==============================================================================================================  -->
+    <title>Tag Dictionary (Appendix)</title>                                   <!--          Page Title  (mandatory)  -->
+<!--  ==============================================================================================================  -->
+
+    <style>
+      body {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+           }
+      h1   {
+             position:relative;
+             left:1.3cm;
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:20pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h2   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:14pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h3   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:12pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h4   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:11pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      h5   {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:bold;
+             text-decoration:none
+           }
+      table{
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+           }
+      p    {
+             font-family:sans-serif;
+             font-style:normal;
+             font-size:10pt;
+             font-weight:normal;
+             text-decoration:none
+           }
+      a    {
+             font-family:sans-serif;
+             font-size:10pt;
+             font-weight:normal;
+           }
+    </style>
+  </head>
+  <body bgcolor=WHITE >
+    <a name="Top"></a>                                                         <!--   as a jump-target (top of page): -->
+    <table width=100% cellpadding=0 >
+      <tr valign=BOTTOM>
+        <td align=left >
+          <h5>
+<!--  ==============================================================================================================  -->
+            Appendix                                                           <!--           Group-Title (optional)  -->
+<!--  ==============================================================================================================  -->
+            &nbsp;
+          </h5>
+        </td>
+      </tr>
+      <tr valign=middle>
+        <td align=left>
+          <h1>
+<!--  ==============================================================================================================  -->
+            Tag Dictionary                                                     <!--                Title (mandatory)  -->
+<!--  ==============================================================================================================  -->
+          </h1>
+        </td>
+      </tr>
+    </table>
+    <table width=100% cellpadding=0 >
+      <tr valign=TOP>
+        <td align=left >
+<!--  ==============================================================================================================  -->
+          &nbsp;&nbsp;[<a href="#RelatedTopics">Related Topics</a>]            <!--      Nav.-Button left (optional)  -->
+<!--  ==============================================================================================================  -->
+        </td>
+        <td align=right>
+          &nbsp;&nbsp;
+        </td>
+      </tr>
+    </table>
+    <hr>                                                                       <!--                              BODY -->
+    <p />
+    <p />
+    <p />
+    <table cellspacing=0 cols=11 border=1>
+      <colgroup>
+        <col width=260 span="1" align="right" style="background-color:darkgray; font-weight:bold">
+        <col width=180>
+        <col width=110>
+        <col width=50>
+        <col width=110>
+        <col width=60>
+        <col width=50>
+        <col width=331>
+        <col width=69>
+      </colgroup>
+      <tbody>
+        <tr>
+          <td width=260 height=42 align=right style="background-color:darkgray; font-weight:bold">Field Identifier</td>
+          <td width=180 align=right style="background-color:darkgray; font-weight:bold">Indexed</td>
+          <td width=110 align=right style="background-color:darkgray; font-weight:bold"><a href="apx_tagtypes.html#TagTypes"><b>Field Type</b></a></td>
+          <td width=50 align=right style="background-color:darkgray; font-weight:bold">Length</td>
+          <td width=110 align=center style="background-color:darkgray; font-weight:bold">MeasTyp&nbsp;/&nbsp;File&nbsp;Typ</td>
+          <td width=60 align=center style="background-color:darkgray; font-weight:bold">Loading</td>
+          <td width=50 align=right style="background-color:darkgray; font-weight:bold">mand.</td>
+          <td width=331 align=right style="background-color:darkgray; font-weight:bold">Remarks</td>
+          <td width=69 align=center style="background-color:darkgray; font-weight:bold">Default</td>
+        </tr>
+        <tr>
+          <td height=20 align=left><code>&lt;File Preamble 1 (no tag)&gt;</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Preamble</code></td>
+          <td align=right><code>=08</code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right><a href="apx_tagtypes.html#FileMagics"><b>File Magic</b></a> e.g. &quot;<code>PQTTTR</code>&quot;, &quot;<code>PQRESLT</code>&quot; or &quot;<code>PQCOMNT</code>&quot;<br>filled up with char(0)</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left><code>&lt;File Preamble 2 (no tag)&gt;</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Preamble</code></td>
+          <td align=right><code>=08</code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>Format Version</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;File Header&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>File_GUID</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code>=40</code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>&quot;{%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}&quot;</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>File_AssuredContent</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>TCSPC type, followed by optional token for the assured presence of SW-settings, HW-settings and binary data</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>File_Comment</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Wide-String</code><br><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>File_CreatingTime</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>TDateTime</code><br><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>File_EditedBy</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PFS/PUS/PCO</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>mainly for defaults settings and/or comments</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>File_RawData_GUID</code></td>
+          <td align=right >may be</td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code>=40</code></td>
+          <td align=center><code>PQRES</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>&quot;{%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}&quot;</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>File_ParentResult_GUID</code></td>
+          <td align=right >may be</td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code>=40</code></td>
+          <td align=center><code>PQRES</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>&quot;{%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}&quot;</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Measurement_Mode</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>HIST, Resrv1, T2, T3, Resrv4-7, CONT</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Measurement_SubMode</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right><code>OSC, INT, TRES, IMG</code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Fast_Load_End</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Empty8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>All "fast" tags are stored before this tags. For fast viewing of files only the Tags until this Tag are loaded. Useful for Workspace loading. If missing, all tags are loaded.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Header_End</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Empty8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>End of Header</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Creator Software&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>CreatorSW_Name</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>CreatorSW_Version</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>CreatorSW_SVNBuild</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>CreatorSW_ContentVersion</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>for converted files: FormatVersion of the source file</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">CreatorSW_Modules</font></code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Modules Count (for DLLs, etc.)</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>CreatorSW_ModuleName</code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;CreatorSW_Modules&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>CreatorSW_ModuleVers</code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;CreatorSW_Modules&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <!-- >
+      //  TagIdent                          TagType           FileTypesMask                              IsFastLoad  IsMandatory IsIdxRef IsUsed IdxRefVal IdxRngFld                             HasExtIdent NameRngFld ExtIdentScanPat
+        //                                                                                                                                dyn.   dyn.                                            -1 : str,
+        //                                                                                                                                                                                       +1 : int,
+        { "CurSWSetting_ActiveCurve",       PQ_TAGTYPE_INT8,  PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       0,                                    0,  0, ""},
+        { "CurSWSetting_DispLog",           PQ_TAGTYPE_BOOL8, PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       0,                                    0,  0, ""},
+        { "CurSWSetting_DispTimeAxisFrom",  PQ_TAGTYPE_INT8,  PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       0,                                    0,  0, ""},
+        { "CurSWSetting_DispTimeAxisTo",    PQ_TAGTYPE_INT8,  PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       0,                                    0,  0, ""},
+        { "CurSWSetting_DispCountAxisFrom", PQ_TAGTYPE_INT8,  PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       0,                                    0,  0, ""},
+        { "CurSWSetting_DispCountAxisTo",   PQ_TAGTYPE_INT8,  PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       0,                                    0,  0, ""},
+        { "CurSWSetting_DispCurves",        PQ_TAGTYPE_INT8,  PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          1,       0,     -1,       0,                                    0,  0, ""},
+        { "CurSWSetting_DispCurve_Show",    PQ_TAGTYPE_BOOL8, PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       PQ_TAGID_CURSWSETTING_DISPCURVES,     0,  0, ""},
+        { "CurSWSetting_DispCurve_MapTo",   PQ_TAGTYPE_INT8,  PQ_FILETYPE_TTTR | PQ_FILETYPE_HISTO,      0,          0,          0,       0,     -1,       PQ_TAGID_CURSWSETTING_DISPCURVES,     0,  0, ""},
+        < -->
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Remote Request Data&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code>PTU</code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver">all parameters received via TCP/IP with a meas.request</td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$StartedByRemoteInterface</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:red;font-weight:bold">on req.</font></td>
+          <td align=right>identifies if request received via TCP/IP</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$ReqHdr_RecordVersion</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">on req.</font></td>
+          <td align=right>identifies record format transferred via TCP/IP</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$ReqHdr_MeasurementType</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">on req.</font></td>
+          <td align=right>identifies measurement type</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$ReqHdr_PixelNumber_X</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">on req.</font></td>
+          <td align=right>number of pixels in X</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$ReqHdr_PixelNumber_Y</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">on req.</font></td>
+          <td align=right>number of pixels in Y</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$ReqHdr_ScanningPattern</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">on req.</font></td>
+          <td align=right>0: mono-dir.; 1: bi-dir.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$ReqHdr_SpatialResolution</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">on req.</font></td>
+          <td align=right>[µm/px]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$Groupname</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>optional parameter received via TCP/IP</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$Filename</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>optional parameter received via TCP/IP</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$Comment</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>optional parameter received via TCP/IP</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>$&lt;Ident&gt;</code></td>
+          <td align=right>may be</td>
+          <td align=right><code>&lt;all_types&gt;</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>all other optional parameters received via TCP/IP</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Hardware Header&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HW_Type</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>&quot;PicoHarp&quot;, &quot;HydraHarp&quot;, &quot;TH260P&quot;, &quot;TH260N&quot;</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HW_PartNo</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HW_SerialNo</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HW_Version</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HW_BaseResolution</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">HW_Modules</font></code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>for PicoHarp = 1</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWModule_TypeCode</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_Modules&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>for PicoHarp: Digital=1000, Analog=1040</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWModule_VersCode</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_Modules&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>for PicoHarp = BCD (HW_Version)</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWSync_Divider</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>binary power</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWSync_CFDLevel</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWSync_CFDZeroCross</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWSync_Offset</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">HW_InputChannels</font></code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWInputChan_Enabled</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InputChannels&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right>true</td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWInputChan_ModuleIdx</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InputChannels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">1&hellip;HW_Modules</font></code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWInputChan_CFDLevel</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InputChannels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWInputChan_CFDZeroCross</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InputChannels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWInputChan_Offset</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InputChannels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right>0</td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HW_ExternalRefClock</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HW_ExternalDevices</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><font style="font-weight:bold;color=red">???</font></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">HW_Markers</font></code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWMarkers_Enabled</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_Markers&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right>true</td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWMarkers_RisingEdge</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_Markers&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouter_ModelCode</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code>None, PHR_402 , PHR_403, PHR_800</code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouter_Version</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouter_Enabled</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right>false</td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">HWRouter_Channels</font></code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouterChan_InputType</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HWRouter_Channels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code>Custom, NIM, TTL</code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouterChan_InputLevel</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HWRouter_Channels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouterChan_RisingEdge</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HWRouter_Channels&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouterChan_CFDPresent</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HWRouter_Channels&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouterChan_CFDLevel</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HWRouter_Channels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>only if present      [mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouterChan_CFDZeroCross</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HWRouter_Channels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>only if present      [mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HWRouterChan_Offset</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HWRouter_Channels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Measurement Description&gt;</code></B></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_BinningFactor</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>expanded, to support non-binary factors</td>
+          <td align=right SDVAL="1" SDNUM="1031;">1</td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_GlobalResolution</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>resolution of time tag(s) Should be used to calculate the global arrival time for records [s]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Resolution</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>resolution of TCSPC [s]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_InvalidSync</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(T3+IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>true, if (SYNC = 0) on measurement start</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Offset</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ns]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_AcquisitionTime</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU/PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ms]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_StopAt</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[cnt]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_StopOnOvfl</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Restart</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">MeasDesc_Params</font></code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Param_Name</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;MeasDesc_Params&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>name as shown in dialogs or plots</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Param_TagName</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;MeasDesc_Params&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>must start with "Par";<br> has to comply to all tag name conventions</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Param_Unit</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;MeasDesc_Params&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>including prefix if used, e.g. "nm" for wavelengths</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Param_Start</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;MeasDesc_Params&minus;1</font></code></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Param_Step</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;MeasDesc_Params&minus;1</font></code></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Param_Stop</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;MeasDesc_Params&minus;1</font></code></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Dimensions</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Resrv0-1, LINE, AREA</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Ident</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Resrv0, PI_E710, Resrv2, LSM, KDT180&ndash;100&ndash;lm</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_BiDirect</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>TRUE = Bidirectional scanning pattern (Odd lines forward, even lines backward scan direction)<br>
+                              FALSE = Monodirectional scanning pattern (all lines forward scan direction)</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_TimePerPixel</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Dwell time for single pixel [ms]. Needed to calculate the pixel position inside the line from the global arrival time.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Acceleration</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only in converted TTTR image files recorded with PI E710 Scanner. NOT needed for analysing the Image because the Marker are repositioned when the files are converted.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_X0</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Point Measurements: X Position of the Point measured (if a scanner available)<BR>
+                          Image Measurements: X Start Position of Image (upper left corner)<BR>
+                          [&mu;m]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Y0</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Point Measurements: Y Position of the Point measured (if a scanner available)<BR>
+                          Image Measurements: Y Start Position of Image (upper left corner)<BR>
+                          [&mu;m]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Z0</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Point Measurements: Z Position of the Point measured (if a scanner available)<BR>
+                          Image Measurements: Z Start Position of Image (upper left corner)<BR>
+                          [&mu;m]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_PixX</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Numbers of Pixels in the X picture direction of the Image. Attention this means the
+            picture not the scanner direction Check <font style="font-weight:bold;color:indigo">ImgHdr_ScanDirection</font> to get the assignment picture to scanner direction.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_PixY</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Numbers of Pixels in the Y picture direction of the Image. Attention this means the
+            picture not the scanner direction Check <font style="font-weight:bold;color:indigo">ImgHdr_ScanDirection</font> to get the assignment picture to scanner direction.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_PixResol</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Spatial size of one pixel [&mu;m/px]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_TStartTo</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only in converted TTTR image files recorded with PI E710 Scanner. NOT needed for analysing the Image because the Marker are repositioned when the files are converted.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_TStopTo</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only in converted TTTR image files recorded with PI E710 Scanner. NOT needed for analysing the Image because the Marker are repositioned when the files are converted.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_TStartFro</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only in converted TTTR image files recorded with PI E710 Scanner. NOT needed for analysing the Image because the Marker are repositioned when the files are converted.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_TStopFro</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only in converted TTTR image files recorded with PI E710 Scanner. NOT needed for analysing the Image because the Marker are repositioned when the files are converted.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Velocity</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only in converted TTTR image files recorded with PI E710 Scanner.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Frame</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Marker index for frame separation.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_LineStart</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Marker index for start of a line.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_LineStop</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Marker index for end of a line.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_ScanDirection</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Scan pattern of image scan<BR>&quot;X direction in Picture(fast scan) - Y direction in picture (slow scan)&quot; <BR>
+            &quot;X-Y&quot;=0, &quot;X-Z&quot;=1, &quot;Y-Z&quot;=2</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_LearningTime</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>time used for learning cycles when using PI E710 scan controller [sec]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>ImgHdr_SinCorrection</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU(IMG)</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Sinusoidal correction for images, given as percentage of the sine ordinate used for an image line. [%]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;TT Measurement Results&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>TTResult_SyncRate</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>Sync rate at start of measurement, to get the resolution for T3 tags use <font style="font-weight:bold;color:indigo">MeasDesc_GlobalResolution</font></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>TTResult_InputRate</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InpChannels&minus;2</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>TTResult_StopAfter</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ms]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>TTResult_StopReason</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code>TimeOver, Manual, Overflow, Error</code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">TTResult_NumberOfRecords</font></code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>Number of TTTR Records in the &lt;Binary Data&gt; Block directly after the Header section.</td>
+          <td align=right><br></td>
+        </tr>
+
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Histo Measurement Results&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistoResult_BitsPerBin</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right><br></td>
+          <td align=right>32</td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">HistoResult_NumberOfCurves</font></code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+
+
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;TT Results Format&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">TTResultFormat_TTTRRecType</font></code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>TTTR record type, containing coded information on the TCSPC used, the type of measurement and 
+            the HWLib version. Refer to <a href="apx_tttrrecords.html">TTTR records</a> for more information.
+          </td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">TTResultFormat_BitsPerRecord</font></code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>Numbers of Bits in one TTTR Record. All current record formats consist of 32 bit records (= 4 Bytes per TTTR record).</td>
+          <td align=right SDVAL="32" SDNUM="1031;">32</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Histo Result Descriptor&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_CurveIndex</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_TimeOfRecording</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>TDateTime</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWType</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>&quot;PicoHarp&quot;, &quot;HydraHarp&quot;, &quot;TH260P&quot;, &quot;TH260N&quot;</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWPartNo</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWSerialNo</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWVersion</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWBaseResolution</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">HistResDscr_HWModules</font></code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>for PicoHarp = 1</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWModuleTypeCode<font style="font-weight:bold;color:indigo">&lt;mm&gt;</font></code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code>&lt;mm&gt; = <font style="font-weight:bold;color:indigo">00&hellip;HW_Modules&minus;1</font></code>;<br>for PicoHarp = 0</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWModuleVersCode<font style="font-weight:bold;color:indigo">&lt;mm&gt;</font></code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code>&lt;mm&gt; = <font style="font-weight:bold;color:indigo">00&hellip;HW_Modules&minus;1</font></code>;<br>for PicoHarp = HW_Version</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWSyncDivider</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>binary power</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWSyncCFDLevel</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWSyncCFDZeroCross</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWSyncOffset</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWInpChanIdx</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWInpChanModuleIdx</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">1&hellip;HW_Modules</font></code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWInpChanCFDLevel</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWInpChanCFDZCross</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWInpChanOffset</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWExternalRefClock</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWExternalDevices</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>BitSet64</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><font color="red"><b>???</b></font></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code><font style="font-weight:bold;color:indigo">HistResDscr_HWMarkers</font></code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWMarkersEnabled</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>BitSet64</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>LSB = Marker0</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWMarkersRising</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>BitSet64</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>LSB = Marker0</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRouterModelCode</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code>None, PHR_402 , PHR_403, PHR_800</code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRouterEnabled</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRouterChannelIdx</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRtChanInputType</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code>Custom, NIM, TTL</code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRtChanInputLevel</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRtChanRisingEdge</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRtChanCFDPresent</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRtChanCFDLevel</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>only if present      [mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWRtChanCFDZCross</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>only if present      [mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_MDescBinningFactor</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>expanded, to support non-binary factors</td>
+          <td align=right SDVAL="1" SDNUM="1031;">1</td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_MDescResolution</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>[ps]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_MDescOffset</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ns]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_MDescAcquisTime</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[ms]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_MDescStopAt</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[cnt]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_MDescStopOnOvfl</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_MDescRestart</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_SyncRate</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code><br></code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_InputRate</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code><br></code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HistCountRate</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code><br></code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_IntegralCount</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><code><br></code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HistogramBins</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right><code><br></code></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>HistResDscr_DataOffset</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Parameter Data&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code>all</code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver">values of parametrized measurements</td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Par&lt;Ident&gt;</code></td>
+          <td align=right><code><font style="font-weight:bold;color:indigo">0&hellip;NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Sepia2 Data&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SerialNo</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_FirmwareVersion</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SCM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_SerialNo</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_SerialNo</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_BaseOscFreq</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only present if  internal triggered     [Hz]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_TrigEdge</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only present if external triggered            </td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_TrigLevel</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Only present if external triggered    [mV]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_Divider</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_PreSync</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_SyncMask</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_InvSyncMask</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_Seq_BurstLen</code></td>
+          <td align=right><code><b>0&hellip;7</b></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>0 &hellip; 16777215</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_Seq_EnaOutput</code></td>
+          <td align=right><code><b>0&hellip;7</b></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SOM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_Seq_EnaSync</code></td>
+          <td align=right><code><b>0&hellip;7</b></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SLM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_SerialNo</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SLM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_TriggerIndex</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SLM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_Intensity</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>indirect: as ratio of the controlling voltage     [%]</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SLM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_CW_PulseDisable</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>dependg. on laser head true is CW or disable</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Sep2_SLM_<font style="font-weight:bold;color:indigo">&lt;Slot&gt;</font>_HeadType</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>as recognised by the SLM module</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Defaults/Settings&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Defaults_Begin</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Empty8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PFS/PUS</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>starts settings section, ended by header end</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>&lt;settings_name&gt;</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>&lt;all_types&gt;</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PFS/PUS</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>name unique; used to generate 8 HexChars &lt;HashId&gt;</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>PQHT_&lt;HashId&gt;_LowerLimit</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>&lt;all_types&gt;</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PFS/PUS</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>PQHT_&lt;HashId&gt;_UpperLimit</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>&lt;all_types&gt;</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PFS/PUS</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>PQHT_&lt;HashId&gt;_ValidSince</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>TDateTime</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PFS/PUS</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>PQHT_&lt;HashId&gt;_Group</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PFS/PUS</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Variables Data&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code>PQRES</code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver">scripted variables stored in result files</td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Var&lt;Ident&gt;</code></td>
+          <td align=right >may be</td>
+          <td align=right><code>&lt;all_types&gt;</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PQRES</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>VarScriptIdent</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PQRES</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>type ident of the script to load the results</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>VarResultType</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=right><code><br></code></td>
+          <td align=center><code>PQRES</code></td>
+          <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>missing or 0:TimeTrace,&lt;0:Img, 2: FCS, &hellip;</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Context Data&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code>PQRES</code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver">scripted context stored in result files</td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Ctx&lt;Ident&gt;</code></td>
+          <td align=right>may be</td>
+          <td align=right><code>&lt;all_types&gt;</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PQRES</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;User Data&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code>all</code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver">scripted variables stored by user scripts</td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>Usr&lt;Ident&gt;</code></td>
+          <td align=right>may be</td>
+          <td align=right><code>&lt;all_types&gt;</code></td>
+          <td align=right><br></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right><br></td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=right><code>UsrOverviewGUID</code></td>
+          <td align=right><font style="color:gray">no</font></td>
+          <td align=right><code>ASCII-String</code></td>
+          <td align=right><br></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>GUID of PTU Image which was used as overview image when measurement was started.</td>
+          <td align=right><br></td>
+        </tr>
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Binary Data&gt;</code></B></td>
+          <td align=right bgcolor="silver" ><br></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=right bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code>PTU/PHU</code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver"><br></td>
+          <td align=right bgcolor="silver">Contains the TTTR Records, must be positioned at the end of file <BR>
+             Length of this Block in Bytes = <font style="font-weight:bold;color:indigo">TTResultFormat_BitsPerRecord</font> / 8 * <font style="font-weight:bold;color:indigo">TTResult_NumberOfRecords</font></td>
+          <td align=right bgcolor="silver"><br></td>
+        </tr>
+      </TBODY>
+    </TABLE>
+    <p />
+    <hr>                                                                       <!--                            FOOTER -->
+    <a name="RelatedTopics"></a>                                               <!-- as a jump-target (bottom of page) -->
+    <table width=100%>
+      <tr>
+        <td align=left>
+          <b>Related Topics:</b>
+        </td>
+        <td align=right>
+<!--      [<a href="#Top">Top</a>]                                             <!--  as navigation-button back to top -->
+          &nbsp;&nbsp;
+        </td>
+      </tr>
+    </table>
+    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagtypes.html">Tag File Format</a>]</nobr>
+    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagtypes.html#FileMagics">File Magics</a>]</nobr>
+    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagtypes.html#TagTypes">Tag Type Definitions</a>]</nobr>
+    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tttrrecords.html">TTTR Record Formats</a>]</nobr>
+    <br>&nbsp;&nbsp;&nbsp;[<a href="apx_support.html">Support</a>]
+    <br><font color=WHITE size=1></font> <!-- spoiled words repeated -->
+  </body>
+</html>

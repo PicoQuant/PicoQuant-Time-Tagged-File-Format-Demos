@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <Flags>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1" Active="Default">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <Units Count="1">
+      <Unit0>
+        <Filename Value="PHUDemo.dpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PHUDemo"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="239"/>
+        <CursorPos X="47" Y="257"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit0>
+    </Units>
+    <JumpHistory Count="12" HistoryIndex="11">
+      <Position1>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="268" Column="32" TopLine="235"/>
+      </Position1>
+      <Position2>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="93" Column="20" TopLine="64"/>
+      </Position2>
+      <Position3>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="83" Column="1" TopLine="73"/>
+      </Position3>
+      <Position4>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="97" Column="25" TopLine="81"/>
+      </Position4>
+      <Position5>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="96" Column="25" TopLine="76"/>
+      </Position5>
+      <Position6>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="82" Column="17" TopLine="65"/>
+      </Position6>
+      <Position7>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="83" Column="13" TopLine="65"/>
+      </Position7>
+      <Position8>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="181" Column="22" TopLine="164"/>
+      </Position8>
+      <Position9>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="257" Column="44" TopLine="232"/>
+      </Position9>
+      <Position10>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="253" Column="32" TopLine="235"/>
+      </Position10>
+      <Position11>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="72" Column="6" TopLine="53"/>
+      </Position11>
+      <Position12>
+        <Filename Value="PHUDemo.dpr"/>
+        <Caret Line="256" Column="38" TopLine="239"/>
+      </Position12>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="PHUDemo"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
