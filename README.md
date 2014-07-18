@@ -1,4 +1,4 @@
-#PicoQuant-Time-Tagged-File-Format-Demos
+# PicoQuant Time Tagged File Format (*.ptu, *.phu)
 
 
 Demo Code for PicoQuants Time Tagged File Formats
