@@ -246,9 +246,9 @@ function GotPhoton(TimeTag, Channel, DTime)
   global cnt_ph;
   cnt_ph = cnt_ph + 1;
   if(isT2)
-      fprintf(fpout,'%i CHN %1x %i %8.0lf\n', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
+      fprintf(fpout,'%i CHN %1x %i %e\n', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
   else
-      fprintf(fpout,'%i CHN %1x %i %8.0lf %i\n', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
+      fprintf(fpout,'%i CHN %1x %i %e %i\n', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
   end;
 end
 
@@ -279,11 +279,13 @@ end
 function ReadPT3
     global fid;
     global fpout;
+    global RecNum;
     global TTResult_NumberOfRecords; % Number of TTTR Records in the File;
     ofltime = 0;
     WRAPAROUND=65536;  
 
     for i=1:TTResult_NumberOfRecords
+        RecNum = i;
         T3Record = fread(fid, 1, 'ubit32');     % all 32 bits:
     %   +-------------------------------+  +-------------------------------+ 
     %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
