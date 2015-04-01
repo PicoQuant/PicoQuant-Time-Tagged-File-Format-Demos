@@ -1,5 +1,5 @@
 Demos for reading PicoQuant PHU files.
-Michael Wahl, PicoQuant GmbH, July 2014
+Michael Wahl, PicoQuant GmbH, April 2015
 
 MainPHUdemo.vi is a demo that reads a PHU file and dumps its contents in 
 an ASCII file. Note that this is not meant to be a conversion tool. 

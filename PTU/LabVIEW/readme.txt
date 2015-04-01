@@ -1,5 +1,5 @@
 Demos for reading PicoQuant PTU files.
-Michael Wahl, PicoQuant GmbH, July 2014
+Michael Wahl, PicoQuant GmbH, April 2015
 
 MainPTUdemo.vi is a demo that reads a PTU file and dumps its contents in 
 an ASCII file. Note that this is not meant to be a conversion tool. 
