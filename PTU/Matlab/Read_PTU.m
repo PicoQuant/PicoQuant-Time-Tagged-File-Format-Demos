@@ -1,16 +1,18 @@
 function Read_PTU % Read PicoQuant Unified TTTR Files
 % This is demo code. Use at your own risk. No warranties.
-% Marcus Sackrow, PicoQUant GmbH, December 2013
+% Marcus Sackrow, PicoQuant GmbH, December 2013
+% Peter Kapusta, PicoQuant GmbH, November 2015
+% Edited script: text output formatting changed by PK.
 
-% Note that marker events have a lower time resolution and may therefore appear 
+% Note that marker events have a lower time resolution and may therefore appear
 % in the file slightly out of order with respect to regular (photon) event records.
-% This is by design. Markers are designed only for relatively coarse 
-% synchronization requirements such as image scanning. 
+% This is by design. Markers are designed only for relatively coarse
+% synchronization requirements such as image scanning.
 
-% T Mode data are written to an output file [filename].out 
+% T Mode data are written to an output file [filename].out
 % We do not keep it in memory because of the huge amout of memory
-% this would take in case of large files. Of course you can change this, 
-% e.g. if your files are not too big. 
+% this would take in case of large files. Of course you can change this,
+% e.g. if your files are not too big.
 % Otherwise it is best process the data on the fly and keep only the results.
 
 % All HeaderData are introduced as Variable to Matlab and can directly be
@@ -48,7 +50,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     global TTResult_NumberOfRecords; % Number of TTTR Records in the File;
     global MeasDesc_Resolution;      % Resolution for the Dtime (T3 Only)
     global MeasDesc_GlobalResolution;
-    
+
     TTResultFormat_TTTRRecType = 0;
     TTResult_NumberOfRecords = 0;
     MeasDesc_Resolution = 0;
@@ -57,7 +59,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     % start Main program
     [filename, pathname]=uigetfile('*.ptu', 'T-Mode data:');
     fid=fopen([pathname filename]);
-    
+
     fprintf(1,'\n');
     Magic = fread(fid, 8, '*char');
     if not(strcmp(Magic(Magic~=0)','PQTTTR'))
@@ -75,17 +77,17 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         TagIdx = fread(fid, 1, 'int32');    % TagHead.Idx
         TagTyp = fread(fid, 1, 'uint32');   % TagHead.Typ
                                             % TagHead.Value will be read in the
-                                            % right type function  
+                                            % right type function
         if TagIdx > -1
           EvalName = [TagIdent '(' int2str(TagIdx + 1) ')'];
         else
           EvalName = TagIdent;
         end
-        fprintf(1,'\n   %-40s', EvalName);  
+        fprintf(1,'\n   %-40s', EvalName);
         % check Typ of Header
         switch TagTyp
             case tyEmpty8
-                fread(fid, 1, 'int64');   
+                fread(fid, 1, 'int64');
                 fprintf(1,'<Empty>');
             case tyBool8
                 TagInt = fread(fid, 1, 'int64');
@@ -95,7 +97,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 else
                     fprintf(1,'TRUE');
                     eval([EvalName '=true;']);
-                end            
+                end
             case tyInt8
                 TagInt = fread(fid, 1, 'int64');
                 fprintf(1,'%d', TagInt);
@@ -104,7 +106,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 TagInt = fread(fid, 1, 'int64');
                 fprintf(1,'%X', TagInt);
                 eval([EvalName '=TagInt;']);
-            case tyColor8    
+            case tyColor8
                 TagInt = fread(fid, 1, 'int64');
                 fprintf(1,'%X', TagInt);
                 eval([EvalName '=TagInt;']);
@@ -126,10 +128,10 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1
-                   EvalName = [TagIdent '(' int2str(TagIdx + 1) ',:)'];
-                end;   
-                eval([EvalName '=TagString;']);
-            case tyWideString 
+                   EvalName = [TagIdent '{' int2str(TagIdx + 1) '}'];
+                end;
+                eval([EvalName '=[TagString];']);
+            case tyWideString
                 % Matlab does not support Widestrings at all, just read and
                 % remove the 0's (up to current (2012))
                 TagInt = fread(fid, 1, 'int64');
@@ -137,13 +139,13 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1
-                   EvalName = [TagIdent '(' int2str(TagIdx + 1) ',:)'];
+                   EvalName = [TagIdent '{' int2str(TagIdx + 1) '}'];
                 end;
-                eval([EvalName '=TagString;']);
+                eval([EvalName '=[TagString];']);
             case tyBinaryBlob
                 TagInt = fread(fid, 1, 'int64');
                 fprintf(1,'<Binary Blob with %d Bytes>', TagInt);
-                fseek(fid, TagInt, 'cof');    
+                fseek(fid, TagInt, 'cof');
             otherwise
                 error('Illegal Type identifier found! Broken file?');
         end;
@@ -162,7 +164,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
             isT2 = false;
             fprintf(1,'PicoHarp T3 data\n');
         case rtPicoHarpT2
-            isT2 = true; 
+            isT2 = true;
             fprintf(1,'PicoHarp T2 data\n');
         case rtHydraHarpT3
             isT2 = false;
@@ -195,9 +197,9 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     fprintf(1,'\nThis may take a while...');
     % write Header
     if (isT2)
-      fprintf(fpout, 'record# Type Ch TimeTag TrueTime/ps\n');
+      fprintf(fpout, '  record# Type Ch     TimeTag           TrueTime/ps\n');
     else
-      fprintf(fpout, 'record# Type Ch TimeTag TrueTime/ns DTime\n');
+      fprintf(fpout, '  record# Type Ch     TimeTag           TrueTime/ns DTime\n');
     end;
     global cnt_ph;
     global cnt_ov;
@@ -210,7 +212,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         case rtPicoHarpT3
             ReadPT3;
         case rtPicoHarpT2
-            isT2 = true; 
+            isT2 = true;
             ReadPT2;
         case rtHydraHarpT3
             ReadHT3(1);
@@ -246,9 +248,11 @@ function GotPhoton(TimeTag, Channel, DTime)
   global cnt_ph;
   cnt_ph = cnt_ph + 1;
   if(isT2)
-      fprintf(fpout,'%i CHN %1x %i %e\n', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
+      % Edited: formatting changed by PK
+      fprintf(fpout,'\n%10i CHN %1x %18.0f %18.0f' , RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
   else
-      fprintf(fpout,'%i CHN %1x %i %e %i\n', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
+      % Edited: formatting changed by PK
+      fprintf(fpout,'\n%10i CHN %1x %18.0f %180.f %4i', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
   end;
 end
 
@@ -260,7 +264,8 @@ function GotMarker(TimeTag, Markers)
   global RecNum;
   global cnt_ma;
   cnt_ma = cnt_ma + 1;
-  fprintf(fpout,'%i MAR %x %i\n', RecNum, Markers, TimeTag);
+  % Edited: formatting changed by PK
+  fprintf(fpout,'\n%10i MAR %x %i', RecNum, Markers, TimeTag);
 end
 
 %% Got Overflow
@@ -270,7 +275,8 @@ function GotOverflow(Count)
   global RecNum;
   global cnt_ov;
   cnt_ov = cnt_ov + Count;
-  fprintf(fpout,'%i OFL * %x\n', RecNum, Count);
+  % Edited: formatting changed by PK
+  fprintf(fpout,'\n%10i OFL * %x', RecNum, Count);
 end
 
 %% Decoder functions
@@ -282,30 +288,30 @@ function ReadPT3
     global RecNum;
     global TTResult_NumberOfRecords; % Number of TTTR Records in the File;
     ofltime = 0;
-    WRAPAROUND=65536;  
+    WRAPAROUND=65536;
 
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
         T3Record = fread(fid, 1, 'ubit32');     % all 32 bits:
-    %   +-------------------------------+  +-------------------------------+ 
+    %   +-------------------------------+  +-------------------------------+
     %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
-    %   +-------------------------------+  +-------------------------------+    
-        nsync = bitand(T3Record,65535);       % the lowest 16 bits:  
-    %   +-------------------------------+  +-------------------------------+ 
+    %   +-------------------------------+  +-------------------------------+
+        nsync = bitand(T3Record,65535);       % the lowest 16 bits:
+    %   +-------------------------------+  +-------------------------------+
     %   | | | | | | | | | | | | | | | | |  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
-    %   +-------------------------------+  +-------------------------------+    
+    %   +-------------------------------+  +-------------------------------+
         chan = bitand(bitshift(T3Record,-28),15);   % the upper 4 bits:
-    %   +-------------------------------+  +-------------------------------+ 
+    %   +-------------------------------+  +-------------------------------+
     %   |x|x|x|x| | | | | | | | | | | | |  | | | | | | | | | | | | | | | | |
-    %   +-------------------------------+  +-------------------------------+       
+    %   +-------------------------------+  +-------------------------------+
         truensync = ofltime + nsync;
         if (chan >= 1) && (chan <=4)
             dtime = bitand(bitshift(T3Record,-16),4095);
             GotPhoton(truensync, chan, dtime);  % regular count at Ch1, Rt_Ch1 - Rt_Ch4 when the router is enabled
         else
             if chan == 15 % special record
-                markers = bitand(bitshift(T3Record,-16),15); % where these four bits are markers:     
-    %   +-------------------------------+  +-------------------------------+ 
+                markers = bitand(bitshift(T3Record,-16),15); % where these four bits are markers:
+    %   +-------------------------------+  +-------------------------------+
     %   | | | | | | | | | | | | |x|x|x|x|  | | | | | | | | | | | | | | | | |
     %   +-------------------------------+  +-------------------------------+
                 if markers == 0                           % then this is an overflow record
@@ -317,8 +323,8 @@ function ReadPT3
             else
                 fprintf(fpout,'Err ');
             end;
-        end;    
-    end;    
+        end;
+    end;
 end
 
 %% Read PicoHarp T2
@@ -326,7 +332,7 @@ function ReadPT2
     global fid;
     global fpout;
     global RecNum;
-    global TTResult_NumberOfRecords; % Number of TTTR Records in the File;   
+    global TTResult_NumberOfRecords; % Number of TTTR Records in the File;
     ofltime = 0;
     WRAPAROUND=210698240;
 
@@ -344,15 +350,15 @@ function ReadPT2
                 if markers==0                   % then this is an overflow record
                     ofltime = ofltime + WRAPAROUND; % and we unwrap the time tag overflow
                     GotOverflow(1);
-                else                            % otherwise it is a true marker  
+                else                            % otherwise it is a true marker
                     GotMarker(timetag, markers);
                 end;
             else
                 fprintf(fpout,'Err');
             end;
-        end;                    
+        end;
         % Strictly, in case of a marker, the lower 4 bits of time are invalid
-        % because they carry the marker bits. So one could zero them out. 
+        % because they carry the marker bits. So one could zero them out.
         % However, the marker resolution is only a few tens of nanoseconds anyway,
         % so we can just ignore the few picoseconds of error.
     end;
@@ -369,26 +375,26 @@ function ReadHT3(Version)
     for i = 1:TTResult_NumberOfRecords
         RecNum = i;
         T3Record = fread(fid, 1, 'ubit32');     % all 32 bits:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
-        %   +-------------------------------+  +-------------------------------+  
+        %   +-------------------------------+  +-------------------------------+
         nsync = bitand(T3Record,1023);       % the lowest 10 bits:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   | | | | | | | | | | | | | | | | |  | | | | | | |x|x|x|x|x|x|x|x|x|x|
-        %   +-------------------------------+  +-------------------------------+  
+        %   +-------------------------------+  +-------------------------------+
         dtime = bitand(bitshift(T3Record,-10),32767);   % the next 15 bits:
         %   the dtime unit depends on "Resolution" that can be obtained from header
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   | | | | | | | |x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x| | | | | | | | | | |
         %   +-------------------------------+  +-------------------------------+
         channel = bitand(bitshift(T3Record,-25),63);   % the next 6 bits:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   | |x|x|x|x|x|x| | | | | | | | | |  | | | | | | | | | | | | | | | | |
         %   +-------------------------------+  +-------------------------------+
         special = bitand(bitshift(T3Record,-31),1);   % the last bit:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   |x| | | | | | | | | | | | | | | |  | | | | | | | | | | | | | | | | |
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         if special == 0   % this means a regular input channel
            true_nSync = OverflowCorrection + nsync;
            %  one nsync time unit equals to "syncperiod" which can be
@@ -402,12 +408,12 @@ function ReadHT3(Version)
               else         % otherwise nsync indicates the number of overflows - THIS IS NEW IN FORMAT V2.0
                 OverflowCorrection = OverflowCorrection + T3WRAPAROUND * nsync;
                 GotOverflow(nsync);
-              end;    
+              end;
             end;
             if (channel >= 1) && (channel <= 15)  % these are markers
               true_nSync = OverflowCorrection + nsync;
               GotMarker(true_nSync, channel);
-            end;    
+            end;
         end;
     end;
 end
@@ -425,19 +431,19 @@ function ReadHT2(Version)
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
         T2Record = fread(fid, 1, 'ubit32');     % all 32 bits:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
-        %   +-------------------------------+  +-------------------------------+  
+        %   +-------------------------------+  +-------------------------------+
         dtime = bitand(T2Record,33554431);   % the last 25 bits:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   | | | | | | | |x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
         %   +-------------------------------+  +-------------------------------+
         channel = bitand(bitshift(T2Record,-25),63);   % the next 6 bits:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   | |x|x|x|x|x|x| | | | | | | | | |  | | | | | | | | | | | | | | | | |
         %   +-------------------------------+  +-------------------------------+
         special = bitand(bitshift(T2Record,-31),1);   % the last bit:
-        %   +-------------------------------+  +-------------------------------+ 
+        %   +-------------------------------+  +-------------------------------+
         %   |x| | | | | | | | | | | | | | | |  | | | | | | | | | | | | | | | | |
         %   +-------------------------------+  +-------------------------------+
         % the resolution in T2 mode is 1 ps  - IMPORTANT! THIS IS NEW IN FORMAT V2.0
@@ -449,7 +455,7 @@ function ReadHT2(Version)
               if Version == 1
                   OverflowCorrection = OverflowCorrection + T2WRAPAROUND_V1;
                   GotOverflow(1);
-              else              
+              else
                   if(dtime == 0) % if dtime is zero it is an old style single oferflow
                     OverflowCorrection = OverflowCorrection + T2WRAPAROUND_V2;
                     GotOverflow(1);
@@ -464,7 +470,7 @@ function ReadHT2(Version)
             end;
             if (channel >= 1) && (channel <= 15)  % these are markers
                 GotMarker(timetag, channel);
-            end;    
+            end;
         end;
     end;
 end
