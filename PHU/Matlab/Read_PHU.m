@@ -1,6 +1,7 @@
 % Read_PHU.m    Read PicoQuant Unified Histogram Files
 % This is demo code. Use at your own risk. No warranties.
 % Marcus Sackrow, Michael Wahl, PicoQUant GmbH, December 2013
+% Updated by Michael Wahl, PicoQUant GmbH, June 2016
 
 % Note that marker events have a lower time resolution and may therefore appear 
 % in the file slightly out of order with respect to regular (photon) event records.
@@ -103,9 +104,9 @@
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1
-                   EvalName = [TagIdent '(' int2str(TagIdx + 1) ',:)'];
-                end;   
-                eval([EvalName '=TagString;']);
+                   EvalName = [TagIdent '{' int2str(TagIdx + 1) '}'];
+                end;
+                eval([EvalName '=[TagString];']);
             case tyWideString 
                 % Matlab does not support Widestrings at all, just read and
                 % remove the 0's (up to current (2012))
@@ -114,9 +115,9 @@
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1
-                   EvalName = [TagIdent '(' int2str(TagIdx + 1) ',:)'];
+                   EvalName = [TagIdent '{' int2str(TagIdx + 1) '}'];
                 end;
-                eval([EvalName '=TagString;']);
+                eval([EvalName '=[TagString];']);
             case tyBinaryBlob
                 TagInt = fread(fid, 1, 'int64');
                 fprintf(1,'<Binary Blob with %d Bytes>', TagInt);
