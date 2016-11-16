@@ -1,8 +1,8 @@
 function Read_PTU % Read PicoQuant Unified TTTR Files
 % This is demo code. Use at your own risk. No warranties.
 % Marcus Sackrow, PicoQuant GmbH, December 2013
-% Peter Kapusta, PicoQuant GmbH, November 2015
-% Edited script: text output formatting changed by PK.
+% Peter Kapusta, PicoQuant GmbH, November 2016
+% Edited script: text output formatting changed by KAP.
 
 % Note that marker events have a lower time resolution and may therefore appear
 % in the file slightly out of order with respect to regular (photon) event records.
@@ -197,9 +197,9 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     fprintf(1,'\nThis may take a while...');
     % write Header
     if (isT2)
-      fprintf(fpout, '  record# Type Ch     TimeTag           TrueTime/ps\n');
+      fprintf(fpout, '  record# Type Ch        TimeTag             TrueTime/ps\n');
     else
-      fprintf(fpout, '  record# Type Ch     TimeTag           TrueTime/ns DTime\n');
+      fprintf(fpout, '  record# Type Ch        TimeTag             TrueTime/ns            DTime\n');
     end;
     global cnt_ph;
     global cnt_ov;
@@ -233,6 +233,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     fprintf(1,'Ready!  \n\n');
     fprintf(1,'\nStatistics obtained from the data:\n');
     fprintf(1,'\n%i photons, %i overflows, %i markers.',cnt_ph, cnt_ov, cnt_ma);
+
     fprintf(1,'\n');
 end
 
@@ -249,10 +250,10 @@ function GotPhoton(TimeTag, Channel, DTime)
   cnt_ph = cnt_ph + 1;
   if(isT2)
       % Edited: formatting changed by PK
-      fprintf(fpout,'\n%10i CHN %1x %18.0f %18.0f' , RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
+      fprintf(fpout,'\n%10i CHN %i %18.0f (%0.1f ps)' , RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
   else
       % Edited: formatting changed by PK
-      fprintf(fpout,'\n%10i CHN %1x %18.0f %180.f %4i', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
+      fprintf(fpout,'\n%10i CHN %i %18.0f (%0.1f ns) %ich', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
   end;
 end
 
@@ -263,9 +264,10 @@ function GotMarker(TimeTag, Markers)
   global fpout;
   global RecNum;
   global cnt_ma;
+  global MeasDesc_GlobalResolution;
   cnt_ma = cnt_ma + 1;
   % Edited: formatting changed by PK
-  fprintf(fpout,'\n%10i MAR %x %i', RecNum, Markers, TimeTag);
+  fprintf(fpout,'\n%10i MAR %i %18.0f (%0.1f ns)', RecNum, Markers, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9));
 end
 
 %% Got Overflow
@@ -276,7 +278,7 @@ function GotOverflow(Count)
   global cnt_ov;
   cnt_ov = cnt_ov + Count;
   % Edited: formatting changed by PK
-  fprintf(fpout,'\n%10i OFL * %x', RecNum, Count);
+  fprintf(fpout,'\n%10i OFL * %i', RecNum, Count);
 end
 
 %% Decoder functions
