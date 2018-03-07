@@ -233,7 +233,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     fprintf(1,'Ready!  \n\n');
     fprintf(1,'\nStatistics obtained from the data:\n');
     fprintf(1,'\n%i photons, %i overflows, %i markers.',cnt_ph, cnt_ov, cnt_ma);
-
+  
     fprintf(1,'\n');
 end
 

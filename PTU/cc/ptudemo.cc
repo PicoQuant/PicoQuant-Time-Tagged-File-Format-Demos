@@ -397,7 +397,7 @@ int main(int argc, char* argv[])
   {
     // This loop is very generic. It reads all header items and displays the identifier and the
     // associated value, quite independent of what they mean in detail.
-    // Only some selected items are explicitly retrieved and kept in memory because they are 
+    // Only some selected items are explicitly retrieved and kept in memory because they are
     // needed to subsequently interpret the TTTR record data.
 
     Result = fread( &TagHead, 1, sizeof(TagHead) ,fpin);
@@ -495,7 +495,7 @@ int main(int argc, char* argv[])
   {
     case rtPicoHarpT2:
       fprintf(fpout, "PicoHarp T2 data\n");
-      fprintf(fpout,"\nrecord# chan   nsync truetime/ps\n");
+      fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
     case rtPicoHarpT3:
       fprintf(fpout, "PicoHarp T3 data\n");
@@ -503,7 +503,7 @@ int main(int argc, char* argv[])
       break;
     case rtHydraHarpT2:
       fprintf(fpout, "HydraHarp V1 T2 data\n");
-      fprintf(fpout,"\nrecord# chan   nsync truetime/ps\n");
+      fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
     case rtHydraHarpT3:
       fprintf(fpout, "HydraHarp V1 T3 data\n");
@@ -511,7 +511,7 @@ int main(int argc, char* argv[])
       break;
     case rtHydraHarp2T2:
       fprintf(fpout, "HydraHarp V2 T2 data\n");
-      fprintf(fpout,"\nrecord# chan   nsync truetime/ps\n");
+      fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
     case rtHydraHarp2T3:
       fprintf(fpout, "HydraHarp V2 T3 data\n");
@@ -523,7 +523,7 @@ int main(int argc, char* argv[])
       break;
 	case rtTimeHarp260NT2:
       fprintf(fpout, "TimeHarp260N T2 data\n");
-      fprintf(fpout,"\nrecord# chan   nsync truetime/ps\n");
+      fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
     case rtTimeHarp260PT3:
       fprintf(fpout, "TimeHarp260P T3 data\n");
@@ -531,7 +531,7 @@ int main(int argc, char* argv[])
       break;
 	case rtTimeHarp260PT2:
       fprintf(fpout, "TimeHarp260P T2 data\n");
-      fprintf(fpout,"\nrecord# chan   nsync truetime/ps\n");
+      fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
   default:
     fprintf(fpout, "Unknown record type: 0x%X\n 0x%X\n ", RecordType);

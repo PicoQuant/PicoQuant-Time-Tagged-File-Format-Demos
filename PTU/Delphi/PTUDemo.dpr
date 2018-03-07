@@ -5,7 +5,7 @@
 
   Tested with Delphi XE5 and Lazarus 1.1 (Freepascal 2.7.1)
 
-  Marcus Sackrow, PicoQuant GmbH, December 2013
+  Marcus Sackrow, PicoQuant GmbH, August 2017
 }
 
 program PTUDemo;
@@ -49,6 +49,7 @@ const
   rtTimeHarp260NT2 = $00010205;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
   rtTimeHarp260PT3 = $00010306;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $06 (TimeHarp260P)
   rtTimeHarp260PT2 = $00010206;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
+  rtLINCamera      = $00010300;    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $00 (No Harp, LIN-Camera imported file)
     // for proper columns choose this
   //{
   COLWIDTH_I64            =        21;
@@ -81,8 +82,10 @@ var
 
   NumRecords: Int64;
   RecordType: Int64;
+  RecordLength: Integer; // Length of one Record, default is 4 bytes, but LIN Camera need 8 Byte
   n: Int64;
   TTTRRecord: Cardinal;
+  TTTRRecord64: UInt64;
   OflCorrection: Int64 = 0;
 
   GlobRes: Double;
@@ -335,6 +338,23 @@ begin
     end;
 end;
 
+// LIN Camera
+procedure ProcessLIN(RawData: UInt64);
+type
+  TLINRecord = packed record
+    X: Smallint;         // X Position 0..PixX - 1
+    Y: Smallint;         // Y Position 0..PixY - 1
+    DecayTime: Smallint; // Decay Channel
+    MsTicks: Smallint;   // Number of ms since the last record
+  end;
+var
+  LINRecord: TLINRecord;
+begin
+  LINRecord := TLINRecord(RawData);
+  OflCorrection := OflCorrection + LINRecord.MsTicks;
+  GotPhoton(OflCorrection, LINRecord.DecayTime, 1);
+end;
+
 //
 //******************************************************************************
 
@@ -353,6 +373,7 @@ try
   Version[0] := #0;
   TagHead.Name[0] := #0;
   TTTRRecord := 0;
+  TTTRRecord64 := 0;
 
   WriteLn('PicoQuant Unified TTTR (PTU) Mode File Demo');
   WriteLn('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
@@ -497,18 +518,24 @@ try
 // End Header loading
 
 // Start TTTR Record section
+    RecordLength := 4; // all use 4 Bytes, except LIN Camera uses 8 bytes (because of the image pixel position inside)
     // print TTTR Record type
     case RecordType of
       rtPicoHarpT3: WriteLn(OutFile, 'PicoHarp T3 data');
       rtPicoHarpT2: WriteLn(OutFile, 'PicoHarp T2 data');
-      rtHydraHarpT2: WriteLn(OutFile, 'HyraHarp V1 T3 data');
-      rtHydraHarpT3: WriteLn(OutFile, 'HydraHarp V1 T2 data');
-      rtHydraHarp2T2: WriteLn(OutFile, 'HyraHarp V2 T3 data');
-      rtHydraHarp2T3: WriteLn(OutFile, 'HydraHarp V2 T2 data');
-      rtTimeHarp260NT2: WriteLn(OutFile, 'TimeHarp260N T3 data');
-      rtTimeHarp260NT3: WriteLn(OutFile, 'TimeHarp260N T2 data');
-      rtTimeHarp260PT2: WriteLn(OutFile, 'TimeHarp260P T3 data');
-      rtTimeHarp260PT3: WriteLn(OutFile, 'TimeHarp260P T2 data');
+      rtHydraHarpT3: WriteLn(OutFile, 'HyraHarp V1 T3 data');
+      rtHydraHarpT2: WriteLn(OutFile, 'HydraHarp V1 T2 data');
+      rtHydraHarp2T3: WriteLn(OutFile, 'HyraHarp V2 T3 data');
+      rtHydraHarp2T2: WriteLn(OutFile, 'HydraHarp V2 T2 data');
+      rtTimeHarp260NT3: WriteLn(OutFile, 'TimeHarp260N T3 data');
+      rtTimeHarp260NT2: WriteLn(OutFile, 'TimeHarp260N T2 data');
+      rtTimeHarp260PT3: WriteLn(OutFile, 'TimeHarp260P T3 data');
+      rtTimeHarp260PT2: WriteLn(OutFile, 'TimeHarp260P T2 data');
+      rtLINCamera:
+      begin
+        WriteLn(OutFile, 'LINCamera T3 data');
+        RecordLength := 8;
+      end
       else
         begin
           WriteLn('unknown Record type: $' + IntToHex(RecordType, 8));
@@ -532,8 +559,11 @@ try
         else
           write('-');
       // Read Record
-      BlockRead (InpFile, TTTRRecord , SizeOf(TTTRRecord), Res);
-      if (Res <> SizeOf(TTTRRecord)) then
+      if RecordLength = 4 then
+        BlockRead(InpFile, TTTRRecord , SizeOf(TTTRRecord), Res)
+      else
+        BlockRead(InpFile, TTTRRecord64 , SizeOf(TTTRRecord64), Res);
+      if (Res <> RecordLength) then
       begin
         writeln('Unexpected end of input file!');
         Exit;
@@ -553,6 +583,8 @@ try
         rtHydraHarp2T3,
         rtTimeHarp260NT3,
         rtTimeHarp260PT3: ProcessHHT3(TTTRRecord, 2);
+        // LIN Camera, uses the 64bit Record
+        rtLINCamera: ProcessLIN(TTTRRecord64);
       end;
     end;
   finally
