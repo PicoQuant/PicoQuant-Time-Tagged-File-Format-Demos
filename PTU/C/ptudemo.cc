@@ -52,6 +52,8 @@
 #define rtTimeHarp260NT2 0x00010205    // (SubID = $00 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
 #define rtTimeHarp260PT3 0x00010306    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $06 (TimeHarp260P)
 #define rtTimeHarp260PT2 0x00010206    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
+#define rtMultiHarpNT3   0x00010307    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $07 (MultiHarp150N)
+#define rtMultiHarpNT2   0x00010207    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp150N)
 
 #pragma pack(8) //structure alignment to 8 byte boundaries
 
@@ -173,7 +175,7 @@ void ProcessPHT3(unsigned int TTTRRecord)
   }
 };
 
-
+// PicoHarp T2 input
 void ProcessPHT2(unsigned int TTTRRecord)
 {
   const int T2WRAPAROUND = 210698240;
@@ -228,6 +230,7 @@ void ProcessPHT2(unsigned int TTTRRecord)
   }
 }
 
+// HydraHarp/TimeHarp260 T2 input
 void ProcessHHT2(unsigned int TTTRRecord, int HHVersion)
 {
   const int T2WRAPAROUND_V1 = 33552000;
@@ -289,7 +292,7 @@ void ProcessHHT2(unsigned int TTTRRecord, int HHVersion)
 
 }
 
-
+// HydraHarp/TimeHarp260 T3 input
 void ProcessHHT3(unsigned int TTTRRecord, int HHVersion)
 {
   const int T3WRAPAROUND = 1024;
@@ -338,7 +341,6 @@ void ProcessHHT3(unsigned int TTTRRecord, int HHVersion)
     }
 }
 
-
 int main(int argc, char* argv[])
 {
   char Magic[8];
@@ -350,6 +352,7 @@ int main(int argc, char* argv[])
 
   long long NumRecords = -1;
   long long RecordType = 0;
+  int RecordLength; // Length of an Record, by default 4 bytes, But LIN Camera has 8 bytes
 
 
   printf("\nPicoQuant Unified TTTR (PTU) Mode File Demo");
@@ -357,7 +360,7 @@ int main(int argc, char* argv[])
 
   if((argc<3)||(argc>3))
   {
-   printf("usage: ht2demo infile oufile\n");
+   printf("usage: ptudemo infile oufile\n");
    printf("infile is a Unified TTTR ptu file (binary)\n");
    printf("outfile is ASCII\n");
    _getch();
@@ -489,8 +492,8 @@ int main(int argc, char* argv[])
   while((strncmp(TagHead.Ident, FileTagEnd, sizeof(FileTagEnd))));
   fprintf(fpout, "\n-----------------------\n");
 // End Header loading
-
   // TTTR Record type
+  RecordLength = 4; // all Record Length 4 until now
   switch (RecordType)
   {
     case rtPicoHarpT2:
@@ -525,12 +528,20 @@ int main(int argc, char* argv[])
       fprintf(fpout, "TimeHarp260N T2 data\n");
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
-    case rtTimeHarp260PT3:
+  case rtTimeHarp260PT3:
       fprintf(fpout, "TimeHarp260P T3 data\n");
       fprintf(fpout,"\nrecord# chan   nsync truetime/ns dtime\n");
       break;
 	case rtTimeHarp260PT2:
       fprintf(fpout, "TimeHarp260P T2 data\n");
+      fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
+      break;
+  case rtMultiHarpNT3:
+      fprintf(fpout, "MultiHarp150N T3 data\n");
+      fprintf(fpout,"\nrecord# chan   nsync truetime/ns dtime\n");
+      break;
+	case rtMultiHarpNT2:
+      fprintf(fpout, "MultiHarp150N T2 data\n");
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
   default:
@@ -539,15 +550,28 @@ int main(int argc, char* argv[])
   }
 
   unsigned int TTTRRecord;
+  unsigned __int64 TTTRRecord64;
   for(RecNum=0;RecNum<NumRecords;RecNum++)
-    {
-        Result = fread(&TTTRRecord, 1, sizeof(TTTRRecord) ,fpin);
-    if (Result!= sizeof(TTTRRecord))
+  {
+      if (RecordLength == 4)
       {
-        printf("\nUnexpected end of input file!");
-        break;
+        Result = fread(&TTTRRecord, 1, sizeof(TTTRRecord) ,fpin);
+        if (Result!= sizeof(TTTRRecord))
+        {
+          printf("\nUnexpected end of input file!");
+          break;
+        }
       }
-        switch (RecordType)
+      else
+      {
+        Result = fread(&TTTRRecord64, 1, sizeof(TTTRRecord64) ,fpin);
+        if (Result!= sizeof(TTTRRecord64))
+        {
+          printf("\nUnexpected end of input file!");
+          break;
+        }
+      }
+    switch (RecordType)
     {
     case rtPicoHarpT2:
       IsT2 = true;
@@ -565,12 +589,14 @@ int main(int argc, char* argv[])
       IsT2 = false;
       ProcessHHT3(TTTRRecord, 1);
       break;
+    case rtMultiHarpNT2:
 	case rtHydraHarp2T2:
 	case rtTimeHarp260NT2:
 	case rtTimeHarp260PT2:
       IsT2 = true;
       ProcessHHT2(TTTRRecord, 2);
       break;
+	case rtMultiHarpNT3:
 	case rtHydraHarp2T3:
 	case rtTimeHarp260NT3:
 	case rtTimeHarp260PT3:
@@ -578,7 +604,6 @@ int main(int argc, char* argv[])
       ProcessHHT3(TTTRRecord, 2);
       break;
     default:
-
       goto close;
     }
   }

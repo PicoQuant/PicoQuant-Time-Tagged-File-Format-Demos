@@ -124,7 +124,7 @@
     </table>
 <hr>                                                                       <!--                              BODY -->
 <p/>
-<H3>Basic record format</H3>	
+<H3>Basic record format</H3>
 <p>
 	This page describes the format of the TTTR data saved in the <Binary Data> section of raw data files.
 </p>
@@ -139,13 +139,14 @@
   To get the global arrival time of a photon or a marker in seconds, count the overflows until
   the current position and multiply with the overflow period, then add the timetag (for T2) or nsync (for T3)
   and multiply with the <font style="font-weight:bold;color:indigo">MeasDesc_GlobalResolution</font>.
-</p>	
+</p>
 <p>
   The arrival time since the last sync event in T3 measurements is denoted in dtime. To get the time in seconds
   multiply dtime with <font style="font-weight:bold;color:indigo">MeasDesc_Resolution</font>.
 </p>
 <H3>Images</H3>
 <p>
+  (all Formats, except LIN Camera)<BR>
   To reconstruct the image one needs marker defined as a line start, line stop and frame trigger. The corresponding
   header entries are <font style="font-weight:bold;color:indigo">ImgHdr_LineStart</font>, <font style="font-weight:bold;color:indigo">ImgHdr_LineStop</font> and
   <font style="font-weight:bold;color:indigo">ImgHdr_Frame</font>. The line start and line stop markers mark the real
@@ -156,17 +157,20 @@
   divided by the number of pixels in the line.
   <LI>Some scanner have a sinusoidal movement, such files have the header entry <font style="font-weight:bold;color:indigo">ImgHdr_SinCorrection</font>
   which defines the percentage of a sinus curve is covered by the line and must be used to calculate the length of every pixel.
-</UL>  
+</UL>
   The number of pixels in a line is defined by <font style="font-weight:bold;color:indigo">ImgHdr_PixX</font>.
   The number of lines is given by <font style="font-weight:bold;color:indigo">ImgHdr_PixY</font>.
   Attention, in some images one will find a different number of lines than defined by PixY (less or more, even different in every frame),
   so do not trust this value.</p><p>
-  <b>Notice&nbsp;1:</b> The markers are bit coded in the TTTR records (see below), multiple markers can appear at once; 
+  <b>Notice&nbsp;1:</b> The markers are bit coded in the TTTR records (see below), multiple markers can appear at once;
   Especially the frame marker often overlay with a line start or line stop marker.<BR>
   <b>Notice&nbsp;2:</b> The marker positions in MicroTime200 images are different than before in the SymPhoTime&nbsp;32. When
   a MicroTime200 image is converted for the new software the markers are relocated to match the real line start, line stop
-  position.
-</p>		
+  position.</p>
+<p>
+  (LIN Camera)<BR>
+  The LIN Camera directly supplies the X and Y position in the Image of every Photon.
+</p>
 <hr>
 <H2>TCSPC specific record formats</H2>
 <p>Currently the following formats are defined:
@@ -182,17 +186,21 @@
    <li>TimeHarp 260N&thinsp; T3 = $01010305</li>
    <li>TimeHarp 260P&thinsp; T2 = $01010206</li>
    <li>TimeHarp 260P&thinsp; T3 = $01010306</li>
+   <li>MultiHarpN&thinsp; T2 = $01010207</li>
+   <li>MultiHarpN&thinsp; T3 = $01010307</li>
+   <li>LIN Camera&emsp;&ensp;&thinsp; T3 = $00010300</li>
  </ul>
 <br>
 <H3>PicoHarp T2 Format</h3>
-<Table cellspacing=0 border=0>		
-<TR>	
+<Table cellspacing=0 border=0>
+<TR>
   <TD><b>RecType:</b><TD>$00010203<TD>&nbsp;
-  <TD><b>Overflow period:</b><TD>210698240
+  <TD><b>Overflow period:</b><TD>210698240<TD>&nbsp;
+  <TD><b>Record Size:</b><TD>32 Bit = 4 Byte
 </TR>
 </Table><p>
 The bit allocation in the record is, starting from the MSB:<BR>
-<code>    	
+<code>
 &nbsp;channel: 4 <BR>
 &nbsp;timetag: 28 <BR>
 </code>
@@ -204,14 +212,15 @@ Special records can be overflows or external markers. To differentiate this, the
 </UL>
 
 <H3>PicoHarp T3 Format</h3>
-<Table cellspacing=0 border=0>		
-<TR>	
+<Table cellspacing=0 border=0>
+<TR>
   <TD><b>RecType:</b><TD>$00010303<TD>&nbsp;
-  <TD><b>Overflow period:</b><TD>65536
+  <TD><b>Overflow period:</b><TD>65536<TD>&nbsp;
+  <TD><b>Record Size:</b><TD>32 Bit = 4 Byte
 </TR>
 </Table><p>
 The bit allocation in the record is, starting from the MSB:<BR>
-<code>    	
+<code>
 &nbsp;channel: 4 <BR>
 &nbsp;dtime: 12 <BR>
 &nbsp;nsync: 16 <BR>
@@ -222,16 +231,18 @@ Special records can be overflows or external markers. To differentiate this, <co
   <LI>If it is zero, the record marks an overflow.
   <LI>If it is >=1 the individual bits are external markers.
 </UL>
- 
-<H3>HydraHarp and TimeHarp260 T2 Format</h3>
-<Table cellspacing=0 border=0>		
-<TR>	
+
+<H3>HydraHarp, MultiHarp and TimeHarp260 T2 Format</h3>
+<Table cellspacing=0 border=0>
+<TR>
   <TD><b>RecType:</b><TD>$00010204<TD>&nbsp;
-  <TD><b>Overflow period:</b><TD>33552000
+  <TD><b>Overflow period:</b><TD>33552000<TD>&nbsp;
+  <TD><b>Record Size:</b><TD>32 Bit = 4 Byte
 </TR>
-<TR>	
-  <TD><b>RecTypes:</b><TD>$01010204, $01010205, $01010206<TD>&nbsp;
-  <TD><b>Overflow period:</b><TD>33554432
+<TR>
+  <TD><b>RecTypes:</b><TD>$01010204, $01010205, $01010206, $01010207<TD>&nbsp;
+  <TD><b>Overflow period:</b><TD>33554432<TD>&nbsp;
+  <TD><b>Record Size:</b><TD>32 Bit = 4 Byte
 </TR>
 </Table><p>
 
@@ -251,11 +262,12 @@ If the <code>special</code> bit is set, the following interpretation of the <cod
 	<LI>codes from 1 to 15 identify markers, the individual bits are external markers.
 </UL>
 
-<H3>HydraHarp and TimeHarp260 T3 Format</h3>
-<Table cellspacing=0 border=0>		
-<TR>	
-  <TD><b>RecType:</b><TD>$00010304, $01010304, $00010305, $00010306<TD>&nbsp;
-  <TD><b>Overflow period:</b><TD>1024
+<H3>HydraHarp, MultiHarp and TimeHarp260 T3 Format</h3>
+<Table cellspacing=0 border=0>
+<TR>
+  <TD><b>RecType:</b><TD>$00010304, $01010304, $00010305, $00010306, $00010307<TD>&nbsp;
+  <TD><b>Overflow period:</b><TD>1024<TD>&nbsp;
+  <TD><b>Record Size:</b><TD>32 Bit = 4 Byte
 </TR>
 </Table><p>
 The bit allocation in the record is, starting from the MSB:<BR>
@@ -273,6 +285,26 @@ If the <code>special</code> bit is set, the following interpretation of the chan
 		can be read from <code>nsync</code> value.
    <LI>codes from 1 to 15 identify markers, the individual bits are external markers.
 </UL>
+
+<H3>LIN Camera Format</h3>
+<Table cellspacing=0 border=0>
+<TR>
+  <TD><b>RecType:</b><TD>$00010300<TD>&nbsp;
+  <TD><b>Overflow period:</b><TD>N/A<TD>&nbsp;
+  <TD><b>Record Size:</b><TD>64 Bit = 8 Byte
+</TR>
+</Table><p>
+This is a file imported from a '.photons' File created by Recording software of LIN camera.
+The bit allocation in the record is, starting from the MSB:<BR>
+<code>
+&nbsp;XPosition: 16 <BR>
+&nbsp;YPosition: 16 <BR>
+&nbsp;DTime: 16 <BR>
+&nbsp;MSTime: 16 <BR>
+</code>
+This records contains the absolute pixel positions (0 to PixX - 1; 0 to PixY - 1) as read from the instrument.
+MSTime equals the Number of Milliseconds since the last Record. The GlobalResolution for such files is always
+1&nbsp;ms, therefore one can treat this value as a timetag which accumulates with every count.
     <p />
     <hr>                                                                       <!--                            FOOTER -->
     <a name="RelatedTopics"></a>                                               <!-- as a jump-target (bottom of page) -->
@@ -287,7 +319,7 @@ If the <code>special</code> bit is set, the following interpretation of the chan
         </td>
       </tr>
     </table>
-    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagdictionary.html#TagTypes">Tag Dictionary</a>]</nobr>
+    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagdictionary.html">Tag Dictionary</a>]</nobr>
     <br>&nbsp;&nbsp;&nbsp;[<a href="apx_support.html">Support</a>]
     <br><font color=WHITE size=1></font> <!-- spoiled words repeated -->
   </body>

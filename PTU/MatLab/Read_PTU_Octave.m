@@ -1,8 +1,10 @@
-function Read_PTU % Read PicoQuant Unified TTTR Files
+# not a function file
+clear all;
+clc;
+
+function Read_PTU; % Read PicoQuant Unified TTTR Files
 % This is demo code. Use at your own risk. No warranties.
-% Marcus Sackrow, PicoQuant GmbH, December 2013
-% Peter Kapusta, PicoQuant GmbH, November 2016
-% Edited script: text output formatting changed by KAP.
+% Marcus Sackrow, PicoQUant GmbH, December 2013
 
 % Note that marker events have a lower time resolution and may therefore appear
 % in the file slightly out of order with respect to regular (photon) event records.
@@ -10,16 +12,13 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
 % synchronization requirements such as image scanning.
 
 % T Mode data are written to an output file [filename].out
-% We do not keep it in memory because of the huge amout of memory
+% We do not keep it in memory because of the huge amount of memory
 % this would take in case of large files. Of course you can change this,
 % e.g. if your files are not too big.
 % Otherwise it is best process the data on the fly and keep only the results.
 
-% All HeaderData are introduced as Variable to Matlab and can directly be
+% All HeaderData are introduced as Variable to Octave and can directly be
 % used for further analysis
-
-    clear all;
-    clc;
     % some constants
     tyEmpty8      = hex2dec('FFFF0008');
     tyBool8       = hex2dec('00000008');
@@ -60,7 +59,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
 
     % start Main program
     [filename, pathname]=uigetfile('*.ptu', 'T-Mode data:');
-    fid=fopen([pathname filename]);
+    fid=fopen([pathname '\' filename], 'r');
 
     fprintf(1,'\n');
     Magic = fread(fid, 8, '*char');
@@ -70,7 +69,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     Version = fread(fid, 8, '*char');
     fprintf(1,'Tag Version: %s\n', Version);
 
-    % there is no repeat.. until (or do..while) construct in matlab so we use
+    % there is no repeat.. until (or do..while) construct in octave so we use
     % while 1 ... if (expr) break; end; end;
     while 1
         % read Tag Head
@@ -123,8 +122,8 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 fseek(fid, TagInt, 'cof');
             case tyTDateTime
                 TagFloat = fread(fid, 1, 'double');
-                fprintf(1, '%s', datestr(datenum(1899,12,30)+TagFloat)); % display as Matlab Date String
-                eval([EvalName '=datenum(1899,12,30)+TagFloat;']); % but keep in memory as Matlab Date Number
+                fprintf(1, '%s', datestr(datenum(1899,12,30)+TagFloat)); % display as octave Date String
+                eval([EvalName '=datenum(1899,12,30)+TagFloat;']); % but keep in memory as octave Date Number
             case tyAnsiString
                 TagInt = fread(fid, 1, 'int64');
                 TagString = fread(fid, TagInt, '*char');
@@ -135,7 +134,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 end;
                 eval([EvalName '=[TagString];']);
             case tyWideString
-                % Matlab does not support Widestrings at all, just read and
+                % octave does not support Widestrings at all, just read and
                 % remove the 0's (up to current (2012))
                 TagInt = fread(fid, 1, 'int64');
                 TagString = fread(fid, TagInt, '*char');
@@ -157,9 +156,9 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         end
     end
     fprintf(1, '\n----------------------\n');
-    outfile = [pathname filename(1:length(filename)-4) '.out'];
+    outfile = [pathname '/' filename(1:length(filename)-4) '.out'];
     global fpout;
-    fpout = fopen(outfile,'W');
+    fpout = fopen(outfile,'w');
     % Check recordtype
     global isT2;
     switch TTResultFormat_TTTRRecType;
@@ -193,12 +192,12 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         case rtTimeHarp260PT2
             isT2 = true;
             fprintf(1,'TimeHarp260P T2 data\n');
-        case rtMultiHarpNT3
+		case rtMultiHarpNT3
             isT2 = false;
             fprintf(1,'MultiHarp150N T3 data\n');
         case rtMultiHarpNT2
             isT2 = true;
-            fprintf(1,'MultiHarp150N T2 data\n');
+            fprintf(1,'MultiHarp150N T2 data\n');	
         otherwise
             error('Illegal RecordType!');
     end;
@@ -219,10 +218,10 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     % choose right decode function
     switch TTResultFormat_TTTRRecType;
         case rtPicoHarpT3
-            ReadPT3;
+            ReadPT3();
         case rtPicoHarpT2
             isT2 = true;
-            ReadPT2;
+            ReadPT2();
         case rtHydraHarpT3
             ReadHT3(1);
         case rtHydraHarpT2
@@ -242,9 +241,8 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     fprintf(1,'Ready!  \n\n');
     fprintf(1,'\nStatistics obtained from the data:\n');
     fprintf(1,'\n%i photons, %i overflows, %i markers.',cnt_ph, cnt_ov, cnt_ma);
-
     fprintf(1,'\n');
-end
+end;
 
 %% Got Photon
 %    TimeTag: Raw TimeTag from Record * Globalresolution = Real Time arrival of Photon
@@ -258,14 +256,11 @@ function GotPhoton(TimeTag, Channel, DTime)
   global cnt_ph;
   cnt_ph = cnt_ph + 1;
   if(isT2)
-      % Edited: formatting changed by PK
       fprintf(fpout,'\n%10i CHN %i %18.0f (%0.1f ps)' , RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
   else
-      % Edited: formatting changed by PK
       fprintf(fpout,'\n%10i CHN %i %18.0f (%0.1f ns) %ich', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
   end;
 end
-
 %% Got Marker
 %    TimeTag: Raw TimeTag from Record * Globalresolution = Real Time arrival of Photon
 %    Markers: Bitfield of arrived Markers, different markers can arrive at same time (same record)
@@ -275,7 +270,6 @@ function GotMarker(TimeTag, Markers)
   global cnt_ma;
   global MeasDesc_GlobalResolution;
   cnt_ma = cnt_ma + 1;
-  % Edited: formatting changed by PK
   fprintf(fpout,'\n%10i MAR %i %18.0f (%0.1f ns)', RecNum, Markers, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9));
 end
 
@@ -286,7 +280,6 @@ function GotOverflow(Count)
   global RecNum;
   global cnt_ov;
   cnt_ov = cnt_ov + Count;
-  % Edited: formatting changed by PK
   fprintf(fpout,'\n%10i OFL * %i', RecNum, Count);
 end
 
@@ -303,7 +296,7 @@ function ReadPT3
 
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
-        T3Record = fread(fid, 1, 'ubit32');     % all 32 bits:
+        T3Record = fread(fid, 1, 'uint32');     % all 32 bits:
     %   +-------------------------------+  +-------------------------------+
     %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
     %   +-------------------------------+  +-------------------------------+
@@ -336,7 +329,7 @@ function ReadPT3
             end;
         end;
     end;
-end
+end;
 
 %% Read PicoHarp T2
 function ReadPT2
@@ -349,7 +342,7 @@ function ReadPT2
 
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
-        T2Record = fread(fid, 1, 'ubit32');
+        T2Record = fread(fid, 1, 'uint32');
         T2time = bitand(T2Record,268435455);             %the lowest 28 bits
         chan = bitand(bitshift(T2Record,-28),15);      %the next 4 bits
         timetag = T2time + ofltime;
@@ -374,7 +367,6 @@ function ReadPT2
         % so we can just ignore the few picoseconds of error.
     end;
 end
-
 %% Read HydraHarp/TimeHarp260 T3
 function ReadHT3(Version)
     global fid;
@@ -385,7 +377,7 @@ function ReadHT3(Version)
 
     for i = 1:TTResult_NumberOfRecords
         RecNum = i;
-        T3Record = fread(fid, 1, 'ubit32');     % all 32 bits:
+        T3Record = fread(fid, 1, 'uint32');     % all 32 bits:
         %   +-------------------------------+  +-------------------------------+
         %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
         %   +-------------------------------+  +-------------------------------+
@@ -428,7 +420,6 @@ function ReadHT3(Version)
         end;
     end;
 end
-
 %% Read HydraHarp/TimeHarp260 T2
 function ReadHT2(Version)
     global fid;
@@ -441,7 +432,7 @@ function ReadHT2(Version)
 
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
-        T2Record = fread(fid, 1, 'ubit32');     % all 32 bits:
+        T2Record = fread(fid, 1, 'uint32');     % all 32 bits:
         %   +-------------------------------+  +-------------------------------+
         %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
         %   +-------------------------------+  +-------------------------------+
@@ -485,3 +476,5 @@ function ReadHT2(Version)
         end;
     end;
 end
+
+Read_PTU;

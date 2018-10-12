@@ -42,6 +42,8 @@ rtTimeHarp260NT3 = struct.unpack(">i", bytes.fromhex('00010305'))[0]
 rtTimeHarp260NT2 = struct.unpack(">i", bytes.fromhex('00010205'))[0]
 rtTimeHarp260PT3 = struct.unpack(">i", bytes.fromhex('00010306'))[0]
 rtTimeHarp260PT2 = struct.unpack(">i", bytes.fromhex('00010206'))[0]
+rtMultiHarpNT3   = struct.unpack(">i", bytes.fromhex('00010307'))[0]
+rtMultiHarpNT2   = struct.unpack(">i", bytes.fromhex('00010207'))[0]
 
 # global variables
 global inputfile
@@ -381,6 +383,18 @@ elif recordType == rtTimeHarp260PT2:
     isT2 = True
     print("TimeHarp260P T2 data")
     outputfile.write("TimeHarp260P T2 data\n")
+    outputfile.write("\nrecord# chan   nsync truetime/ps\n")
+    readHT2(2)
+elif recordType == rtMultiHarpNT3:
+    isT2 = False
+    print("MultiHarp150N T3 data")
+    outputfile.write("MultiHarp150N T3 data\n")
+    outputfile.write("\nrecord# chan   nsync truetime/ns dtime\n")
+    readHT3(2)
+elif recordType == rtMultiHarpNT2:
+    isT2 = True
+    print("MultiHarp150N T2 data")
+    outputfile.write("MultiHarp150N T2 data\n")
     outputfile.write("\nrecord# chan   nsync truetime/ps\n")
     readHT2(2)
 else:
