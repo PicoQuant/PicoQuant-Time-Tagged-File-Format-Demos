@@ -4,7 +4,7 @@
 Demo Code for PicoQuants Time Tagged File Formats
 
 ## Changelog
-### 20.9.18 
+### 20.09.2018 
 * updated PTU demos to support MultiHarp 150
 * updated DOC to most recent tag dictionary, removed links to pq-forum
 * PHU demos remain unchanged
