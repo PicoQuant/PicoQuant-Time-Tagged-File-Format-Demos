@@ -4,7 +4,7 @@
 Demo Code for PicoQuants Time Tagged File Formats
 
 ## Changelog
-### 15.2.19
+### 15.02.2019
 * adapted C demos to compile under Linux also
 * updated DOC to most recent tag dictionary
 
