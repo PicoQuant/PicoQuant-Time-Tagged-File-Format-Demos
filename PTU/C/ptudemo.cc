@@ -4,21 +4,19 @@
 
   This is demo code. Use at your own risk. No warranties.
 
-  Tested with MS Visual Studio 2010 and Mingw 4.5
+  Tested with MS Visual Studio 2015 and Mingw 4.5, GCC 4.8.2 (Linux)
 
-  Marcus Sackrow, PicoQuant GmbH, December 2013
-  Michael Wahl, PicoQuant GmbH, revised July 2014
-
+  Marcus Sackrow, PicoQuant GmbH, February 2019
 
 ************************************************************************/
 
-#include  <windows.h>
-#include  <dos.h>
-#include  <stdio.h>
-#include  <conio.h>
-#include  <stddef.h>
-#include  <stdlib.h>
-#include  <time.h>
+#include <stdio.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <stdint.h>
+#include <wchar.h>
 
 // some important Tag Idents (TTagHead.Ident) that we will need to read the most common content of a PTU file
 // check the output of this program and consult the tag dictionary if you need more
@@ -236,7 +234,7 @@ void ProcessHHT2(unsigned int TTTRRecord, int HHVersion)
   const int T2WRAPAROUND_V1 = 33552000;
   const int T2WRAPAROUND_V2 = 33554432;
   union{
-    DWORD   allbits;
+    unsigned int allbits;
     struct{ unsigned timetag  :25;
         unsigned channel  :6;
         unsigned special  :1; // or sync, if channel==0
@@ -250,7 +248,7 @@ void ProcessHHT2(unsigned int TTTRRecord, int HHVersion)
       {
     if(HHVersion == 1)
     {
-      oflcorrection += (unsigned __int64)T2WRAPAROUND_V1;
+      oflcorrection += (uint64_t)T2WRAPAROUND_V1;
       GotOverflow(1);
     }
     else
@@ -259,11 +257,11 @@ void ProcessHHT2(unsigned int TTTRRecord, int HHVersion)
       if(T2Rec.bits.timetag==0) //if it is zero it is an old style single overflow
       {
           GotOverflow(1);
-        oflcorrection += (unsigned __int64)T2WRAPAROUND_V2;  //should never happen with new Firmware!
+        oflcorrection += (int64_t)T2WRAPAROUND_V2;  //should never happen with new Firmware!
       }
       else
       {
-        oflcorrection += (unsigned __int64)T2WRAPAROUND_V2 * T2Rec.bits.timetag;
+        oflcorrection += (int64_t)T2WRAPAROUND_V2 * T2Rec.bits.timetag;
         GotOverflow(T2Rec.bits.timetag);
       }
     }
@@ -297,7 +295,7 @@ void ProcessHHT3(unsigned int TTTRRecord, int HHVersion)
 {
   const int T3WRAPAROUND = 1024;
   union {
-    DWORD allbits;
+    unsigned int allbits;
     struct  {
       unsigned nsync    :10;  // numer of sync period
       unsigned dtime    :15;    // delay from last sync in units of chosen resolution
@@ -311,14 +309,14 @@ void ProcessHHT3(unsigned int TTTRRecord, int HHVersion)
     if(T3Rec.bits.channel==0x3F) //overflow
     {
       //number of overflows is stored in nsync
-      if((T3Rec.bits.nsync==0) || (HHVersion==1)) //if it is zero or old version it is an old style single oferflow
+      if((T3Rec.bits.nsync==0) || (HHVersion==1)) //if it is zero or old version it is an old style single overflow
       {
-        oflcorrection += (unsigned __int64)T3WRAPAROUND;
+        oflcorrection += (int64_t)T3WRAPAROUND;
         GotOverflow(1); //should never happen with new Firmware!
       }
       else
       {
-        oflcorrection += (unsigned __int64)T3WRAPAROUND * T3Rec.bits.nsync;
+        oflcorrection += (int64_t)T3WRAPAROUND * T3Rec.bits.nsync;
         GotOverflow(T3Rec.bits.nsync);
       }
     }
@@ -347,7 +345,7 @@ int main(int argc, char* argv[])
   char Version[8];
   char Buffer[40];
   char* AnsiBuffer;
-  WCHAR* WideBuffer;
+  wchar_t* WideBuffer;
   int Result;
 
   long long NumRecords = -1;
@@ -363,7 +361,7 @@ int main(int argc, char* argv[])
    printf("usage: ptudemo infile oufile\n");
    printf("infile is a Unified TTTR ptu file (binary)\n");
    printf("outfile is ASCII\n");
-   _getch();
+   getchar();
    exit(-1);
   }
   if((fpin=fopen(argv[1],"rb"))==NULL)
@@ -468,7 +466,7 @@ int main(int argc, char* argv[])
         free(AnsiBuffer);
         break;
             case tyWideString:
-        WideBuffer = (WCHAR*)calloc((size_t)TagHead.TagValue,1);
+        WideBuffer = (wchar_t*)calloc((size_t)TagHead.TagValue,1);
                 Result = fread(WideBuffer, 1, (size_t)TagHead.TagValue, fpin);
               if (Result!= TagHead.TagValue)
         {
@@ -550,7 +548,7 @@ int main(int argc, char* argv[])
   }
 
   unsigned int TTTRRecord;
-  unsigned __int64 TTTRRecord64;
+  uint64_t TTTRRecord64;
   for(RecNum=0;RecNum<NumRecords;RecNum++)
   {
       if (RecordLength == 4)
@@ -614,7 +612,7 @@ close:
 
 ex:
   printf("\n any key...");
-  getch();
+  getchar();
   exit(0);
   return(0);
 }

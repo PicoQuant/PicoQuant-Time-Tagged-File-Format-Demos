@@ -4,7 +4,7 @@
 
   This is demo code. Use at your own risk. No warranties.
 
-  Tested with MS Visual Studio 2010 and Mingw 4.5
+  Tested with MS Visual Studio 2015 and Mingw 4.5, GCC 5.4.0 (Linux)
 
   Marcus Sackrow, Michael Wahl PicoQuant GmbH, December 2013
   Michael Wahl, revised July 2014
@@ -12,13 +12,12 @@
 
 ************************************************************************/
 
-#include  <windows.h>
-#include  <dos.h>
 #include  <stdio.h>
-#include  <conio.h>
 #include  <stddef.h>
 #include  <stdlib.h>
-#include    <time.h>
+#include  <time.h>
+#include  <string.h>
+#include  <wchar.h>
 
 // some important Tag Idents (TTagHead.Ident) that we will need to read the most common content of a PHU file
 // check the output of this program and consult the tag dictionary if you need more
@@ -88,7 +87,7 @@ int main(int argc, char* argv[])
   char Version[8];
   char Buffer[40];
   char* AnsiBuffer;
-  WCHAR* WideBuffer;
+  wchar_t* WideBuffer;
   int i,j,Result;
   long long NumCurves = -1;
 
@@ -110,7 +109,7 @@ int main(int argc, char* argv[])
    printf("usage: ht2demo infile oufile\n");
    printf("infile is a phu file (binary)\n");
    printf("outfile is ASCII\n");
-   _getch();
+   getchar();
    exit(-1);
   }
   if((fpin=fopen(argv[1],"rb"))==NULL)
@@ -233,7 +232,7 @@ int main(int argc, char* argv[])
         free(AnsiBuffer);
         break;
             case tyWideString:
-        WideBuffer = (WCHAR*)calloc((size_t)TagHead.TagValue,1);
+        WideBuffer = (wchar_t*)calloc((size_t)TagHead.TagValue,1);
                 Result = fread(WideBuffer, 1, (size_t)TagHead.TagValue, fpin);
               if (Result!= TagHead.TagValue)
         {
@@ -290,7 +289,7 @@ close:
 
 ex:
   printf("\n any key...");
-  getch();
+  getchar();
   exit(0);
   return(0);
 }

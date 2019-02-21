@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+﻿<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <!--  **************************************************************************************************************  -->
 <!--  *                                                                                                            *  -->
@@ -127,6 +127,31 @@
     <p />
     <p />
         <table cellspacing=0 cols=7 border=1>
+      <colgroup>
+        <col width=260 span="1" align="right" style="background-color:darkgray; font-weight:bold">
+        <col width=250>
+        <col width=85>
+        <col width=90>
+        <col width=60>
+        <col width=50>
+        <col width=535>
+      </colgroup>
+      <tbody>
+        <tr>
+          <td width=260 height=42 align=right style="background-color:darkgray; font-weight:bold">Field Identifier</td>
+          <td width=250 align=right style="background-color:darkgray; font-weight:bold">Indexed</td>
+          <td width=85 align=right style="background-color:darkgray; font-weight:bold"><a href="apx_tagtypes.html#TagTypes"><b>Field Type</b></a></td>
+          <td width=90 align=center style="background-color:darkgray; font-weight:bold">File&nbsp;Types</td>
+          <td width=60 align=center style="background-color:darkgray; font-weight:bold">Loading</td>
+          <td width=50 align=right style="background-color:darkgray; font-weight:bold">Oblig.</td>
+          <td width=535 align=right style="background-color:darkgray; font-weight:bold">Remarks</td>
+
+
+
+    <h2>PicoQuant Unified Tag Dictionary</h2>
+    <p>&nbsp;&nbsp;&nbsp;(as valid at &nbsp;&nbsp;2019-02-15&nbsp;&nbsp;&nbsp;14:02:33)</p>
+
+    <table cellspacing=0 cols=7 border=1>
       <colgroup>
         <col width=260 span="1" align="right" style="background-color:darkgray; font-weight:bold">
         <col width=250>
@@ -281,7 +306,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
-          <td align=right>Kind of Measurement  <br> PHU: 0= Oscilloscope Mode, 1= Integrating mode, 2= TRES <br> PTU: 1= Point, 3 = Image</td>
+          <td align=right>Kind of Measurement  <br> PHU: 0= Oscilloscope Mode, 1= Integrating mode, 2= TRES <br> PTU: 0 or 1= Point;<br>2 = Line;<br>3 = Image</td>
         </tr>
 
         <tr>
@@ -991,7 +1016,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Name of TCSPC device (e.g. "PicoHarp", "HydraHarp", "TimeHarp260N", "TimeHarp260P")</td>
+          <td align=right>Name of TCSPC device (e.g. "PicoHarp", "HydraHarp", "TimeHarp260N", "TimeHarp260P", "MultiHarp")</td>
         </tr>
 
         <tr>
@@ -1241,7 +1266,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Identifiers the scanner hardware. (1 = PI E-710, 3 = LSM, 5 = PI Line WBS, 6 = PI E-725)</td>
+          <td align=right> Identifiers the scanner hardware. (1 = PI E-710, 3 = LSM, 5 = PI Line WBS, 6 = PI E-725, 7 = PI E-727, 8 = MCL, 9 = FLIMBee, 10 = ScanBox)</td>
         </tr>
 
         <tr>
@@ -1252,6 +1277,16 @@
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
           <td align=right> Learning Time used for PI Piezo Controllers [s]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_LineFrequency</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Frequency for a Line in image and line measurements (from line start marker to next line start marker)</td>
         </tr>
 
         <tr>
@@ -1275,6 +1310,26 @@
         </tr>
 
         <tr>
+          <td height=20 align=right><code>ImgHdr_MaxFrames</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Image was recorded with a maximum number of frames to scan and automatically stop</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_ObjectiveName</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>AnsiString</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Name of the Objective used in the measurement</td>
+        </tr>
+
+        <tr>
           <td height=20 align=right><code>ImgHdr_PixResol</code></td>
           <td align=right ><font style="color:gray">no</font></td>
           <td align=right><code>Float8</code></td>
@@ -1291,7 +1346,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Number of pixels in the fast scan direction (for line and image)</td>
+          <td align=right> Number of pixels in the fast scan direction (for image measurements)</td>
         </tr>
 
         <tr>
@@ -1301,7 +1356,17 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Number of pixels in the slow scan direction (for line and image)</td>
+          <td align=right> Number of pixels in the slow scan direction (for image measurements)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_PrevPix</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Line measurements: number of pixels per line used for the preview image</td>
         </tr>
 
         <tr>
@@ -1312,6 +1377,26 @@
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
           <td align=right> Scan direction, defining the configuration of fast and slowscan axis (First Axis = Fast Scan axis, Second Axis = SlowAxis: PI_SCANMODE_XY(0) = X-Y Scan, PI_SCANMODE_XZ(1)= X-Z Scan, PI_SCANMODE_YZ(2) = Y-Z Scan)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_SinCorrection</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> if bigger than zero the image was recorded using a sinuidal movement instead of a linear movement, the value represents the percentage of the sinus wave used for the measurement (0-100%)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_TimePerLine</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Line measurements, time to measure one line (from start to end marker) [ms]</td>
         </tr>
 
         <tr>
@@ -1381,7 +1466,37 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> X Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image)</td>
+          <td align=right> X Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image) [µm]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_X1</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> X end position of line measurement [µm]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_XCalibOffset</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Calibration offset of the X Axis (V)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_XCalibration</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Calibration of the X Axis from axis movement to voltage (m/V)</td>
         </tr>
 
         <tr>
@@ -1391,7 +1506,37 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Y Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image)</td>
+          <td align=right> Y Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image) [µm]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Y1</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Y end position of line measurement [µm]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_YCalibOffset</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Calibration offset of the Y Axis (V)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_YCalibration</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Calibration of the Y Axis from axis movement to voltage (m/V)</td>
         </tr>
 
         <tr>
@@ -1401,7 +1546,37 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Z Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image)</td>
+          <td align=right> Z Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image) [µm]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_Z1</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Z end position of line measurement [µm]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_ZCalibOffset</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Calibration offset of the Z Axis (V)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>ImgHdr_ZCalibration</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Calibration of the Z Axis from axis movement to voltage (m/V)</td>
         </tr>
 
         <tr>
@@ -3027,26 +3202,3 @@
         </tr>
       </tbody>
     </table>
-
-    <p />
-    <hr>                                                                       <!--                            FOOTER -->
-    <a name="RelatedTopics"></a>                                               <!-- as a jump-target (bottom of page) -->
-    <table width=100%>
-      <tr>
-        <td align=left>
-          <b>Related Topics:</b>
-        </td>
-        <td align=right>
-<!--      [<a href="#Top">Top</a>]                                             <!--  as navigation-button back to top -->
-          &nbsp;&nbsp;
-        </td>
-      </tr>
-    </table>
-    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagtypes.html">Tag File Format</a>]</nobr>
-    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagtypes.html#FileMagics">File Magics</a>]</nobr>
-    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tagtypes.html#TagTypes">Tag Type Definitions</a>]</nobr>
-    &nbsp;&nbsp;&nbsp;<nobr>[<a href="apx_tttrrecords.html">TTTR Record Formats</a>]</nobr>
-    <br>&nbsp;&nbsp;&nbsp;[<a href="apx_support.html">Support</a>]
-    <br><font color=WHITE size=1></font> <!-- spoiled words repeated -->
-  </body>
-</html>
