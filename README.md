@@ -4,6 +4,9 @@
 Demo Code for PicoQuants Time Tagged File Formats
 
 ## Changelog
+### 26.03.19
+* updated LabVIEW demos, PTU demo was buggy
+
 ### 15.02.2019
 * adapted C demos to compile under Linux also
 * updated DOC to most recent tag dictionary

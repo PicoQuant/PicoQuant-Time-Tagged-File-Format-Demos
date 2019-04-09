@@ -6,7 +6,7 @@ an ASCII file. Note that this is not meant to be a conversion tool.
 You are encouraged to modify it for immediate processing of the data
 according to whatever your application actually requires.
 Conversion to ASCII is silly because it massively increases the file 
-size and does not get you closer to the ultimate goal of somehow 
+size and does not get you much closer to the ultimate goal of somehow 
 meaningfully processing the data.
 
 MainTagBrowser.vi is a generic little demo that reads the header of
