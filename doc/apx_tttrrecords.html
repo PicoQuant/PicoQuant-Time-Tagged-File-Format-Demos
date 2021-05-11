@@ -146,7 +146,7 @@
 </p>
 <H3>Images</H3>
 <p>
-  (all Formats, except LIN Camera)<BR>
+  (all Formats)<BR>
   To reconstruct the image one needs marker defined as a line start, line stop and frame trigger. The corresponding
   header entries are <font style="font-weight:bold;color:indigo">ImgHdr_LineStart</font>, <font style="font-weight:bold;color:indigo">ImgHdr_LineStop</font> and
   <font style="font-weight:bold;color:indigo">ImgHdr_Frame</font>. The line start and line stop markers mark the real
@@ -167,10 +167,6 @@
   <b>Notice&nbsp;2:</b> The marker positions in MicroTime200 images are different than before in the SymPhoTime&nbsp;32. When
   a MicroTime200 image is converted for the new software the markers are relocated to match the real line start, line stop
   position.</p>
-<p>
-  (LIN Camera)<BR>
-  The LIN Camera directly supplies the X and Y position in the Image of every Photon.
-</p>
 <hr>
 <H2>TCSPC specific record formats</H2>
 <p>Currently the following formats are defined:
@@ -186,9 +182,8 @@
    <li>TimeHarp 260N&thinsp; T3 = $00010305</li>
    <li>TimeHarp 260P&thinsp; T2 = $00010206</li>
    <li>TimeHarp 260P&thinsp; T3 = $00010306</li>
-   <li>MultiHarpN&thinsp; T2 = $00010207</li>
-   <li>MultiHarpN&thinsp; T3 = $00010307</li>
-   <li>LIN Camera&emsp;&ensp;&thinsp; T3 = $00010300</li>
+   <li>MultiHarp&thinsp; T2 = $00010207</li>
+   <li>MultiHarp&thinsp; T3 = $00010307</li>
  </ul>
 <br>
 <H3>PicoHarp T2 Format</h3>
@@ -255,11 +250,11 @@ The bit allocation in the record is, starting from the MSB:<BR>
 If the <code>special</code> bit is clear, it's a regular event record.<BR>
 If the <code>special</code> bit is set, the following interpretation of the <code>channel</code> code is given:
 <UL>
-	<LI>code 63 (all bits ones) identifies a timetag overflow, increment the overflow timetag accumulator.
+	<LI><code>channel</code> code 63 (all bits ones) identifies a timetag overflow, increment the overflow timetag accumulator.
 		For HydraHarp V1 ($00010204) it always means one overflow. For all other types the number of overflows
 		can be read from <code>timetag</code> value.
-	<LI>code 0 (all bits zeroes) identifies a sync event,
-	<LI>codes from 1 to 15 identify markers, the individual bits are external markers.
+	<LI><code>channel</code> code 0 (all bits zeroes) identifies a sync event,
+	<LI><code>channel</code> codes from 1 to 15 (4 bit = 4 marker) identify markers, the individual bits are external markers.
 </UL>
 
 <H3>HydraHarp, MultiHarp and TimeHarp260 T3 Format</h3>
@@ -278,34 +273,13 @@ The bit allocation in the record is, starting from the MSB:<BR>
 &nbsp;nsync: 10 <BR>
 </code>
 If the <code>special</code> bit is clear, it's a regular event record.<BR>
-If the <code>special</code> bit is set, the following interpretation of the channel code is given:<BR>
+If the <code>special</code> bit is set, the following interpretation of the <code>channel</code> code is given:<BR>
 <UL>
-	<LI>code 63 (all bits ones) identifies a sync count overflow, increment the sync count overflow accumulator.
+	<LI><code>channel</code> code 63 (all bits ones) identifies a sync count overflow, increment the sync count overflow accumulator.
 		For HydraHarp V1 ($00010304) it means always one overflow. For all other types the number of overflows
 		can be read from <code>nsync</code> value.
-   <LI>codes from 1 to 15 identify markers, the individual bits are external markers.
+   <LI><code>channel</code> codes from 1 to 15 (4 bit = 4 marker) identify markers, the individual bits are external markers.
 </UL>
-
-<H3>LIN Camera Format</h3>
-<Table cellspacing=0 border=0>
-<TR>
-  <TD><b>RecType:</b><TD>$00010300<TD>&nbsp;
-  <TD><b>Overflow period:</b><TD>N/A<TD>&nbsp;
-  <TD><b>Record Size:</b><TD>64 Bit = 8 Byte
-</TR>
-</Table><p>
-This is a file imported from a '.photons' File created by Recording software of LIN camera.
-The bit allocation in the record is, starting from the MSB:<BR>
-<code>
-&nbsp;XPosition: 16 <BR>
-&nbsp;YPosition: 16 <BR>
-&nbsp;DTime: 16 <BR>
-&nbsp;MSTime: 16 <BR>
-</code>
-This records contains the absolute pixel positions (0 to PixX - 1; 0 to PixY - 1) as read from the instrument.
-MSTime equals the Number of Milliseconds since the last Record. The GlobalResolution for such files is always
-1&nbsp;ms, therefore one can treat this value as a timetag which accumulates with every count.
-    <p />
     <hr>                                                                       <!--                            FOOTER -->
     <a name="RelatedTopics"></a>                                               <!-- as a jump-target (bottom of page) -->
     <table width=100%>

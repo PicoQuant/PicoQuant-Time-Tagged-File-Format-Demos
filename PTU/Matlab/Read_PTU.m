@@ -43,8 +43,8 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     rtTimeHarp260NT2 = hex2dec('00010205');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
     rtTimeHarp260PT3 = hex2dec('00010306');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $06 (TimeHarp260P)
     rtTimeHarp260PT2 = hex2dec('00010206');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
-    rtMultiHarpNT3   = hex2dec('00010307');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $07 (MultiHarp150N)
-    rtMultiHarpNT2   = hex2dec('00010207');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp150N)
+    rtMultiHarpT3    = hex2dec('00010307');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $07 (MultiHarp)
+    rtMultiHarpT2    = hex2dec('00010207');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp)
 
     % Globals for subroutines
     global fid
@@ -193,12 +193,12 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         case rtTimeHarp260PT2
             isT2 = true;
             fprintf(1,'TimeHarp260P T2 data\n');
-        case rtMultiHarpNT3
+        case rtMultiHarpT3
             isT2 = false;
-            fprintf(1,'MultiHarp150N T3 data\n');
-        case rtMultiHarpNT2
+            fprintf(1,'MultiHarp T3 data\n');
+        case rtMultiHarpT2
             isT2 = true;
-            fprintf(1,'MultiHarp150N T2 data\n');
+            fprintf(1,'MultiHarp T2 data\n');
         otherwise
             error('Illegal RecordType!');
     end;
@@ -228,10 +228,10 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         case rtHydraHarpT2
             isT2 = true;
             ReadHT2(1);
-        case {rtMultiHarpNT3, rtHydraHarp2T3, rtTimeHarp260NT3, rtTimeHarp260PT3}
+        case {rtMultiHarpT3, rtHydraHarp2T3, rtTimeHarp260NT3, rtTimeHarp260PT3}
             isT2 = false;
             ReadHT3(2);
-        case {rtMultiHarpNT2, rtHydraHarp2T2, rtTimeHarp260NT2, rtTimeHarp260PT2}
+        case {rtMultiHarpT2, rtHydraHarp2T2, rtTimeHarp260NT2, rtTimeHarp260PT2}
             isT2 = true;
             ReadHT2(2);
         otherwise

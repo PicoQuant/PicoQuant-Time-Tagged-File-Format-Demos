@@ -49,8 +49,8 @@ const
   rtTimeHarp260NT2 = $00010205;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
   rtTimeHarp260PT3 = $00010306;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $06 (TimeHarp260P)
   rtTimeHarp260PT2 = $00010206;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
-  rtMultiHarpNT3   = $00010307;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $07 (MultiHarp 150)
-  rtMultiHarpNT2   = $00010207;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $07 (MultiHarp 150)
+  rtMultiHarpT3    = $00010307;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $07 (MultiHarp)
+  rtMultiHarpT2    = $00010207;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $07 (MultiHarp)
     // for proper columns choose this
   //{
   COLWIDTH_I64            =        21;
@@ -97,7 +97,7 @@ var
 
 
 //Got Photon
-//  TimeTag: Raw TimeTag from Record * Globalresolution = Real Time arrival of Photon
+//  TimeTag: Raw TimeTag from Record * Global resolution = Real Time arrival of Photon
 //  DTime: Arrival time of Photon after last Sync event (T3 only) DTime * Resolution = Real time arrival of Photon after last Sync event
 //  Channel: Channel the Photon arrived (0 = Sync channel for T2 measurements)
 procedure GotPhoton(TimeTag: Int64; DTime: Integer; Channel: Integer);
@@ -109,7 +109,7 @@ begin
 end;
 
 //Got Marker
-//  TimeTag: Raw TimeTag from Record * Globalresolution = Real Time arrival of Photon
+//  TimeTag: Raw TimeTag from Record * Global resolution = Real Time arrival of Marker
 //  Markers: Bitfield of arrived Markers, different markers can arrive at same time (same record)
 procedure GotMarker(TimeTag: Int64; Markers: Integer);
 begin
@@ -210,7 +210,7 @@ begin
           end;
           2: begin
             // number of overflows is stored in timetag
-            // if it is zero, it is an old style single oferflow {should never happen with new Firmware}
+            // if it is zero, it is an old style single overflow {should never happen with new Firmware}
             GotOverflow(ifthen(DTime = 0, 1, DTime));
             OflCorrection := OflCorrection + Int64(T2WRAPAROUND_V2) * ifthen(DTime = 0, 1, DTime);
           end;
@@ -513,8 +513,8 @@ try
       rtTimeHarp260NT2: WriteLn(OutFile, 'TimeHarp260N T2 data');
       rtTimeHarp260PT3: WriteLn(OutFile, 'TimeHarp260P T3 data');
       rtTimeHarp260PT2: WriteLn(OutFile, 'TimeHarp260P T2 data');
-      rtMultiHarpNT3: WriteLn(OutFile, 'MultiHarp150N T3 data');
-      rtMultiHarpNT2: WriteLn(OutFile, 'MultiHarp150N T2 data');
+      rtMultiHarpT3: WriteLn(OutFile, 'MultiHarp T3 data');
+      rtMultiHarpT2: WriteLn(OutFile, 'MultiHarp T2 data');
       else
         begin
           WriteLn('unknown Record type: $' + IntToHex(RecordType, 8));
@@ -552,11 +552,11 @@ try
         rtHydraHarpT2: ProcessHHT2(TTTRRecord, 1);
         rtHydraHarpT3: ProcessHHT3(TTTRRecord, 1);
           // HydraHarp V2 + TimeHarp260N+P, MultiHarp
-        rtMultiHarpNT2,
+        rtMultiHarpT2,
         rtHydraHarp2T2,
         rtTimeHarp260NT2,
         rtTimeHarp260PT2: ProcessHHT2(TTTRRecord, 2);
-        rtMultiHarpNT3,
+        rtMultiHarpT3,
         rtHydraHarp2T3,
         rtTimeHarp260NT3,
         rtTimeHarp260PT3: ProcessHHT3(TTTRRecord, 2);

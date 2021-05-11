@@ -4,9 +4,9 @@
 
   This is demo code. Use at your own risk. No warranties.
 
-  Tested with MS Visual Studio 2015 and Mingw 4.5, GCC 4.8.2 (Linux)
+  Tested with MS Visual Studio 2015 and Mingw 4.5, GCC 5.4.0 (Linux)
 
-  Marcus Sackrow, PicoQuant GmbH, February 2019
+  Marcus Sackrow, PicoQuant GmbH, December 2019
 
 ************************************************************************/
 
@@ -50,8 +50,8 @@
 #define rtTimeHarp260NT2 0x00010205    // (SubID = $00 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
 #define rtTimeHarp260PT3 0x00010306    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $06 (TimeHarp260P)
 #define rtTimeHarp260PT2 0x00010206    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
-#define rtMultiHarpNT3   0x00010307    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $07 (MultiHarp150N)
-#define rtMultiHarpNT2   0x00010207    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp150N)
+#define rtMultiHarpT3    0x00010307    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $07 (MultiHarp)
+#define rtMultiHarpT2    0x00010207    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp)
 
 #pragma pack(8) //structure alignment to 8 byte boundaries
 
@@ -78,7 +78,7 @@ time_t TDateTime_TimeT(double Convertee)
 FILE *fpin,*fpout;
 bool IsT2;
 long long RecNum;
-long long oflcorrection;
+long long oflcorrection = 0;
 long long truensync, truetime;
 int m, c;
 double GlobRes = 0.0;
@@ -534,12 +534,12 @@ int main(int argc, char* argv[])
       fprintf(fpout, "TimeHarp260P T2 data\n");
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
-  case rtMultiHarpNT3:
-      fprintf(fpout, "MultiHarp150N T3 data\n");
+  case rtMultiHarpT3:
+      fprintf(fpout, "MultiHarp T3 data\n");
       fprintf(fpout,"\nrecord# chan   nsync truetime/ns dtime\n");
       break;
-	case rtMultiHarpNT2:
-      fprintf(fpout, "MultiHarp150N T2 data\n");
+	case rtMultiHarpT2:
+      fprintf(fpout, "MultiHarp T2 data\n");
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
   default:
@@ -587,14 +587,14 @@ int main(int argc, char* argv[])
       IsT2 = false;
       ProcessHHT3(TTTRRecord, 1);
       break;
-    case rtMultiHarpNT2:
+    case rtMultiHarpT2:
 	case rtHydraHarp2T2:
 	case rtTimeHarp260NT2:
 	case rtTimeHarp260PT2:
       IsT2 = true;
       ProcessHHT2(TTTRRecord, 2);
       break;
-	case rtMultiHarpNT3:
+	case rtMultiHarpT3:
 	case rtHydraHarp2T3:
 	case rtTimeHarp260NT3:
 	case rtTimeHarp260PT3:
