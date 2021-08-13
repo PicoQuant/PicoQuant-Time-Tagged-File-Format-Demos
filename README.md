@@ -7,8 +7,7 @@ Demo Code for PicoQuants Time Tagged File Formats
 
 ### 06.05.2021
 * updated all PTU demos and documentation to cover the new MultiHarp 160,
-* basically generalizing from MultiHarp 150 to 
-* Multiharp 150+160 = MultiHarp
+* basically generalizing from MultiHarp 150 to Multiharp 150+160 = MultiHarp
 * updated DOC to most recent tag dictionary
 
 
