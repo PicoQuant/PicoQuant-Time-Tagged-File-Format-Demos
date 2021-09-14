@@ -96,11 +96,11 @@ void GotPhoton(long long TimeTag, int Channel, int DTime)
 {
   if(IsT2)
   {
-      fprintf(fpout,"%I64u CHN %1x %I64u %8.0lf\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e12));
+      fprintf(fpout,"%llu CHN %1x %llu %8.0lf\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e12));
   }
   else
   {
-    fprintf(fpout,"%I64u CHN %1x %I64u %8.0lf %10u\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e9), DTime);
+    fprintf(fpout,"%llu CHN %1x %llu %8.0lf %10u\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e9), DTime);
   }
 }
 
@@ -109,14 +109,14 @@ void GotPhoton(long long TimeTag, int Channel, int DTime)
 //  Markers: Bitfield of arrived Markers, different markers can arrive at same time (same record)
 void GotMarker(long long TimeTag, int Markers)
 {
-  fprintf(fpout,"%I64u MAR %2x %I64u\n", RecNum, Markers, TimeTag);
+  fprintf(fpout,"%llu MAR %2x %llu\n", RecNum, Markers, TimeTag);
 }
 
 //Got Overflow
 //  Count: Some TCSPC provide Overflow compression = if no Photons between overflow you get one record for multiple Overflows
 void GotOverflow(int Count)
 {
-  fprintf(fpout,"%I64u OFL * %2x\n", RecNum, Count);
+  fprintf(fpout,"%llu OFL * %2x\n", RecNum, Count);
 }
 
 // PicoHarp T3 input
@@ -212,7 +212,7 @@ void ProcessPHT2(unsigned int TTTRRecord)
   {
     if((int)Record.bits.channel > 4) //Should not occur
     {
-      printf(" Illegal Chan: #%I64u %1u\n",RecNum,Record.bits.channel);
+      printf(" Illegal Chan: #%llu %1u\n",RecNum,Record.bits.channel);
       fprintf(fpout," illegal chan.\n");
     }
     else
@@ -431,10 +431,10 @@ int main(int argc, char* argv[])
                     RecordType = TagHead.TagValue;
         break;
       case tyBitSet64:
-        fprintf(fpout, "0x%16.16X", TagHead.TagValue);
+        fprintf(fpout, "0x%16.16llX", TagHead.TagValue);
         break;
       case tyColor8:
-        fprintf(fpout, "0x%16.16X", TagHead.TagValue);
+        fprintf(fpout, "0x%16.16llX", TagHead.TagValue);
         break;
       case tyFloat8:
         fprintf(fpout, "%E", *(double*)&(TagHead.TagValue));
@@ -444,14 +444,14 @@ int main(int argc, char* argv[])
                     GlobRes = *(double*)&(TagHead.TagValue); // in ns
         break;
       case tyFloat8Array:
-        fprintf(fpout, "<Float Array with %d Entries>", TagHead.TagValue / sizeof(double));
+        fprintf(fpout, "<Float Array with %lld Entries>", TagHead.TagValue / sizeof(double));
         // only seek the Data, if one needs the data, it can be loaded here
         fseek(fpin, (long)TagHead.TagValue, SEEK_CUR);
         break;
       case tyTDateTime:
         time_t CreateTime;
         CreateTime = TDateTime_TimeT(*((double*)&(TagHead.TagValue)));
-        fprintf(fpout, "%s", asctime(gmtime(&CreateTime)), "\0");
+        fprintf(fpout, "%s", asctime(gmtime(&CreateTime)));
         break;
       case tyAnsiString:
         AnsiBuffer = (char*)calloc((size_t)TagHead.TagValue,1);
@@ -478,7 +478,7 @@ int main(int argc, char* argv[])
         free(WideBuffer);
         break;
             case tyBinaryBlob:
-        fprintf(fpout, "<Binary Blob contains %d Bytes>", TagHead.TagValue);
+        fprintf(fpout, "<Binary Blob contains %lld Bytes>", TagHead.TagValue);
         // only seek the Data, if one needs the data, it can be loaded here
         fseek(fpin, (long)TagHead.TagValue, SEEK_CUR);
         break;
@@ -543,7 +543,7 @@ int main(int argc, char* argv[])
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
   default:
-    fprintf(fpout, "Unknown record type: 0x%X\n 0x%X\n ", RecordType);
+    fprintf(fpout, "Unknown record type: 0x%llX\n", RecordType);
     goto close;
   }
 
