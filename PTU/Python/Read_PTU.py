@@ -129,7 +129,11 @@ while True:
         tagDataList.append((evalName, tagTime))
     elif tagTyp == tyAnsiString:
         tagInt = struct.unpack("<q", inputfile.read(8))[0]
-        tagString = inputfile.read(tagInt).decode("utf-8").strip("\0")
+        tmp_bytes = inputfile.read(tagInt)
+        try:
+            tagString = tmp_bytes.decode('utf-8').strip("\0")
+        except UnicodeDecodeError:
+            tagString = tmp_bytes.decode('latin1','ignore').strip("\0")
         outputfile.write("%s" % tagString)
         tagDataList.append((evalName, tagString))
     elif tagTyp == tyWideString:
