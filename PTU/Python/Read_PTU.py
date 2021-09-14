@@ -61,8 +61,7 @@ if len(sys.argv) != 3:
     exit(0)
 
 inputfile = open(sys.argv[1], "rb")
-# The following is needed for support of wide strings
-outputfile = io.open(sys.argv[2], "w+", encoding="utf-16le")
+outputfile = io.open(sys.argv[2], "w+", encoding="utf-8")
 
 # Check if inputfile is a valid PTU file
 # Python strings don't have terminating NULL characters, so they're stripped
