@@ -1,7 +1,7 @@
 # PicoQuant Time Tagged File Format (ptu, phu)
 
 
-Demo Code for PicoQuants Time Tagged File Formats
+ Demo Code for PicoQuants Time Tagged File Formats
 
 ## Changelog
 
