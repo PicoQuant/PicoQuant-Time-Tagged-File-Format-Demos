@@ -19,6 +19,11 @@ basically generalizing from MultiHarp 150 to
 Multiharp 150+160 = MultiHarp
 updated DOC to most recent tag dictionary
 
+15.3.22
+updated PTUdemo.cc for compatibility with recent compilers
 
-
+15.12.23
+updated all PTU demos and documentation for PicoHarp 330.
+recordtypes "GenericT2 and GenericT3" now apply for MultiHarp and Picoharp 330
+updated DOC to most recent tag dictionary
 

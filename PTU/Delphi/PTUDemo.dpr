@@ -6,6 +6,7 @@
   Tested with Delphi XE5 and Lazarus 1.1 (Freepascal 2.7.1)
 
   Marcus Sackrow, PicoQuant GmbH, August 2017
+  Michael Wahl, PicoQuant GmbH, December 2023
 }
 
 program PTUDemo;
@@ -39,8 +40,8 @@ const
   TTTRTagGlobRes           = 'MeasDesc_GlobalResolution';// Global Resolution of TimeTag(T2) /NSync (T3)
   FileTagEnd               = 'Header_End';               // has always to be appended as last tag (BLOCKEND)
   // RecordTypes
-  rtPicoHarpT3     = $00010303;    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $03 (PicoHarp)
-  rtPicoHarpT2     = $00010203;    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $03 (PicoHarp)
+  rtPicoHarpT3     = $00010303;    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $03 (PicoHarp 300)
+  rtPicoHarpT2     = $00010203;    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $03 (PicoHarp 300)
   rtHydraHarpT3    = $00010304;    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $04 (HydraHarp)
   rtHydraHarpT2    = $00010204;    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $04 (HydraHarp)
   rtHydraHarp2T3   = $01010304;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $04 (HydraHarp)
@@ -49,8 +50,8 @@ const
   rtTimeHarp260NT2 = $00010205;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
   rtTimeHarp260PT3 = $00010306;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $06 (TimeHarp260P)
   rtTimeHarp260PT2 = $00010206;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
-  rtMultiHarpT3    = $00010307;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $07 (MultiHarp)
-  rtMultiHarpT2    = $00010207;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $07 (MultiHarp)
+  rtGenericT3      = $00010307;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $07 (MultiHarp, PicoHarp330)
+  rtGenericT2      = $00010207;    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $07 (MultiHarp. PicoHarp330)
     // for proper columns choose this
   //{
   COLWIDTH_I64            =        21;
@@ -233,7 +234,7 @@ begin
   end;
 end;
 
-// PicoHarp T3 input
+// PicoHarp300 T3 input
 procedure ProcessPHT3(Value: Cardinal);
 const
   T3WRAPAROUND = 65536;
@@ -284,7 +285,7 @@ begin
     end;
 end;
 
-// PicoHarp T2 input
+// PicoHarp300 T2 input
 procedure ProcessPHT2(TTTR_RawData: Cardinal);
 const
   T2WRAPAROUND = 210698240;
@@ -503,8 +504,8 @@ try
     RecordLength := 4; // all use 4 Bytes until now
     // print TTTR Record type
     case RecordType of
-      rtPicoHarpT3: WriteLn(OutFile, 'PicoHarp T3 data');
-      rtPicoHarpT2: WriteLn(OutFile, 'PicoHarp T2 data');
+      rtPicoHarpT3: WriteLn(OutFile, 'PicoHarp300 T3 data');
+      rtPicoHarpT2: WriteLn(OutFile, 'PicoHarp300 T2 data');
       rtHydraHarpT3: WriteLn(OutFile, 'HyraHarp V1 T3 data');
       rtHydraHarpT2: WriteLn(OutFile, 'HydraHarp V1 T2 data');
       rtHydraHarp2T3: WriteLn(OutFile, 'HyraHarp V2 T3 data');
@@ -513,8 +514,8 @@ try
       rtTimeHarp260NT2: WriteLn(OutFile, 'TimeHarp260N T2 data');
       rtTimeHarp260PT3: WriteLn(OutFile, 'TimeHarp260P T3 data');
       rtTimeHarp260PT2: WriteLn(OutFile, 'TimeHarp260P T2 data');
-      rtMultiHarpT3: WriteLn(OutFile, 'MultiHarp T3 data');
-      rtMultiHarpT2: WriteLn(OutFile, 'MultiHarp T2 data');
+      rtGenericT3: WriteLn(OutFile, 'PQ generic T3 data');
+      rtGenericT2: WriteLn(OutFile, 'PQ generic T2 data');
       else
         begin
           WriteLn('unknown Record type: $' + IntToHex(RecordType, 8));
@@ -545,18 +546,18 @@ try
       end;
       // Analyse record
       case RecordType of
-          // PicoHarp
+          // PicoHarp 300
         rtPicoHarpT3: ProcessPHT3(TTTRRecord);
         rtPicoHarpT2: ProcessPHT2(TTTRRecord);
           // HydraHarp V1
         rtHydraHarpT2: ProcessHHT2(TTTRRecord, 1);
         rtHydraHarpT3: ProcessHHT3(TTTRRecord, 1);
-          // HydraHarp V2 + TimeHarp260N+P, MultiHarp
-        rtMultiHarpT2,
+          // HydraHarp V2 + TimeHarp260N+P, MultiHarp, PicoHarp330
+        rtGenericT2,
         rtHydraHarp2T2,
         rtTimeHarp260NT2,
         rtTimeHarp260PT2: ProcessHHT2(TTTRRecord, 2);
-        rtMultiHarpT3,
+        rtGenericT3,
         rtHydraHarp2T3,
         rtTimeHarp260NT3,
         rtTimeHarp260PT3: ProcessHHT3(TTTRRecord, 2);

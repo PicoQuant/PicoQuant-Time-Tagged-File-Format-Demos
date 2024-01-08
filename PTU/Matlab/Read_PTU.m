@@ -2,7 +2,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
 % This is demo code. Use at your own risk. No warranties.
 % Marcus Sackrow, PicoQuant GmbH, December 2013
 % Peter Kapusta, PicoQuant GmbH, November 2016
-% Edited script: text output formatting changed by KAP.
+% Michael Wahl, PicoQuant GmbH, December 2023, tested OK also with Octave 6.4.0
 
 % Note that marker events have a lower time resolution and may therefore appear
 % in the file slightly out of order with respect to regular (photon) event records.
@@ -33,8 +33,8 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     tyWideString  = hex2dec('4002FFFF');
     tyBinaryBlob  = hex2dec('FFFFFFFF');
     % RecordTypes
-    rtPicoHarpT3     = hex2dec('00010303');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $03 (PicoHarp)
-    rtPicoHarpT2     = hex2dec('00010203');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $03 (PicoHarp)
+    rtPicoHarpT3     = hex2dec('00010303');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $03 (PicoHarp300)
+    rtPicoHarpT2     = hex2dec('00010203');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $03 (PicoHarp300)
     rtHydraHarpT3    = hex2dec('00010304');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $04 (HydraHarp)
     rtHydraHarpT2    = hex2dec('00010204');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $04 (HydraHarp)
     rtHydraHarp2T3   = hex2dec('01010304');% (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $04 (HydraHarp)
@@ -43,8 +43,8 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     rtTimeHarp260NT2 = hex2dec('00010205');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
     rtTimeHarp260PT3 = hex2dec('00010306');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $06 (TimeHarp260P)
     rtTimeHarp260PT2 = hex2dec('00010206');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
-    rtMultiHarpT3    = hex2dec('00010307');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $07 (MultiHarp)
-    rtMultiHarpT2    = hex2dec('00010207');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp)
+    rtGenericT3      = hex2dec('00010307');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $07 (MultiHarp, PicoHarp330)
+    rtGenericT2      = hex2dec('00010207');% (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp, PicoHarp330)
 
     % Globals for subroutines
     global fid
@@ -165,10 +165,10 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     switch TTResultFormat_TTTRRecType;
         case rtPicoHarpT3
             isT2 = false;
-            fprintf(1,'PicoHarp T3 data\n');
+            fprintf(1,'PicoHarp300 T3 data\n');
         case rtPicoHarpT2
             isT2 = true;
-            fprintf(1,'PicoHarp T2 data\n');
+            fprintf(1,'PicoHarp300 T2 data\n');
         case rtHydraHarpT3
             isT2 = false;
             fprintf(1,'HydraHarp V1 T3 data\n');
@@ -193,12 +193,12 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         case rtTimeHarp260PT2
             isT2 = true;
             fprintf(1,'TimeHarp260P T2 data\n');
-        case rtMultiHarpT3
+        case rtGenericT3
             isT2 = false;
-            fprintf(1,'MultiHarp T3 data\n');
-        case rtMultiHarpT2
+            fprintf(1,'PQ generic T3 data\n');
+        case rtGenericT2
             isT2 = true;
-            fprintf(1,'MultiHarp T2 data\n');
+            fprintf(1,'PQ generic T2 data\n');
         otherwise
             error('Illegal RecordType!');
     end;
@@ -206,9 +206,9 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
     fprintf(1,'\nThis may take a while...');
     % write Header
     if (isT2)
-      fprintf(fpout, '  record# Type Ch        TimeTag             TrueTime/ps\n');
+      fprintf(fpout, '  record# Type Ch         TimeTag        TrueTime/ps\n');
     else
-      fprintf(fpout, '  record# Type Ch        TimeTag             TrueTime/ns            DTime\n');
+      fprintf(fpout, '  record# Type Ch         TimeTag        TrueTime/ns    DTime\n');
     end;
     global cnt_ph;
     global cnt_ov;
@@ -228,10 +228,10 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
         case rtHydraHarpT2
             isT2 = true;
             ReadHT2(1);
-        case {rtMultiHarpT3, rtHydraHarp2T3, rtTimeHarp260NT3, rtTimeHarp260PT3}
+        case {rtGenericT3, rtHydraHarp2T3, rtTimeHarp260NT3, rtTimeHarp260PT3}
             isT2 = false;
             ReadHT3(2);
-        case {rtMultiHarpT2, rtHydraHarp2T2, rtTimeHarp260NT2, rtTimeHarp260PT2}
+        case {rtGenericT2, rtHydraHarp2T2, rtTimeHarp260NT2, rtTimeHarp260PT2}
             isT2 = true;
             ReadHT2(2);
         otherwise
@@ -258,11 +258,9 @@ function GotPhoton(TimeTag, Channel, DTime)
   global cnt_ph;
   cnt_ph = cnt_ph + 1;
   if(isT2)
-      % Edited: formatting changed by PK
-      fprintf(fpout,'\n%10i CHN %i %18.0f (%0.1f ps)' , RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
+      fprintf(fpout,'\n%10i CHN %i %18.0f %18.0f' , RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e12));
   else
-      % Edited: formatting changed by PK
-      fprintf(fpout,'\n%10i CHN %i %18.0f (%0.1f ns) %ich', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
+      fprintf(fpout,'\n%10i CHN %i %18.0f %18.0f  %5i', RecNum, Channel, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9), DTime);
   end;
 end
 
@@ -275,8 +273,7 @@ function GotMarker(TimeTag, Markers)
   global cnt_ma;
   global MeasDesc_GlobalResolution;
   cnt_ma = cnt_ma + 1;
-  % Edited: formatting changed by PK
-  fprintf(fpout,'\n%10i MAR %i %18.0f (%0.1f ns)', RecNum, Markers, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9));
+  fprintf(fpout,'\n%10i MAR %i %18.0f %18.0f', RecNum, Markers, TimeTag, (TimeTag * MeasDesc_GlobalResolution * 1e9));
 end
 
 %% Got Overflow
@@ -286,13 +283,12 @@ function GotOverflow(Count)
   global RecNum;
   global cnt_ov;
   cnt_ov = cnt_ov + Count;
-  % Edited: formatting changed by PK
   fprintf(fpout,'\n%10i OFL * %i', RecNum, Count);
 end
 
 %% Decoder functions
 
-%% Read PicoHarp T3
+%% Read PicoHarp300 T3
 function ReadPT3
     global fid;
     global fpout;
@@ -303,7 +299,7 @@ function ReadPT3
 
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
-        T3Record = fread(fid, 1, 'ubit32');     % all 32 bits:
+        T3Record = fread(fid, 1, 'uint32');     % all 32 bits:
     %   +-------------------------------+  +-------------------------------+
     %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
     %   +-------------------------------+  +-------------------------------+
@@ -338,7 +334,7 @@ function ReadPT3
     end;
 end
 
-%% Read PicoHarp T2
+%% Read PicoHarp300 T2
 function ReadPT2
     global fid;
     global fpout;
@@ -349,8 +345,8 @@ function ReadPT2
 
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
-        T2Record = fread(fid, 1, 'ubit32');
-        T2time = bitand(T2Record,268435455);             %the lowest 28 bits
+        T2Record = fread(fid, 1, 'uint32');
+        T2time = bitand(T2Record,268435455);           %the lowest 28 bits
         chan = bitand(bitshift(T2Record,-28),15);      %the next 4 bits
         timetag = T2time + ofltime;
         if (chan >= 0) && (chan <= 4)
@@ -375,7 +371,7 @@ function ReadPT2
     end;
 end
 
-%% Read HydraHarp/TimeHarp260 T3
+%% Read HydraHarp/TimeHarp260/MultiHarp/PicoHarp330 T3
 function ReadHT3(Version)
     global fid;
     global RecNum;
@@ -385,7 +381,7 @@ function ReadHT3(Version)
 
     for i = 1:TTResult_NumberOfRecords
         RecNum = i;
-        T3Record = fread(fid, 1, 'ubit32');     % all 32 bits:
+        T3Record = fread(fid, 1, 'uint32');     % all 32 bits:
         %   +-------------------------------+  +-------------------------------+
         %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
         %   +-------------------------------+  +-------------------------------+
@@ -429,7 +425,7 @@ function ReadHT3(Version)
     end;
 end
 
-%% Read HydraHarp/TimeHarp260 T2
+%% Read HydraHarp/TimeHarp260/MultiHarp/PicoHarp330 T2
 function ReadHT2(Version)
     global fid;
     global TTResult_NumberOfRecords; % Number of TTTR Records in the File;
@@ -441,7 +437,7 @@ function ReadHT2(Version)
 
     for i=1:TTResult_NumberOfRecords
         RecNum = i;
-        T2Record = fread(fid, 1, 'ubit32');     % all 32 bits:
+        T2Record = fread(fid, 1, 'uint32');     % all 32 bits:
         %   +-------------------------------+  +-------------------------------+
         %   |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|  |x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|x|
         %   +-------------------------------+  +-------------------------------+
@@ -457,7 +453,7 @@ function ReadHT2(Version)
         %   +-------------------------------+  +-------------------------------+
         %   |x| | | | | | | | | | | | | | | |  | | | | | | | | | | | | | | | | |
         %   +-------------------------------+  +-------------------------------+
-        % the resolution in T2 mode is 1 ps  - IMPORTANT! THIS IS NEW IN FORMAT V2.0
+        % the resolution in T2 mode is the device's base resolution
         timetag = OverflowCorrection + dtime;
         if special == 0   % this means a regular photon record
            GotPhoton(timetag, channel + 1, 0)

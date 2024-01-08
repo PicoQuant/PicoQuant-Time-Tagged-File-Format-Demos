@@ -4,9 +4,11 @@
 
   This is demo code. Use at your own risk. No warranties.
 
-  Tested with MS Visual Studio 2015 and Mingw 4.5, GCC 5.4.0 (Linux)
+  Tested with MS Visual C 2019 and Mingw 8.1.0 (Windows), 
+  and GCC 9.3.0 (Linux)
 
   Marcus Sackrow, PicoQuant GmbH, December 2019
+  Michael Wahl, PicoQuant GmbH, March 2022, Dec 2023
 
 ************************************************************************/
 
@@ -40,8 +42,8 @@
 #define tyBinaryBlob  0xFFFFFFFF
 
 // RecordTypes
-#define rtPicoHarpT3     0x00010303    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $03 (PicoHarp)
-#define rtPicoHarpT2     0x00010203    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $03 (PicoHarp)
+#define rtPicoHarpT3     0x00010303    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $03 (PicoHarp300)
+#define rtPicoHarpT2     0x00010203    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $03 (PicoHarp300)
 #define rtHydraHarpT3    0x00010304    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $03 (T3), HW: $04 (HydraHarp)
 #define rtHydraHarpT2    0x00010204    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $04 (HydraHarp)
 #define rtHydraHarp2T3   0x01010304    // (SubID = $01 ,RecFmt: $01) (V2), T-Mode: $03 (T3), HW: $04 (HydraHarp)
@@ -50,8 +52,8 @@
 #define rtTimeHarp260NT2 0x00010205    // (SubID = $00 ,RecFmt: $01) (V2), T-Mode: $02 (T2), HW: $05 (TimeHarp260N)
 #define rtTimeHarp260PT3 0x00010306    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $06 (TimeHarp260P)
 #define rtTimeHarp260PT2 0x00010206    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $06 (TimeHarp260P)
-#define rtMultiHarpT3    0x00010307    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $07 (MultiHarp)
-#define rtMultiHarpT2    0x00010207    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp)
+#define rtGenericT3      0x00010307    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T3), HW: $07 (MultiHarp, PicoHarp330)
+#define rtGenericT2      0x00010207    // (SubID = $00 ,RecFmt: $01) (V1), T-Mode: $02 (T2), HW: $07 (MultiHarp, PicoHarp330)
 
 #pragma pack(8) //structure alignment to 8 byte boundaries
 
@@ -96,11 +98,11 @@ void GotPhoton(long long TimeTag, int Channel, int DTime)
 {
   if(IsT2)
   {
-      fprintf(fpout,"%I64u CHN %1x %I64u %8.0lf\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e12));
+      fprintf(fpout,"%llu CHN %1x %llu %8.0lf\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e12));
   }
   else
   {
-    fprintf(fpout,"%I64u CHN %1x %I64u %8.0lf %10u\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e9), DTime);
+    fprintf(fpout,"%llu CHN %1x %llu %8.0lf %10u\n", RecNum, Channel, TimeTag, (TimeTag * GlobRes * 1e9), DTime);
   }
 }
 
@@ -109,17 +111,17 @@ void GotPhoton(long long TimeTag, int Channel, int DTime)
 //  Markers: Bitfield of arrived Markers, different markers can arrive at same time (same record)
 void GotMarker(long long TimeTag, int Markers)
 {
-  fprintf(fpout,"%I64u MAR %2x %I64u\n", RecNum, Markers, TimeTag);
+  fprintf(fpout,"%llu MAR %2x %llu\n", RecNum, Markers, TimeTag);
 }
 
 //Got Overflow
 //  Count: Some TCSPC provide Overflow compression = if no Photons between overflow you get one record for multiple Overflows
 void GotOverflow(int Count)
 {
-  fprintf(fpout,"%I64u OFL * %2x\n", RecNum, Count);
+  fprintf(fpout,"%llu OFL * %2x\n", RecNum, Count);
 }
 
-// PicoHarp T3 input
+// PicoHarp300 T3 input
 void ProcessPHT3(unsigned int TTTRRecord)
 {
   const int T3WRAPAROUND = 65536;
@@ -173,7 +175,7 @@ void ProcessPHT3(unsigned int TTTRRecord)
   }
 };
 
-// PicoHarp T2 input
+// PicoHarp300 T2 input
 void ProcessPHT2(unsigned int TTTRRecord)
 {
   const int T2WRAPAROUND = 210698240;
@@ -212,7 +214,7 @@ void ProcessPHT2(unsigned int TTTRRecord)
   {
     if((int)Record.bits.channel > 4) //Should not occur
     {
-      printf(" Illegal Chan: #%I64u %1u\n",RecNum,Record.bits.channel);
+      printf(" Illegal Chan: #%llu %1u\n",RecNum,Record.bits.channel);
       fprintf(fpout," illegal chan.\n");
     }
     else
@@ -228,7 +230,7 @@ void ProcessPHT2(unsigned int TTTRRecord)
   }
 }
 
-// HydraHarp/TimeHarp260 T2 input
+// HydraHarp/TimeHarp260/MultiHarp/PicoHarp330 T2 input
 void ProcessHHT2(unsigned int TTTRRecord, int HHVersion)
 {
   const int T2WRAPAROUND_V1 = 33552000;
@@ -290,7 +292,7 @@ void ProcessHHT2(unsigned int TTTRRecord, int HHVersion)
 
 }
 
-// HydraHarp/TimeHarp260 T3 input
+// HydraHarp/TimeHarp260/MultiHarp/PicoHarp330 T3 input
 void ProcessHHT3(unsigned int TTTRRecord, int HHVersion)
 {
   const int T3WRAPAROUND = 1024;
@@ -431,10 +433,10 @@ int main(int argc, char* argv[])
                     RecordType = TagHead.TagValue;
         break;
       case tyBitSet64:
-        fprintf(fpout, "0x%16.16X", TagHead.TagValue);
+        fprintf(fpout, "0x%16.16llX", TagHead.TagValue);
         break;
       case tyColor8:
-        fprintf(fpout, "0x%16.16X", TagHead.TagValue);
+        fprintf(fpout, "0x%16.16llX", TagHead.TagValue);
         break;
       case tyFloat8:
         fprintf(fpout, "%E", *(double*)&(TagHead.TagValue));
@@ -444,14 +446,14 @@ int main(int argc, char* argv[])
                     GlobRes = *(double*)&(TagHead.TagValue); // in ns
         break;
       case tyFloat8Array:
-        fprintf(fpout, "<Float Array with %d Entries>", TagHead.TagValue / sizeof(double));
+        fprintf(fpout, "<Float Array with %lld Entries>", TagHead.TagValue / sizeof(double));
         // only seek the Data, if one needs the data, it can be loaded here
         fseek(fpin, (long)TagHead.TagValue, SEEK_CUR);
         break;
       case tyTDateTime:
         time_t CreateTime;
         CreateTime = TDateTime_TimeT(*((double*)&(TagHead.TagValue)));
-        fprintf(fpout, "%s", asctime(gmtime(&CreateTime)), "\0");
+        fprintf(fpout, "%s", asctime(gmtime(&CreateTime)));
         break;
       case tyAnsiString:
         AnsiBuffer = (char*)calloc((size_t)TagHead.TagValue,1);
@@ -478,7 +480,7 @@ int main(int argc, char* argv[])
         free(WideBuffer);
         break;
             case tyBinaryBlob:
-        fprintf(fpout, "<Binary Blob contains %d Bytes>", TagHead.TagValue);
+        fprintf(fpout, "<Binary Blob contains %lld Bytes>", TagHead.TagValue);
         // only seek the Data, if one needs the data, it can be loaded here
         fseek(fpin, (long)TagHead.TagValue, SEEK_CUR);
         break;
@@ -495,11 +497,11 @@ int main(int argc, char* argv[])
   switch (RecordType)
   {
     case rtPicoHarpT2:
-      fprintf(fpout, "PicoHarp T2 data\n");
+      fprintf(fpout, "PicoHarp300 T2 data\n");
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
     case rtPicoHarpT3:
-      fprintf(fpout, "PicoHarp T3 data\n");
+      fprintf(fpout, "PicoHarp300 T3 data\n");
       fprintf(fpout,"\nrecord# chan   nsync truetime/ns dtime\n");
       break;
     case rtHydraHarpT2:
@@ -534,16 +536,16 @@ int main(int argc, char* argv[])
       fprintf(fpout, "TimeHarp260P T2 data\n");
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
-  case rtMultiHarpT3:
-      fprintf(fpout, "MultiHarp T3 data\n");
+  case rtGenericT3:
+      fprintf(fpout, "PQ Generic T3 data\n");
       fprintf(fpout,"\nrecord# chan   nsync truetime/ns dtime\n");
       break;
-	case rtMultiHarpT2:
-      fprintf(fpout, "MultiHarp T2 data\n");
+	case rtGenericT2:
+      fprintf(fpout, "PQ Generic T2 data\n");
       fprintf(fpout,"\nrecord# chan timetag truetime/ps\n");
       break;
   default:
-    fprintf(fpout, "Unknown record type: 0x%X\n 0x%X\n ", RecordType);
+    fprintf(fpout, "Unknown record type: 0x%llX\n", RecordType);
     goto close;
   }
 
@@ -587,14 +589,14 @@ int main(int argc, char* argv[])
       IsT2 = false;
       ProcessHHT3(TTTRRecord, 1);
       break;
-    case rtMultiHarpT2:
+    case rtGenericT2:
 	case rtHydraHarp2T2:
 	case rtTimeHarp260NT2:
 	case rtTimeHarp260PT2:
       IsT2 = true;
       ProcessHHT2(TTTRRecord, 2);
       break;
-	case rtMultiHarpT3:
+	case rtGenericT3:
 	case rtHydraHarp2T3:
 	case rtTimeHarp260NT3:
 	case rtTimeHarp260PT3:

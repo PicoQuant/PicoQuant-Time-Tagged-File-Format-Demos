@@ -1,5 +1,5 @@
     <h2>PicoQuant Unified Tag Dictionary</h2>
-    <p>&nbsp;&nbsp;&nbsp;(as valid at &nbsp;&nbsp;2021-05-06&nbsp;&nbsp;&nbsp;12:24:13)</p>
+    <p>&nbsp;&nbsp;&nbsp;(V1.1.05 as valid at &nbsp;&nbsp;2023-11-03&nbsp;&nbsp;&nbsp;14:17:25)</p>
 
     <table cellspacing=0 cols=7 border=1>
       <colgroup>
@@ -56,7 +56,17 @@
           <td align=center><code>all</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
-          <td align=right>Used as global identifier for all kind of tagged files;<br>given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
+          <td align=right>Used as global identifier for all kind of tagged files;<br>Given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>File_DictVersionIdent</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>AnsiString</code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right> Just an optional declaration</td>
         </tr>
 
         <tr>
@@ -76,7 +86,7 @@
           <td align=center><code>all</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>File Comment (ASCII-String)</td>
+          <td align=right>File Comment (ANSI string)</td>
         </tr>
 
         <tr>
@@ -86,7 +96,7 @@
           <td align=center><code>all</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>File Comment (Wide-String)</td>
+          <td align=right>File Comment (wide string)</td>
         </tr>
 
         <tr>
@@ -96,7 +106,7 @@
           <td align=center><code>all</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Date and Time the File was created;<br>(ASCII-String)</td>
+          <td align=right>Date and Time the File was created (ANSI string);<br>(strongly recommended to use ISO8601 format YYYY-MM-DDThh:mm:ss)</td>
         </tr>
 
         <tr>
@@ -106,27 +116,27 @@
           <td align=center><code>all</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Date and Time the File was created;<br>(TDateTime) (prefer this format)</td>
+          <td align=right>Date and Time the File was created (TDateTime);<br>(prefer this format)</td>
         </tr>
 
         <tr>
           <td height=20 align=right><code>File_ParentResult_GUID</code></td>
           <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;2147483646</font></code></td>
           <td align=right><code>AnsiString</code></td>
-          <td align=center><code>PCO, PQRES</code></td>
+          <td align=center><code>PCO, PHU, PQRES</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Used as global Identifier for underlying result files;<br>given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
+          <td align=right>Used as global Identifier for underlying result files;<br>Given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
         </tr>
 
         <tr>
           <td height=20 align=right><code>File_RawData_GUID</code></td>
           <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;2147483646</font></code></td>
           <td align=right><code>AnsiString</code></td>
-          <td align=center><code>PCO, PCK, PQRES</code></td>
+          <td align=center><code>PCO, PCK, PQRES, PTU</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Used as global Identifier for underlying raw data files;<br>given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
+          <td align=right>Used as global Identifier for underlying raw data files;<br>Given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X} <br> PTU: e.g. if raw data file was cropped by use of PTUCutter.exe</td>
         </tr>
 
         <tr>
@@ -146,7 +156,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
-          <td align=right>Kind of TCSPC Measurement  <br> PHU: 0= Histogram mode, 8 = "ContiMode" <br> PTU: T2 = 2, T3 = 3</td>
+          <td align=right>Kind of TCSPC Measurement  <br> PHU: 0 = Histogram mode;<br>8 = "ContiMode" <br> PTU: 2 = T2 mode;<br>3 = T3 mode</td>
         </tr>
 
         <tr>
@@ -156,7 +166,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
-          <td align=right>Kind of Measurement  <br> PHU: 0= Oscilloscope Mode, 1= Integrating mode, 2= TRES <br> PTU: 0 or 1= Point;<br>2 = Line;<br>3 = Image</td>
+          <td align=right>Kind of Measurement  <br> PHU: 0 = Oscilloscope mode;<br>1 = Integrating mode;<br>2 = TRES;<br>3 = SEQ mode <br> PTU: 0 or 1 = Point;<br>2 = Line;<br>3 = Image</td>
         </tr>
 
         <tr>
@@ -200,6 +210,16 @@
         </tr>
 
         <tr>
+          <td height=20 align=right><code>CreatorSW_LicenceGUID</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>AnsiString</code></td>
+          <td align=center><code>all</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Used as global Identifier for underlying licence;<br>Given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
+        </tr>
+
+        <tr>
           <td height=20 align=right><code><font style="font-weight:bold;color:indigo">CreatorSW_Modules</font></code></td>
           <td align=right ><font style="color:gray">no</font></td>
           <td align=right><code>Int8</code></td>
@@ -236,7 +256,7 @@
           <td align=center><code>all</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Build number of Software created the file</td>
+          <td align=right>Build number of the software, that created the file</td>
         </tr>
 
         <tr>
@@ -276,7 +296,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> identifies measurement type;<br>0: Point, 1: Image, 128: Point Testmeasurement, 129: Image Testmeasurement</td>
+          <td align=right> Identifies measurement type: 0: Point;<br>1: Image;<br>128: Point Testmeasurement;<br>129: Image Testmeasurement</td>
         </tr>
 
         <tr>
@@ -306,7 +326,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> identifies TCP/IP record format transferred;<br>currently 1.0.2.0  (i.e. 0x00, 0x02, 0x00, 0x01  on stream)</td>
+          <td align=right> Identifies TCP/IP record format transferred;<br>Currently 1.0.2.0  (i.e. 0x00, 0x02, 0x00, 0x01  on stream)</td>
         </tr>
 
         <tr>
@@ -316,7 +336,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Scan pattern as sent in request;<br>0: monodirectional, 1: bi-directional</td>
+          <td align=right> Scan pattern as sent in request: 0: monodirectional;<br>1: bi-directional</td>
         </tr>
 
         <tr>
@@ -346,7 +366,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Comment as sent in request;<br>may contain linebreaks, though they aren't shown in all presentations (e.g. in tables)</td>
+          <td align=right> Comment as sent in request;<br>May contain linebreaks, though they aren't shown in all presentations (e.g. in tables)</td>
         </tr>
 
         <tr>
@@ -356,7 +376,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Name for file send in request</td>
+          <td align=right> Name for file sent in request</td>
         </tr>
 
         <tr>
@@ -366,7 +386,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Name for group measurement as sent in request;<br>subdirectory in current working directory: created, if not existing</td>
+          <td align=right> Name for group measurement as sent in request;<br>Subdirectory with this name is created in current working directory, if not existing</td>
         </tr>
 
         <tr>
@@ -496,7 +516,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Triggers on 0=falling edge;<br>1=rising edge;<br>only if not CFD input</td>
+          <td align=right>Triggers on 0 = falling edge;<br>1 = rising edge;<br>(only if not CFD input)</td>
         </tr>
 
         <tr>
@@ -506,7 +526,17 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV];&nbsp;trigger level for input channel;<br>only if not CFD input</td>
+          <td align=right>[mV];&nbsp;trigger level for input channel;<br>(only if not CFD input)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HWInpChan_TrgMode</code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InpChannels&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Kind of input type (Edge Trigger = 0 vs. CFD = 1;<br>default depends on HW_Type)</td>
         </tr>
 
         <tr>
@@ -526,7 +556,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Indicates if marker was enabled in measurement</td>
+          <td align=right>Indicates if marker was enabled on measurement</td>
         </tr>
 
         <tr>
@@ -566,7 +596,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Type code of each hardware module;<br>e.g. PicoHarp: 1000 = digital, 1040 = Analog</td>
+          <td align=right>Type code of each hardware module;<br>e.g. PicoHarp: 1000 = digital;<br>1040 = Analog</td>
         </tr>
 
         <tr>
@@ -636,7 +666,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>0=Custom, 1=NIM, 2=TTL</td>
+          <td align=right>0 = Custom;<br>1 = NIM;<br>2 = TTL</td>
         </tr>
 
         <tr>
@@ -676,7 +706,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Model code of Router: 0=None, 1=PHR_402 , 2=PHR_403, 3=PHR_800</td>
+          <td align=right>Model code of Router: 0 = None;<br>1 = PHR_402;<br>2 = PHR_403;<br>3 = PHR_800</td>
         </tr>
 
         <tr>
@@ -746,7 +776,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Triggers on 0=falling edge;<br>1=rising edge;<br>only if not CFD sync input</td>
+          <td align=right>Triggers on 0 = falling edge;<br>1 = rising edge;<br>(only if not CFD sync input)</td>
         </tr>
 
         <tr>
@@ -756,7 +786,17 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV];&nbsp;trigger level for sync input;<br>only if not CFD sync input</td>
+          <td align=right>[mV];&nbsp;trigger level for sync input;<br>(only if not CFD sync input)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HWSync_TrgMode</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Kind of input type (Edge Trigger = 0 vs. CFD = 1;<br>default depends on HW_Type)</td>
         </tr>
 
         <tr>
@@ -816,7 +856,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>$001=DLL;<br>$002=TTTR;<br>$004=Markers;<br>$008=low Res.;<br>$010=Trig.Out.;</td>
+          <td align=right>$001 = DLL;<br>$002 = TTTR;<br>$004 = Markers;<br>$008 = low Res.;<br>$010 = Trig.Out.;<br>$020 = prog. DeadTime;<br>$040 = ext FPGA interf.;<br>$080 = prog. hysteresis;<br>$100 = coincidence filtering;<br>$200 = prog. input modes</td>
         </tr>
 
         <tr>
@@ -826,7 +866,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>true = long hysteresis;<br>value goes for all input channels in common</td>
+          <td align=right>true = long hysteresis;<br>Value goes for all input channels in common</td>
         </tr>
 
         <tr>
@@ -837,6 +877,16 @@
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
           <td align=right>Part number of TCSPC device</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_RefClockSource</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates (in coded form), what kind of reference clock was used</td>
         </tr>
 
         <tr>
@@ -876,7 +926,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>0=HiRes;<br>1=LoRes;<br>only used for TH260</td>
+          <td align=right>0 = HiRes;<br>1 = LoRes;<br>(only used for TH260)</td>
         </tr>
 
         <tr>
@@ -886,7 +936,7 @@
           <td align=center><code>PHU, PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Name of TCSPC device (e.g. "PicoHarp", "HydraHarp", "TimeHarp260N", "TimeHarp260P", "MultiHarp")</td>
+          <td align=right>Name of TCSPC device;<br>(e.g. "PicoHarp", "HydraHarp", "TimeHarp260N", "TimeHarp260P", "MultiHarp", "PicoHarp330", &hellip;)</td>
         </tr>
 
         <tr>
@@ -897,6 +947,96 @@
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
           <td align=right>Hardware version of TCSPC device</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;MultiHarp HW-Eventfilter Data&gt;</code></B></td>
+          <td align=right  bgcolor="silver"><br></td>
+          <td align=right  bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right  bgcolor="silver"><br></td>
+          <td align=right  bgcolor="silver"><br></td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFiltChan_Pass</code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InpChannels&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if events from this channel are passed through the filter</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFiltChan_Used</code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;HW_InpChannels&minus;1</font></code></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if this channel is used in the filter</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFiltSync_Pass</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if events from the SYNC channel are passed through the filter</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFiltSync_Used</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if the SYNC channel is used in the filter</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFilt_Enabled</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if the main filter was enabled on measurement</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFilt_Inverse</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if the filter works logically inverse</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFilt_MatchCount</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[cnts/interval];&nbsp;Defines the amount of events, that have to occur in coincidence to let the filter pass them (0&hellip;6)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HW_MainFilt_TimeRange</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[nsec];&nbsp;Defines the length of the coincidence interval (0&hellip;160000)</td>
         </tr>
 
         <tr>
@@ -946,7 +1086,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Sync was invalid (=0) on measurement start</td>
+          <td align=right>Sync was invalid (= 0) on measurement start</td>
         </tr>
 
         <tr>
@@ -960,13 +1100,63 @@
         </tr>
 
         <tr>
+          <td height=20 align=right><code>MeasDesc_Resolution</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Float8</code></td>
+          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
+          <td align=right>[s];&nbsp;Resolution of TCSPC: BaseResolution * iBinningFactor</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>MeasDesc_Restart</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>MeasDesc_StopAt</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>[cnt]</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>MeasDesc_StopOnOvfl</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>&nbsp;</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=left bgcolor="silver"><B><code>&lt;Measurement Sequence Descr.&gt;</code></B></td>
+          <td align=right  bgcolor="silver"><br></td>
+          <td align=right  bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><code><br></code></td>
+          <td align=center bgcolor="silver"><br></td>
+          <td align=right  bgcolor="silver"><br></td>
+          <td align=right  bgcolor="silver"><br></td>
+        </tr>
+
+        <tr>
           <td height=20 align=right><code><font style="font-weight:bold;color:indigo">MeasDesc_Params</font></code></td>
           <td align=right ><font style="color:gray">no</font></td>
           <td align=right><code>Int8</code></td>
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Curve Parameter Count</td>
+          <td align=right>Curve Parameter Count <br> PHU: = 3 for SubMode is SEQ</td>
         </tr>
 
         <tr>
@@ -1040,43 +1230,63 @@
         </tr>
 
         <tr>
-          <td height=20 align=right><code>MeasDesc_Resolution</code></td>
+          <td height=20 align=right><code>MeasDesc_SeqExecutablePath</code></td>
           <td align=right ><font style="color:gray">no</font></td>
-          <td align=right><code>Float8</code></td>
-          <td align=center><code>PHU, PTU</code></td>
-          <td align=center><font style="color:gray">std.</font></td>
-          <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
-          <td align=right>[s];&nbsp;Resolution of TCSPC: BaseResolution * iBinningFactor</td>
-        </tr>
-
-        <tr>
-          <td height=20 align=right><code>MeasDesc_Restart</code></td>
-          <td align=right ><font style="color:gray">no</font></td>
-          <td align=right><code>Bool8</code></td>
-          <td align=center><code>PHU, PTU</code></td>
+          <td align=right><code>AnsiString</code></td>
+          <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>&nbsp;</td>
+          <td align=right>Full path (as ANSI string) to executable for measurement sequence;<br>can be .exe as well as .bat</td>
         </tr>
 
         <tr>
-          <td height=20 align=right><code>MeasDesc_StopAt</code></td>
+          <td height=20 align=right><code>MeasDesc_SeqExecutablePath</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>WideString</code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Full path (as wide string) to executable for measurement sequence;<br>can be .exe as well as .bat</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>MeasDesc_SeqHideExecutableWnd</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if the executable's window should be hidden during sequence</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>MeasDesc_SeqNCycles</code></td>
           <td align=right ><font style="color:gray">no</font></td>
           <td align=right><code>Int8</code></td>
-          <td align=center><code>PHU, PTU</code></td>
+          <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[cnt]</td>
+          <td align=right>Sequence count:  number of cycles</td>
         </tr>
 
         <tr>
-          <td height=20 align=right><code>MeasDesc_StopOnOvfl</code></td>
+          <td height=20 align=right><code>MeasDesc_SeqPause</code></td>
           <td align=right ><font style="color:gray">no</font></td>
-          <td align=right><code>Bool8</code></td>
-          <td align=center><code>PHU, PTU</code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>&nbsp;</td>
+          <td align=right>[ms];&nbsp;&nbsp;Pause between individual runs in a measurement sequence</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>MeasDesc_SeqRunExecutable</code></td>
+          <td align=right ><font style="color:gray">no</font></td>
+          <td align=right><code>Bool8</code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Indicates if an executable is called for each measurement in sequence</td>
         </tr>
 
         <tr>
@@ -1106,7 +1316,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Scan pattern: TRUE identifies bidirectional scanning (1st line forward scan, 2nd line backward scan, 3rd line forward, 4th line backward, &hellip;);&lt;br&gt;FALSE identifies monodirectional scanning (all lines forward)</td>
+          <td align=right> Scan pattern: TRUE identifies bidirectional scanning (1st line forward scan;<br>2nd line backward scan;<br>3rd line forward;<br>4th line backward;<br>&hellip;);<br>FALSE identifies monodirectional scanning (all lines forward)</td>
         </tr>
 
         <tr>
@@ -1116,7 +1326,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Dimension of the measurement (1 = Point, 2 = Line, 3 = Image)</td>
+          <td align=right> Dimension of the measurement: 1 = Point;<br>2 = Line;<br>3 = Image</td>
         </tr>
 
         <tr>
@@ -1126,7 +1336,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Marker in TTTR Stream defining a Frame change</td>
+          <td align=right> Marker in TTTR stream defining a frame change</td>
         </tr>
 
         <tr>
@@ -1136,7 +1346,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Identifiers the scanner hardware. (1 = PI E-710, 3 = LSM, 5 = PI Line WBS, 6 = PI E-725, 7 = PI E-727, 8 = MCL, 9 = FLIMBee, 10 = ScanBox)</td>
+          <td align=right> Identifies the scanner hardware: (1 = PI E-710;<br>3 = LSM;<br>5 = PI Line WBS;<br>6 = PI E-725;<br>7 = PI E-727;<br>8 = MCL;<br>9 = FLIMBee;<br>10 = ScanBox)</td>
         </tr>
 
         <tr>
@@ -1146,7 +1356,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Learning Time used for PI Piezo Controllers [s]</td>
+          <td align=right> [s];&nbsp;Learning Time used for PI Piezo Controllers</td>
         </tr>
 
         <tr>
@@ -1156,7 +1366,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Frequency for a Line in image and line measurements (from line start marker to next line start marker)</td>
+          <td align=right> Frequency for a Line on image and line measurements (from line start marker to next line start marker)</td>
         </tr>
 
         <tr>
@@ -1166,7 +1376,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Marker in TTTR Stream defining a line start</td>
+          <td align=right> Marker in TTTR stream defining a line start</td>
         </tr>
 
         <tr>
@@ -1176,7 +1386,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Marker in TTTR Stream defining a Line end</td>
+          <td align=right> Marker in TTTR stream defining a line end</td>
         </tr>
 
         <tr>
@@ -1196,7 +1406,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Name of the Objective used in the measurement</td>
+          <td align=right> Name of the objective used on measurement</td>
         </tr>
 
         <tr>
@@ -1206,7 +1416,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Resolution of a single pixel (line an image measurements) [µm]</td>
+          <td align=right> [µm];&nbsp;Resolution of a single pixel (line an image measurements)</td>
         </tr>
 
         <tr>
@@ -1246,7 +1456,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Scan direction, defining the configuration of fast and slowscan axis (First Axis = Fast Scan axis, Second Axis = SlowAxis: PI_SCANMODE_XY(0) = X-Y Scan, PI_SCANMODE_XZ(1)= X-Z Scan, PI_SCANMODE_YZ(2) = Y-Z Scan)</td>
+          <td align=right> Scan direction, defining the configuration of fast and slowscan axis;<br>(First Axis = Fast Scan axis, Second Axis = SlowAxis;<br>PI_SCANMODE_XY(0) = X-Y Scan;<br>PI_SCANMODE_XZ(1) = X-Z Scan;<br>PI_SCANMODE_YZ(2) = Y-Z Scan)</td>
         </tr>
 
         <tr>
@@ -1256,7 +1466,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> if bigger than zero the image was recorded using a sinuidal movement instead of a linear movement, the value represents the percentage of the sinus wave used for the measurement (0-100%)</td>
+          <td align=right> If &gt; 0, the image was recorded using a sinuidal instead of a linear movement;<br>Value represents percentage of the sinus wave used for the measurement (0-100%)</td>
         </tr>
 
         <tr>
@@ -1266,7 +1476,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Line measurements, time to measure one line (from start to end marker) [ms]</td>
+          <td align=right> [ms];&nbsp;Line measurements, time to measure one line (from start to end marker)</td>
         </tr>
 
         <tr>
@@ -1276,7 +1486,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Integration time per pixel for image measurements [ms]</td>
+          <td align=right> [ms];&nbsp;Integration time per pixel for image measurements</td>
         </tr>
 
         <tr>
@@ -1336,7 +1546,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> X Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image) [µm]</td>
+          <td align=right> [µm];&nbsp;X Position of measurement (interpretation depends on ImgHdr_Dimensions;<br>for point measurements: the coordinate of measurement;<br>for line: the start point;<br>for images: the offset of the upper left edge of the image)</td>
         </tr>
 
         <tr>
@@ -1346,7 +1556,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> X end position of line measurement [µm]</td>
+          <td align=right> [µm];&nbsp;X end position of line measurement</td>
         </tr>
 
         <tr>
@@ -1356,7 +1566,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Calibration offset of the X Axis (V)</td>
+          <td align=right> [V];&nbsp;Calibration offset of the X Axis</td>
         </tr>
 
         <tr>
@@ -1366,7 +1576,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Calibration of the X Axis from axis movement to voltage (m/V)</td>
+          <td align=right> [m/V];&nbsp;Calibration of the X Axis from axis movement to voltage</td>
         </tr>
 
         <tr>
@@ -1376,7 +1586,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Y Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image) [µm]</td>
+          <td align=right> [µm];&nbsp;Y Position of measurement (interpretation depends on ImgHdr_Dimensions;<br>for point measurements: the coordinate of measurement;<br>for line: the start point;<br>for images: the offset of the upper left edge of the image)</td>
         </tr>
 
         <tr>
@@ -1386,7 +1596,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Y end position of line measurement [µm]</td>
+          <td align=right> [µm];&nbsp;Y end position of line measurement</td>
         </tr>
 
         <tr>
@@ -1396,7 +1606,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Calibration offset of the Y Axis (V)</td>
+          <td align=right> [V];&nbsp;Calibration offset of the Y Axis</td>
         </tr>
 
         <tr>
@@ -1406,7 +1616,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Calibration of the Y Axis from axis movement to voltage (m/V)</td>
+          <td align=right> [m/V];&nbsp;Calibration of the Y Axis from axis movement to voltage</td>
         </tr>
 
         <tr>
@@ -1416,7 +1626,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Z Position of measurement (defines for point measurements the coordinate of measurement, for line the start point, for images the offset of the upper left edge of the image) [µm]</td>
+          <td align=right> [µm];&nbsp;Z Position of measurement (interpretation depends on ImgHdr_Dimensions;<br>for point measurements: the coordinate of measurement;<br>for line: the start point;<br>for images: the offset of the upper left edge of the image)</td>
         </tr>
 
         <tr>
@@ -1426,7 +1636,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Z end position of line measurement [µm]</td>
+          <td align=right> [µm];&nbsp;Z end position of line measurement</td>
         </tr>
 
         <tr>
@@ -1436,7 +1646,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Calibration offset of the Z Axis (V)</td>
+          <td align=right> [V];&nbsp;Calibration offset of the Z Axis</td>
         </tr>
 
         <tr>
@@ -1446,7 +1656,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Calibration of the Z Axis from axis movement to voltage (m/V)</td>
+          <td align=right> [m/V];&nbsp;Calibration of the Z Axis from axis movement to voltage</td>
         </tr>
 
         <tr>
@@ -1466,7 +1676,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:limegreen;font-weight:bold;font-style:italic;">fast</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Reason for measurement end:&lt;br&gt;srTimeOver(0) = TimeOver, ScanDone&lt;br&gt;srManual(1) = Stopped by user&lt;br&gt;srOverFlow(2) = Overflow condition&lt;br&gt;srError(3) = Error (old style, converted Files)&lt;br&gt;srUnkown(-1) = Unknown Reason&lt;br&gt;srFiFoOverrun(-2)= FiFo Ov</td>
+          <td align=right>Reason for measurement end: <br> PTU: srTimeOver(0) = TimeOver, ScanDone;<br>srManual(1) = Stopped by user;<br>srOverFlow(2) = Overflow condition;<br>srError(3) = Error (old style, converted Files);<br>srUnkown(-1) = Unknown Reason;<br>srFiFoOverrun(-2)= FiFo Overrun;<br>srLegacyErr(-3) = Legacy converted;<br>srTCSPCError(-4) = TCSPC Error;<br>srFileError(-5) = File writing Error (e.g. disk full);<br>srOutOfMem(-6) = Out of memory on recording file;<br>srSuspend(-7) = Computer sent to suspend in measurement;<br>srSYSERROR(-8) = SysError Flag of TCSPC appeared;<br>srQueueOverrun(-9) = Software FiFo overrun;<br>srDataXferFail(-10) = Read FiFo Error, typically bad USB connection;<br>srDataCheckFail(-11) = Illegal Dataentry found;<br>srRefClkLost(-12) = Reference clock signal lost;<br>srSyncLost(-13) = Sync Signal Lost</td>
         </tr>
 
         <tr>
@@ -1486,7 +1696,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Warnings during measurement <br> PTU: 0x001=SyncRateZero;<br>0x002=SyncRateTooLow;<br>0x004=SyncRateTooHigh;<br>0x010=InptRateZero;<br>0x040=InptRateTooHigh;<br>0x080=EventsDropped;<br>0x100=InptRateRatio;<br>0x200=DividerGTOne;<br>0x400=TimeSpanToSmall;<br>0x800=OffsetUnnecessary;</td>
+          <td align=right>Warnings during measurement <br> PTU: 0x001 = SyncRateZero;<br>0x002 = SyncRateTooLow;<br>0x004 = SyncRateTooHigh;<br>0x010 = InptRateZero;<br>0x040 = InptRateTooHigh;<br>0x080 = EventsDropped;<br>0x100 = InptRateRatio;<br>0x200 = DividerGTOne;<br>0x400 = TimeSpanToSmall;<br>0x800 = OffsetUnnecessary;</td>
         </tr>
 
         <tr>
@@ -1536,7 +1746,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:red;font-weight:bold">mand.</font></td>
-          <td align=right> currently containing 32 for all PicoQuant TCSPC devices;<br>nevertheless mandatory!</td>
+          <td align=right> Currently containing 32 for all PicoQuant TCSPC devices;<br>Nevertheless mandatory!</td>
         </tr>
 
         <tr>
@@ -1546,7 +1756,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> binary mask to isolate the channels data field from the TTTR record by means of a binary AND operation (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Binary mask to isolate the channels data field from the TTTR record by means of a binary AND operation;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1556,7 +1766,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> shift the isolated channels data field by this number of bits to the right to get the channel number as integer (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Shift the isolated channels data field by this number of bits to the right to get the channel number as integer;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1566,7 +1776,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> binary mask to isolate the DTime data field from the TTTR record by means of a binary AND operation (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Binary mask to isolate the DTime data field from the TTTR record by means of a binary AND operation;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1576,7 +1786,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> shift the isolated DTime data field by this number of bits to the right to get the DTime value as integer (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Shift the isolated DTime data field by this number of bits to the right to get the DTime value as integer;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1586,7 +1796,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> binary mask to isolate the marker data field from the TTTR record by means of a binary AND operation (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Binary mask to isolate the marker data field from the TTTR record by means of a binary AND operation;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1596,7 +1806,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> shift the isolated marker data field by this number of bits to the right to get the marker pattern as integer;<br>consider, markers are bitset coded and may even coincide (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Shift the isolated marker data field by this number of bits to the right to get the marker pattern as integer;<br>Consider: markers are bitset coded and may even coincide;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1606,7 +1816,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> binary mask to isolate the NSync data field from the TTTR record by means of a binary AND operation (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Binary mask to isolate the NSync data field from the TTTR record by means of a binary AND operation;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1616,7 +1826,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> shift the isolated NSync data field by this number of bits to the right to get the NSync value as integer (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Shift the isolated NSync data field by this number of bits to the right to get the NSync value as integer;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1626,7 +1836,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> binary mask to isolate the special record field from the TTTR record by means of a binary AND operation;<br>if the isolated field equals the mask, we recognize a special record (refer to your TCSPC device manual for more information)</td>
+          <td align=right> Binary mask to isolate the special record field from the TTTR record by means of a binary AND operation;<br>If the isolated field equals the mask, we recognize a special record;<br>(Refer to your TCSPC device manual for more information)</td>
         </tr>
 
         <tr>
@@ -1646,7 +1856,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right> Add this value to your global counter on each arriving of an overflow record. If your TCSPC device is able to compress overflows, multiply by the value of the unshifted (rightmost) datafield in TTTR record before addition.</td>
+          <td align=right> Add this value to your global counter on each arriving of an overflow record;<br>If your TCSPC device is able to compress overflows, multiply by the value of the unshifted (rightmost) datafield in TTTR record before addition.</td>
         </tr>
 
         <tr>
@@ -1766,7 +1976,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>$001=DLL;<br>$002=TTTR;<br>$004=Markers;<br>$008=low Res.;<br>$010=Trig.Out.;</td>
+          <td align=right>$001 = DLL;<br>$002 = TTTR;<br>$004 = Markers;<br>$008 = low Res.;<br>$010 = Trig.Out.;<br>$020 = prog. DeadTime;<br>$040 = ext FPGA interf.;<br>$080 = prog. hysteresis;<br>$100 = coincidence filtering;<br>$200 = prog. input modes</td>
         </tr>
 
         <tr>
@@ -1776,7 +1986,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV]</td>
+          <td align=right>[mV];&nbsp;refers to the input identified by HistResDscr_HWInpChanIdx</td>
         </tr>
 
         <tr>
@@ -1786,7 +1996,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV]</td>
+          <td align=right>[mV];&nbsp;refers to the input identified by HistResDscr_HWInpChanIdx</td>
         </tr>
 
         <tr>
@@ -1796,7 +2006,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>&nbsp;</td>
+          <td align=right>identifies the input that collected the events of this histogram</td>
         </tr>
 
         <tr>
@@ -1806,7 +2016,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>1 &hellip; HW_Modules</td>
+          <td align=right>1 &hellip; HW_Modules;<br>refers to the input identified by HistResDscr_HWInpChanIdx</td>
         </tr>
 
         <tr>
@@ -1836,7 +2046,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[ps]</td>
+          <td align=right>[ps];&nbsp;refers to the input identified by HistResDscr_HWInpChanIdx</td>
         </tr>
 
         <tr>
@@ -1846,7 +2056,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Deadtime classification</td>
+          <td align=right>Deadtime classification;<br>refers to the input identified by HistResDscr_HWInpChanIdx</td>
         </tr>
 
         <tr>
@@ -1856,7 +2066,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Triggers on 0=falling edge;<br>1=rising edge;<br>only if not CFD input</td>
+          <td align=right>Triggers on 0 = falling edge;<br>1 = rising edge;<br>(only if not CFD input);<br>refers to the input identified by HistResDscr_HWInpChanIdx</td>
         </tr>
 
         <tr>
@@ -1866,7 +2076,17 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV];&nbsp;trigger level for input channel;<br>only if not CFD input</td>
+          <td align=right>[mV];&nbsp;trigger level for input channel;<br>(only if not CFD input);<br>refers to the input identified by HistResDscr_HWInpChanIdx</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWInpChanTrgMode</code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;HistoResult_NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Kind of input type (Edge Trigger = 0 vs. CFD = 1, default depends on HW_Type);<br>refers to the input identified by HistResDscr_HWInpChanIdx</td>
         </tr>
 
         <tr>
@@ -1876,7 +2096,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>true = long hysteresis;<br>value goes for all input channels in common</td>
+          <td align=right>true = long hysteresis;<br>Value goes for all input channels in common</td>
         </tr>
 
         <tr>
@@ -1976,7 +2196,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>enums:  None, PHR_402 , PHR_403, PHR_800</td>
+          <td align=right>Model code of Router:  0 = None;<br>1 = PHR_402;<br>2 = PHR_403;<br>3 = PHR_800</td>
         </tr>
 
         <tr>
@@ -1986,7 +2206,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV];&nbsp;only if present</td>
+          <td align=right>[mV];&nbsp;only present if HistResDscr_HWRtChanCFDPresent[idx] = TRUE</td>
         </tr>
 
         <tr>
@@ -2006,7 +2226,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV];&nbsp;only if present</td>
+          <td align=right>[mV];&nbsp;only present if HistResDscr_HWRtChanCFDPresent[idx] = TRUE</td>
         </tr>
 
         <tr>
@@ -2026,7 +2246,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>enums:  Custom, NIM, TTL</td>
+          <td align=right>0 = Custom;<br>1 = NIM;<br>2 = TTL</td>
         </tr>
 
         <tr>
@@ -2116,7 +2336,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Triggers on 0=falling edge;<br>1=rising edge;<br>only if not CFD sync input</td>
+          <td align=right>Triggers on 0 = falling edge;<br>1 = rising edge;<br>(only if not CFD sync input)</td>
         </tr>
 
         <tr>
@@ -2126,7 +2346,17 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>[mV];&nbsp;trigger level for sync input;<br>only if not CFD sync input</td>
+          <td align=right>[mV];&nbsp;trigger level for sync input;<br>(only if not CFD sync input)</td>
+        </tr>
+
+        <tr>
+          <td height=20 align=right><code>HistResDscr_HWSyncTrgMode</code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;HistoResult_NumberOfCurves&minus;1</font></code></td>
+          <td align=right><code>Int8</code></td>
+          <td align=center><code>PHU</code></td>
+          <td align=center><font style="color:gray">std.</font></td>
+          <td align=right><font style="color:gray">opt.</font></td>
+          <td align=right>Kind of input type (Edge Trigger = 0 vs. CFD = 1;<br>default depends on HW_Type)</td>
         </tr>
 
         <tr>
@@ -2136,7 +2366,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>0=HiRes;<br>1=LoRes;<br>only used for TH260</td>
+          <td align=right>0 = HiRes;<br>1 = LoRes;<br>(only used for TH260)</td>
         </tr>
 
         <tr>
@@ -2166,7 +2396,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>"PicoHarp", "HydraHarp", "TH260N", "TH260P"</td>
+          <td align=right>"PicoHarp", "HydraHarp", "TH260N", "TH260P", "MultiHarp", "PicoHarp330", &hellip;</td>
         </tr>
 
         <tr>
@@ -2276,7 +2506,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>0=timeover;<br>1=manual;<br>2=overflow</td>
+          <td align=right>0 = timeover;<br>1 = manual;<br>2 = overflow</td>
         </tr>
 
         <tr>
@@ -2296,7 +2526,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Warnings during measurement <br> PHU: 0x001=SyncRateZero;<br>0x002=SyncRateTooLow;<br>0x004=SyncRateTooHigh;<br>0x010=InptRateZero;<br>0x040=InptRateTooHigh;<br>0x080=EventsDropped;<br>0x100=InptRateRatio;<br>0x200=DividerGTOne;<br>0x400=TimeSpanToSmall;<br>0x800=OffsetUnnecessary;</td>
+          <td align=right>Warnings during measurement <br> PHU: 0x001 = SyncRateZero;<br>0x002 = SyncRateTooLow;<br>0x004 = SyncRateTooHigh;<br>0x010 = InptRateZero;<br>0x040 = InptRateTooHigh;<br>0x080 = EventsDropped;<br>0x100 = InptRateRatio;<br>0x200 = DividerGTOne;<br>0x400 = TimeSpanToSmall;<br>0x800 = OffsetUnnecessary;</td>
         </tr>
 
         <tr>
@@ -2306,7 +2536,7 @@
           <td align=center><code>PHU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Used as global Identifier for underlying raw data files;<br>given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X} <br> PHU: only used if generated / imported from other sources</td>
+          <td align=right>Used as global Identifier for underlying raw data files;<br>Given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X} <br> PHU: only used if generated / imported from other sources</td>
         </tr>
 
         <tr>
@@ -2706,7 +2936,7 @@
           <td align=center><code>PQRES</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>User defined Ansi string variable</td>
+          <td align=right>User defined ANSI string variable</td>
         </tr>
 
         <tr>
@@ -2836,7 +3066,7 @@
           <td align=center><code>PTU</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Used as global Identifier for an result file containing the underlying overview;<br>given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
+          <td align=right>Used as global Identifier for an result file containing the underlying overview;<br>Given in standard Windows GUID format: {%8.8X-%4.4X-%4.4X-%4.4X-%12.12X}</td>
         </tr>
 
         <tr>
@@ -2846,7 +3076,7 @@
           <td align=center><code>all</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>additional user defined Ansi string content</td>
+          <td align=right>additional user defined ANSI string content</td>
         </tr>
 
         <tr>
@@ -2966,12 +3196,12 @@
           <td align=center><code>PCK</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Number of Framemarker in the raw data file, also the number of Frame Records in the checkpoint file</td>
+          <td align=right>Number of Framemarker in the raw data file;<br>also the number of Frame Records in the checkpoint file</td>
         </tr>
 
         <tr>
           <td height=20 align=right><code>ChkFrameRecord</code></td>
-          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;ChkFrameMarkers&minus;0</font></code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;ChkFrameMarkers&minus;1</font></code></td>
           <td align=right><code>Int8</code></td>
           <td align=center><code>PCK</code></td>
           <td align=center><font style="color:gray">std.</font></td>
@@ -3001,12 +3231,12 @@
 
         <tr>
           <td height=20 align=right><code>ChkUsedChannel</code></td>
-          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;ChkChannels&minus;0</font></code></td>
+          <td align=right ><code><font style="font-weight:bold;color:indigo">0&hellip;ChkChannels&minus;1</font></code></td>
           <td align=right><code>Int8</code></td>
           <td align=center><code>PCK</code></td>
           <td align=center><font style="color:gray">std.</font></td>
           <td align=right><font style="color:gray">opt.</font></td>
-          <td align=right>Channel has Photons in the raw data file</td>
+          <td align=right>Channel has photon events in the raw data file</td>
         </tr>
 
         <tr>

@@ -122,14 +122,14 @@
         </td>
       </tr>
     </table>
-<hr>                                                                       <!--                              BODY -->
+<hr>                                                                           <!--                              BODY -->
 <p/>
 <H3>Basic record format</H3>
 <p>
 	This page describes the format of the TTTR data saved in the <Binary Data> section of raw data files.
 </p>
 <p>
-	Due to performance reasons the TTTR data are saved exactly as recieved from TCSPC device, hence the
+	Due to performance reasons the TTTR data are saved exactly as received from TCSPC device, hence the
   format of the TTTR records depends on the kind of TCSPC device and the type of measurement.
   The record format used in a particular file is denoted in the mandatory tag
   <font style="font-weight:bold;color:indigo">TTResultFormat_TTTRRecType</font>.
@@ -172,21 +172,23 @@
 <p>Currently the following formats are defined:
 </p>
  <ul>
-   <li>PicoHarp&emsp;&ensp;&ensp;&ensp;&thinsp;&thinsp;&thinsp;T3 = $00010303</li>
-   <li>PicoHarp&emsp;&ensp;&ensp;&ensp;&thinsp;&thinsp;&thinsp;T2 = $00010203</li>
-   <li>HydraHarp V1.x T3 = $00010304</li>
-   <li>HydraHarp V1.x T2 = $00010204</li>
-   <li>HydraHarp V2.x T3 = $01010304</li>
-   <li>HydraHarp V2.x T2 = $01010204</li>
-   <li>TimeHarp 260N&thinsp; T2 = $00010205</li>
-   <li>TimeHarp 260N&thinsp; T3 = $00010305</li>
-   <li>TimeHarp 260P&thinsp; T2 = $00010206</li>
-   <li>TimeHarp 260P&thinsp; T3 = $00010306</li>
-   <li>MultiHarp&thinsp; T2 = $00010207</li>
-   <li>MultiHarp&thinsp; T3 = $00010307</li>
+   <li>PicoHarp 300&emsp;&thinsp;&thinsp;&thinsp;T2 &ensp;=&ensp; $00010203</li>
+   <li>PicoHarp 300&emsp;&thinsp;&thinsp;&thinsp;T3 &ensp;=&ensp; $00010303</li>
+   <li>HydraHarp V1.x &thinsp;T2 &ensp;=&ensp; $00010204</li>
+   <li>HydraHarp V1.x &thinsp;T3 &ensp;=&ensp; $00010304</li>
+   <li>HydraHarp V2.x &thinsp;T2 &ensp;=&ensp; $01010204</li>
+   <li>HydraHarp V2.x &thinsp;T3 &ensp;=&ensp; $01010304</li>
+   <li>TimeHarp 260N&thinsp;&thinsp; T2 &ensp;=&ensp; $00010205</li>
+   <li>TimeHarp 260N&thinsp;&thinsp; T3 &ensp;=&ensp; $00010305</li>
+   <li>TimeHarp 260P&thinsp;&thinsp; T2 &ensp;=&ensp; $00010206</li>
+   <li>TimeHarp 260P&thinsp;&thinsp; T3 &ensp;=&ensp; $00010306</li>
+   <li>MultiHarp xxx&emsp;&thinsp;&thinsp;T2 &ensp;=&ensp; $00010207</li>
+   <li>MultiHarp xxx&emsp;&thinsp;&thinsp;T3 &ensp;=&ensp; $00010307<br>&thinsp;--- or ---</li>
+   <li><b>Picoharp 330 and Generic&thinsp;&thinsp;T2</b> &ensp;=&ensp; $00010207</li>
+   <li><b>Picoharp 300 and Generic&thinsp;&thinsp;T3</b> &ensp;=&ensp; $00010307</li>
  </ul>
 <br>
-<H3>PicoHarp T2 Format</h3>
+<H3>PicoHarp 300 T2 Format</h3>
 <Table cellspacing=0 border=0>
 <TR>
   <TD><b>RecType:</b><TD>$00010203<TD>&nbsp;
@@ -206,7 +208,7 @@ Special records can be overflows or external markers. To differentiate this, the
   <LI>If they are >=1 the individual bits are external markers.
 </UL>
 
-<H3>PicoHarp T3 Format</h3>
+<H3>PicoHarp 300 T3 Format</h3>
 <Table cellspacing=0 border=0>
 <TR>
   <TD><b>RecType:</b><TD>$00010303<TD>&nbsp;
@@ -227,7 +229,7 @@ Special records can be overflows or external markers. To differentiate this, <co
   <LI>If it is >=1 the individual bits are external markers.
 </UL>
 
-<H3>HydraHarp, MultiHarp and TimeHarp260 T2 Format</h3>
+<H3>HydraHarp, TimeHarp260, MultiHarp, PicoHarp330 and Generic T2 Format</h3>
 <Table cellspacing=0 border=0>
 <TR>
   <TD><b>RecType:</b><TD>$00010204<TD>&nbsp;
@@ -235,7 +237,7 @@ Special records can be overflows or external markers. To differentiate this, <co
   <TD><b>Record Size:</b><TD>32 Bit = 4 Byte
 </TR>
 <TR>
-  <TD><b>RecTypes:</b><TD>$01010204, $01010205, $01010206, $01010207<TD>&nbsp;
+  <TD><b>RecTypes:</b><TD>$01010204, $00010205, $00010206, $00010207<TD>&nbsp;
   <TD><b>Overflow period:</b><TD>33554432<TD>&nbsp;
   <TD><b>Record Size:</b><TD>32 Bit = 4 Byte
 </TR>
@@ -257,7 +259,7 @@ If the <code>special</code> bit is set, the following interpretation of the <cod
 	<LI><code>channel</code> codes from 1 to 15 (4 bit = 4 marker) identify markers, the individual bits are external markers.
 </UL>
 
-<H3>HydraHarp, MultiHarp and TimeHarp260 T3 Format</h3>
+<H3>HydraHarp, TimeHarp260, MultiHarp, PicoHarp330 and Generic T3 Format</H3>
 <Table cellspacing=0 border=0>
 <TR>
   <TD><b>RecType:</b><TD>$00010304, $01010304, $00010305, $00010306, $00010307<TD>&nbsp;
