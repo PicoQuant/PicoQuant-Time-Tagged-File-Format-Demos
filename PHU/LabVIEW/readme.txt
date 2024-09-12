@@ -1,5 +1,6 @@
 Demos for reading PicoQuant PTU & PHU files.
-Michael Wahl, PicoQuant GmbH, April 2015
+First Release: Michael Wahl, PicoQuant GmbH, April 2015
+Maintenance: Torsten Krause, PicoQuant GmbH, July 2024
 
 MainPTUdemo.vi / MainPHUdemo.vi is a demo that reads a PTU / PHU file and dumps its contents in 
 an ASCII file. Note that this is not meant to be a conversion tool. 
