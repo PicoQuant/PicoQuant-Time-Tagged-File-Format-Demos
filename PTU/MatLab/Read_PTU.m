@@ -127,7 +127,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 eval([EvalName '=datenum(1899,12,30)+TagFloat;']); % but keep in memory as Matlab Date Number
             case tyAnsiString
                 TagInt = fread(fid, 1, 'int64');
-                TagString = fread(fid, TagInt, '*char');
+                TagString = fread(fid, TagInt, 'int8=>char');
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1
