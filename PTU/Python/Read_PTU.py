@@ -1,4 +1,4 @@
-# Read_PTU.py    Read PicoQuant Unified Histogram Files
+# Read_PTU.py    Read PicoQuant Unified TTTR Data Files
 # This is demo code. Use at your own risk. No warranties.
 # Keno Goertz, PicoQUant GmbH, February 2018
 
@@ -61,8 +61,7 @@ if len(sys.argv) != 3:
     exit(0)
 
 inputfile = open(sys.argv[1], "rb")
-# The following is needed for support of wide strings
-outputfile = io.open(sys.argv[2], "w+", encoding="utf-16le")
+outputfile = io.open(sys.argv[2], "w+", encoding="utf-8")
 
 # Check if inputfile is a valid PTU file
 # Python strings don't have terminating NULL characters, so they're stripped
@@ -129,7 +128,11 @@ while True:
         tagDataList.append((evalName, tagTime))
     elif tagTyp == tyAnsiString:
         tagInt = struct.unpack("<q", inputfile.read(8))[0]
-        tagString = inputfile.read(tagInt).decode("utf-8").strip("\0")
+        tmp_bytes = inputfile.read(tagInt)
+        try:
+            tagString = tmp_bytes.decode('utf-8').strip("\0")
+        except UnicodeDecodeError:
+            tagString = tmp_bytes.decode('latin1','ignore').strip("\0")
         outputfile.write("%s" % tagString)
         tagDataList.append((evalName, tagString))
     elif tagTyp == tyWideString:
@@ -139,6 +142,7 @@ while True:
         tagDataList.append((evalName, tagString))
     elif tagTyp == tyBinaryBlob:
         tagInt = struct.unpack("<q", inputfile.read(8))[0]
+        inputfile.seek(tagInt, 1)
         outputfile.write("<Binary blob with %d bytes>" % tagInt)
         tagDataList.append((evalName, tagInt))
     else:
