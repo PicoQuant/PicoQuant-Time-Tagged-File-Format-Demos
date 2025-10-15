@@ -100,7 +100,7 @@
                 eval([EvalName '=datenum(1899,12,30)+TagFloat;']); % but keep in memory as Matlab Date Number
             case tyAnsiString
                 TagInt = fread(fid, 1, 'int64');
-                TagString = fread(fid, TagInt, '*char');
+                TagString = fread(fid, TagInt, 'int8=>char');
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1
@@ -111,7 +111,7 @@
                 % Matlab does not support Widestrings at all, just read and
                 % remove the 0's (up to current (2012))
                 TagInt = fread(fid, 1, 'int64');
-                TagString = fread(fid, TagInt, '*char');
+                TagString = fread(fid, TagInt, 'int8=>char');
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1

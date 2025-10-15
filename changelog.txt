@@ -27,3 +27,16 @@ updated all PTU demos and documentation for PicoHarp 330.
 recordtypes "GenericT2 and GenericT3" now apply for MultiHarp and Picoharp 330
 updated DOC to most recent tag dictionary
 
+20.8.24
+Fixed bug 4994:
+Comments on line 1 in Read_PHU.py and Read_PTU.py were mixed up
+
+11.9.24
+Updated LabView PHU demo after fix of wrong comments
+
+19.11.24
+python demos: added file seek for BinaryBlob tags
+
+04.02.25
+python demos: fixes for reading/writing of strings
+matlab demos: fixes for reading strings from file

@@ -1,4 +1,4 @@
-# Read_PHU.py    Read PicoQuant Unified TTTR Files
+# Read_PHU.py    Read PicoQuant Unified Histogram Files
 # This is demo code. Use at your own risk. No warranties.
 # Keno Goertz, PicoQUant GmbH, February 2018
 
@@ -110,6 +110,7 @@ while True:
         tagDataList.append((evalName, tagString))
     elif tagTyp == tyBinaryBlob:
         tagInt = struct.unpack("<q", inputfile.read(8))[0]
+        inputfile.seek(tagInt, 1)
         outputfile.write("<Binary blob with %d bytes>" % tagInt)
         tagDataList.append((evalName, tagInt))
     else:

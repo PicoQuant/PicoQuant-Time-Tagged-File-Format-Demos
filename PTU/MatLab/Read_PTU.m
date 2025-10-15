@@ -138,7 +138,7 @@ function Read_PTU % Read PicoQuant Unified TTTR Files
                 % Matlab does not support Widestrings at all, just read and
                 % remove the 0's (up to current (2012))
                 TagInt = fread(fid, 1, 'int64');
-                TagString = fread(fid, TagInt, '*char');
+                TagString = fread(fid, TagInt, 'int8=>char');
                 TagString = (TagString(TagString ~= 0))';
                 fprintf(1, '%s', TagString);
                 if TagIdx > -1
